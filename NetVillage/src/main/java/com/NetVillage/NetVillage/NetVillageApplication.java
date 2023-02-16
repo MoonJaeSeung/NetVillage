@@ -11,4 +11,3 @@ public class NetVillageApplication {
 	}
 
 }
-//16시46분
