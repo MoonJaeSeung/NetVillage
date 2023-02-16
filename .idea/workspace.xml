@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e651087e-43ad-4535-8de9-68001a6e5558" name="Changes" comment="" />
+    <list default="true" id="e651087e-43ad-4535-8de9-68001a6e5558" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2LlOdmCdYcec3uaJLfOM4fa4ZWg" />
   <component name="ProjectViewState">
@@ -20,7 +25,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/ji_c_/OneDrive/바탕 화면/NetVillage/NetVillage",
+    "last_opened_file_path": "C:/Users/smhrd/Desktop/NetVillage/NetVillage",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "vue.rearranger.settings.migration": "true"
   }
@@ -34,6 +39,7 @@
       <option name="presentableId" value="Default" />
       <updated>1676442291781</updated>
       <workItem from="1676442292903" duration="130000" />
+      <workItem from="1676533429886" duration="103000" />
     </task>
     <servers />
   </component>
