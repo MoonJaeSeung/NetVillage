@@ -89,6 +89,38 @@ const SignUp = () => {
     }
   };
 
+  const checkId = () => {
+    axios.post("/user/checkid",{
+        user_id:id,
+    })
+    .then((res)=>{
+        if(res.data===1){
+            alert("이미있는 아이디입니다.")
+        }else{
+            alert("사용가능한 아이디입니다.")
+        }
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+  }
+
+  const checkNick = () => {
+      axios.post("/user/checknick",{
+          user_nick:nick,
+      })
+      .then((res)=>{
+        if(res.data===1){
+            alert("이미있는 아이디입니다.")
+        }else{
+            alert("사용가능한 아이디입니다.")
+        }
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+    }
+
   // const cityKindChange = (e) =>{
   //   var Gwangsan_gu = ["송정동","도산동","도호동","신촌동","서봉동","운수동","선암동","소촌동","우산동","황룡동","박호동","비아동","도천동","수완동","월계동","쌍암동","산월동","신창동","신가동","운남동","안청동","진곡동","장덕동","흑석동","하남동","장수동","산정동","월곡동","등임동","산막동","고룡동","신룡동","두정동","임곡동","광산동","오산동","사호동","하산동","유계동","본덕동","용봉동","요기동","복룡동","송대동","옥동월","전동장","록동송","촌동","지죽동","용동","용곡동","지정동","명화동","동산동","연산동","도덕동","송산동","지평동","오운동","삼거동","양동","내산동","대산동","송학동","신동","삼도동","남산동","송치동","산수동","선동","지산동","왕동","북산동","명도동","동호동","덕림동","양산동","동림동","오선동","송정1동","송정2동","신흥동","어룡동","월곡1동","월곡2동","첨단1동","첨단2동","동곡동","평동","본량동"];
   //   var Buk_gu = [];
@@ -129,6 +161,7 @@ const SignUp = () => {
           />
           <div className="inputDescription">{idAlertSentence}</div>
         </form>
+        <button onClick={checkId}>아이디 중복확인</button>
 
         <form className="inputLine">
           <div className="inputTitle">Password</div>
@@ -219,6 +252,7 @@ const SignUp = () => {
             name="nick"
           />
         </form>
+          <button onClick={checkNick}>닉네임 중복확인</button>
 
         <button
           onClick={addUser}

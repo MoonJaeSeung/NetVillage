@@ -18,8 +18,25 @@ public class UserService {
         return userMapper.signUser(join);
     }
 
+    public int checkId(UserVo checkid){
+        return userMapper.checkId(checkid);
+    }
+
+    public int checkNick(UserVo checknick){
+        return userMapper.checkNick(checknick);
+    }
+
     public UserVo loginUser(UserVo login){
         passwordEncoder.matches(login.getUser_pw(), userMapper.loginUser(login).getUser_pw());
         return userMapper.loginUser(login);
+    }
+
+    public int updateUser(UserVo update){
+        update.setUser_pw(passwordEncoder.encode(update.getUser_id()));
+        return userMapper.updateUser(update);
+    }
+
+    public int deleteUser(UserVo delete){
+        return userMapper.deleteUser(delete);
     }
 }
