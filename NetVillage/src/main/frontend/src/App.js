@@ -1,18 +1,26 @@
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+import React from 'react';
+import {Routes, Route} from "react-router-dom";
+import MainPage from './pages/MainPage';
+import Header from './components/Header';
+import ChatPage from './pages/ChatPage';
+import SchedulePage from './pages/SchedulePage';
+import MyPage from './pages/MyPage';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
+
 
 function App() {
-  const [hello, setHello] = useState('')
-
-  useEffect(() => {
-    axios.get('/api/hello')
-        .then(response => setHello(response.data))
-        .catch(error => console.log(error))
-  }, []);
-
   return (
       <div>
-        백엔드에서 가져온 데이터입니다~ : {hello}
+        <Header/>
+        <Routes>
+          <Route path="/" element={<MainPage/>}/>
+          <Route path="/Chat" element={<ChatPage/>}/>
+          <Route path="/Schedule" element={<SchedulePage/>}/>
+          <Route path="/MyPage" element={<MyPage/>}/>
+          <Route path="/SignIn" element={<SignIn/>}/>
+          <Route path="/SignUp" element={<SignUp/>}/>
+        </Routes>
       </div>
   );
 }
