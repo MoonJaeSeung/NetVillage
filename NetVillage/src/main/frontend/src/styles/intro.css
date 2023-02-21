@@ -1,0 +1,23 @@
+.introTitle{
+    font-style: oblique;
+    font-weight: bold;
+}
+.introBig{
+    justify-content: center;
+}
+
+.introFirst{
+    font-family: 'MapoPeacefull';
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width:21rem;
+    border: 1px solid rgb(202, 255, 190);
+    border-radius: 30px;
+    background-color: rgb(202, 255, 190);
+    padding: 1rem;
+}
+
+.introSecond p{
+    text-align: center;
+}
