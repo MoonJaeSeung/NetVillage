@@ -26,6 +26,10 @@ const Header = () => {
     const toSignUp = () => {
         Navigate("/SignUp")
     }
+
+    const toMatchPage = () => {
+        Navigate("/Match")
+    }
   return (
     <div className='StyledHeader'>
         <div className='IsLogin'>
@@ -33,6 +37,7 @@ const Header = () => {
             <button className='ChatBtn' onClick={toChatPage}>채팅</button>
             <button className='CalendarBtn' onClick={toSchedulePage}>일정</button>
             <button className='MyPageBtn' onClick={toMyPage}>마이페이지</button>
+            <button className='MyPageBtn' onClick={toMatchPage}>매치페이지</button>
         </div>
         <div className='NoIsLogin'>
             <button className='LoginBtn' onClick={toSignIn}>로그인</button>
