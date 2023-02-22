@@ -36,7 +36,7 @@ aside header{
   height:50px;
   line-height:50px;
   padding:0 50px 0 20px;
-  background-color:greenyellow;
+  background-color:whitesmoke;
   border:none;
   border-radius:3px;
   color:#fff;
@@ -46,7 +46,7 @@ aside header{
   background-size:40px;
 }
 aside input::placeholder{
-  color:#fff;
+  color:#000;
 }
 aside ul{
   padding-left:0;
@@ -73,10 +73,12 @@ aside li div{
   display:inline-block;
   vertical-align:top;
   margin-top:12px;
+  margin-bottom:12px;
+  margin-left: 20px;
 }
 aside li h2{
   font-size:14px;
-  color:#fff;
+  color:#000000;
   font-weight:normal;
   margin-bottom:5px;
 }
@@ -159,7 +161,7 @@ main header h3{
 }
 #chat .message{
   padding:20px;
-  color:#fff;
+  color:#000000;
   line-height:25px;
   max-width:90%;
   display:inline-block;
@@ -170,10 +172,10 @@ main header h3{
   text-align:right;
 }
 #chat .you .message{
-  background-color:#58b666;
+  background-color:rgb(202, 255, 190);
 }
 #chat .me .message{
-  background-color:#6fbced;
+  background-color:white;
 }
 #chat .triangle{
   width: 0;
@@ -182,11 +184,11 @@ main header h3{
   border-width: 0 7px 10px 7px;
 }
 #chat .you .triangle{
-  border-color: transparent transparent #58b666 transparent;
+  border-color: transparent transparent rgb(202, 255, 190) transparent;
   margin-left:15px;
 }
 #chat .me .triangle{
-  border-color: transparent transparent #6fbced transparent;
+  border-color: transparent transparent white transparent;
   margin-left:385px;
 }
 

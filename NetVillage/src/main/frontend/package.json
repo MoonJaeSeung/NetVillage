@@ -17,7 +17,9 @@
     "sass": "^1.58.3",
     "styled-components": "^5.3.6",
     "styled-media-query": "^2.1.2",
-    "web-vitals": "^2.1.4"
+    "styled-reset": "^4.4.5",
+    "web-vitals": "^2.1.4",
+    "websocket": "^1.0.34"
   },
   "proxy": "http://localhost:8090",
   "scripts": {
