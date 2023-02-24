@@ -8,7 +8,6 @@ const FooterStyled = styled.footer`
   border-top: 1px solid var(--color-lightgray);
   font-family: 'GangwonEduSaeeum_OTFMediumA', serif;
   font-size: 20px;
-
   ${media.lessThan("medium")`
     padding: 3rem 1rem;
   `};
@@ -60,7 +59,7 @@ const Item = styled.li`
 
 const Link = styled.a`
   text-decoration: underline;
-
+  color: black;
   svg {
     vertical-align: text-bottom;
     font-size: 1.25rem;

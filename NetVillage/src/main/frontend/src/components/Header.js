@@ -16,6 +16,8 @@ const StyledHeader = styled.header`
   font-family: 'GangwonEduSaeeum_OTFMediumA', serif;
   font-size: 24px;
   z-index: 10;
+  margin-top: 20px;
+  margin-bottom: 20px;
 
   ${media.lessThan("medium")`
     padding: 1rem;
@@ -65,18 +67,23 @@ const Header = () => {
     const toSign = () => {
         Navigate("/Sign")
     }
+
+    const toMatchPage = () => {
+        Navigate("/Match")
+    }
     return (
         <StyledHeader>
             <div className='Logo'>어쩌다 짝꿍</div>
             <div className='IsLogin'>
-                <HeaderBtn>홈</HeaderBtn>
-                <HeaderBtn>채팅</HeaderBtn>
-                <HeaderBtn>일정</HeaderBtn>
-                <HeaderBtn>마이페이지</HeaderBtn>
+                <button className='HomeBtn' onClick={toMainPage}>홈</button>
+                <button className='ChatBtn' onClick={toChatPage}>채팅</button>
+                <button className='CalendarBtn' onClick={toSchedulePage}>일정</button>
+                <button className='MyPageBtn' onClick={toMyPage}>마이페이지</button>
+                <button className='MyPageBtn' onClick={toMatchPage}>매치페이지</button>
             </div>
             <div className='NoIsLogin'>
-                <HeaderBtn>로그인</HeaderBtn>
-                <HeaderBtn>회원가입</HeaderBtn>
+                <button className='LoginBtn' onClick={toSignIn}>로그인</button>
+                <button className='RegisterBtn' onClick={toSign}>회원가입</button>
             </div>
         </StyledHeader>
     )
