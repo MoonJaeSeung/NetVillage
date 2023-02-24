@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const SignUp = () => {
+const Sign = () => {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     id: "",
@@ -17,7 +17,7 @@ const SignUp = () => {
   });
 
   const [idAlertSentence, setIdAlertSentence] = useState(
-    "아이디를 입력해 주세요(영문소문자/숫자,4~16자)"
+    "이메일을 입력해 주세요."
   );
   const [pwAlertSentence, setPwAlertSentence] = useState("");
   const [phoneAlertSentence, setPhoneAlertSentence] = useState("");
@@ -91,7 +91,7 @@ const SignUp = () => {
 
   const checkId = () => {
     axios.post("/user/checkid",{
-        user_id:id,
+        userId:id,
     })
     .then((res)=>{
         if(res.data===1){
@@ -107,7 +107,7 @@ const SignUp = () => {
 
   const checkNick = () => {
       axios.post("/user/checknick",{
-          user_nick:nick,
+          userNick:nick,
       })
       .then((res)=>{
         if(res.data===1){
@@ -273,4 +273,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default Sign

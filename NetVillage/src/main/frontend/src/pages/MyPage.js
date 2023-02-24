@@ -36,14 +36,14 @@ const MyPage = () => {
 
         const updateUser = () => {
           axios.post("/user/update",{
-              user_id: id,
-              user_pw: pw,
-              user_name: name,
-              user_phone: "010" + phone,
+              userId: id,
+              userPw: pw,
+              userName: name,
+              userPhone: "010" + phone,
               region: city,
-              user_gender: gender,
-              user_nick: nick,
-              user_auth:"null",
+              userGender: gender,
+              userNick: nick,
+              userAuth:"null",
               })
             .then((res) => {
                 alert("성공!")

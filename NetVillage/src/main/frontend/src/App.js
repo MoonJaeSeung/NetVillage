@@ -6,7 +6,7 @@ import ChatPage from './pages/ChatPage';
 import SchedulePage from './pages/SchedulePage';
 import MyPage from './pages/MyPage';
 import SignIn from './components/User/SignIn'
-import SignUp from './components/User/SignUp'
+import Sign from './components/User/Sign'
 import Footer from './components/Footer';
 
 
@@ -20,7 +20,7 @@ function App() {
           <Route path="/Schedule" element={<SchedulePage/>}/>
           <Route path="/MyPage" element={<MyPage/>}/>
           <Route path="/SignIn" element={<SignIn/>}/>
-          <Route path="/SignUp" element={<SignUp/>}/>
+          <Route path="/Sign" element={<Sign/>}/>
         </Routes>
         <Footer/>
       </div>
