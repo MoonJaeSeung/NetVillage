@@ -17,7 +17,7 @@ const Header = () => {
     }
 
     const toMyPage = () => {
-        Navigate("/MyPage2")
+        Navigate("/MyPage")
     }
 
     const toSignIn = () => {
