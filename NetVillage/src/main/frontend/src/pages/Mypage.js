@@ -82,6 +82,11 @@ const Mypage = () => {
                 </div>
 
             {/* 페어 플레이 점수*/}
+                <div className="fairPlay">
+                    <h3>
+                        페어플레이 점수
+                    </h3>
+                </div>
 
             </div>
         </div>

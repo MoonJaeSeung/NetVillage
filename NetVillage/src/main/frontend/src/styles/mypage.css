@@ -60,7 +60,7 @@
 }
 
 /* 경기 전적 */
-.matchHistory{
+.matchHistory, .fairPlay{
     margin: 2rem 0 0 1rem;
     display: flex;
     flex-direction: column;
