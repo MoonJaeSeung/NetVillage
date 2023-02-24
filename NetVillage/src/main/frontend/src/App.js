@@ -6,10 +6,10 @@ import ChatPage from './pages/ChatPage';
 import SchedulePage from './pages/SchedulePage';
 import MyPage from './pages/Mypage';
 import SignIn from './components/User/SignIn';
-import Sign from './components/User/Sign';
 import Intro from './pages/Intro';
-import Footer from './components/Footer'
 import './App.css'
+import Sign from './components/User/Sign'
+import Footer from './components/Footer';
 
 
 function App() {
@@ -27,23 +27,23 @@ function App() {
 
     }
 
-    return (
-        <div>
-            <Header/>
-            {/*{loginUser()}*/}
-            {/* 로그인 정보 저장하면 아래 메인 페이지 지우기, root경로 인트로 페이지로 바꾸기 */}
-            <Routes>
-                <Route path="/" element={<MainPage/>}/>
-                <Route path="/Intro" element={<Intro/>}/>
-                <Route path="/Chat" element={<ChatPage/>}/>
-                <Route path="/Schedule" element={<SchedulePage/>}/>
-                <Route path="/MyPage" element={<MyPage/>}/>
-                <Route path="/SignIn" element={<SignIn/>}/>
-                <Route path="/SignUp" element={<Sign/>}/>
-            </Routes>
-            <Footer/>
-        </div>
-    );
+  return (
+      <div>
+        <Header/>
+          {/*{loginUser()}*/}
+        {/* 로그인 정보 저장하면 아래 메인 페이지 지우기, root경로 인트로 페이지로 바꾸기 */}
+        <Routes>
+          <Route path="/" element={<MainPage/>}/>
+          <Route path="/Intro" element={<Intro/>}/>
+          <Route path="/Chat" element={<ChatPage/>}/>
+          <Route path="/Schedule" element={<SchedulePage/>}/>
+          <Route path="/MyPage" element={<MyPage/>}/>
+          <Route path="/SignIn" element={<SignIn/>}/>
+          <Route path="/Sign" element={<Sign/>}/>
+        </Routes>
+        <Footer/>
+      </div>
+  );
 }
 
 export default App;
