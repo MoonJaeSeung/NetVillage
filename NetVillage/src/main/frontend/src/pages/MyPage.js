@@ -81,7 +81,7 @@ const Mypage = () => {
                     </div>
                 </div>
 
-            {/* 페어 플레이 점수*/}
+                {/* 페어 플레이 점수*/}
                 <div className="fairPlay">
                     <h3>
                         페어플레이 점수
