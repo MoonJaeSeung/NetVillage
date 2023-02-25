@@ -5,10 +5,11 @@ import Header from './components/Header';
 import ChatPage from './pages/ChatPage';
 import SchedulePage from './pages/SchedulePage';
 import MyPage from './pages/Mypage';
-import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
+import SignIn from './components/User/SignIn';
 import Intro from './pages/Intro';
 import './App.css'
+import Sign from './components/User/Sign'
+import Footer from './components/Footer';
 
 
 function App() {
@@ -38,8 +39,9 @@ function App() {
           <Route path="/Schedule" element={<SchedulePage/>}/>
           <Route path="/MyPage" element={<MyPage/>}/>
           <Route path="/SignIn" element={<SignIn/>}/>
-          <Route path="/SignUp" element={<SignUp/>}/>
+          <Route path="/Sign" element={<Sign/>}/>
         </Routes>
+        <Footer/>
       </div>
   );
 }
