@@ -1,185 +1,96 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import { Modal } from 'react-bootstrap';
+import { RiErrorWarningLine } from "react-icons/ri";
+import { GiBowlingStrike } from "react-icons/gi";
+import { GiPingPongBat } from "react-icons/gi";
+import { FaVolleyballBall } from "react-icons/fa";
+import { GiTennisRacket } from "react-icons/gi";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/mypage.css';
+import MatchHistory from "../components/MatchHistory";
 
-const MyPage = () => {
-  const Navigate = useNavigate();
-  const [inputValue, setInputValue] = useState({
-      id: "",
-      pw: "",
-      name: "",
-      phone: "",
-      city:"",
-      region: "",
-      gender: "",
-      nick: "",
-    });
+const Mypage = () => {
 
-    const {
-        id,
-        pw,
-        name,
-        phone,
-        city,
-        region,
-        gender,
-        nick,
-      } = inputValue;
+    const [matchHistory, setMatchHistory] = useState([
+        {
+            game: "탁구",
+            win: 10,
+            lose: 3,
+            icon: <GiPingPongBat size="35"/>
+        },
+        {
+            game: "볼링",
+            win: 2,
+            lose: 5,
+            icon: <GiBowlingStrike size="35"/>
+        },
+        {
+            game: "배구",
+            win: 3,
+            lose: 1,
+            icon: <FaVolleyballBall size="35"/>
+        },
+        {
+            game: "테니스",
+            win: 1,
+            lose: 5,
+            icon: <GiTennisRacket size="35"/>
+        }
+    ]);
 
-      const handleInput = (e) => {
-          const { name, value } = e.target;
-          setInputValue({
-            ...inputValue,
-            [name]: value,
-          });
-        };
+    function matchResult() {
 
-        const updateUser = () => {
-          axios.post("/user/update",{
-              userId: id,
-              userPw: pw,
-              userName: name,
-              userPhone: "010" + phone,
-              region: city,
-              userGender: gender,
-              userNick: nick,
-              userAuth:"null",
-              })
-            .then((res) => {
-                alert("성공!")
-                Navigate("/mypage");
-            })
+    };
 
-            .catch((err) => {
-              console.log(err);
-              console.log(region);
-            });
-        };
+    return (
+        <div className="myPage">
+            <div className="myPColor">
+                <span className="myPTitle">마이페이지</span>
+                <div className="myPUser">
+                    <p className="myPUserText">
+                        임다인님 안녕하세요!
+                    </p>
+                    <span className="myPEdit">
+                    정보수정
+                </span>
+                </div>
+            </div>
+            <div className="myPContent">
+                {/*경고창
+            db랑 연결하고 게시글 작성되면 조건문으로 작성자인지 신정차인지 구별한 후 멘트 띄워주기, 평소엔 사라져야함*/}
+                <div className="myPAlertBox">
+                    <div className="myPImgDiv">
+                        <RiErrorWarningLine className="myPIcon"/>
+                    </div>
+                    <div>
+                        경기 결과를 승인해주세요
+                        경기 결과를 입력해주세요
+                    </div>
+                </div>
+                {/* 경기 전적 */}
+                <div className="matchHistory">
+                    <h3>
+                        경기 전적
+                    </h3>
+                    <div className="matchHistoryBox">
+                        {matchHistory.map((matchHistory, idx) => {
+                            return <MatchHistory matchHistory={matchHistory}/>
+                        })}
+                    </div>
+                </div>
 
-        const deleteUser = () => {
-                  axios.post("/user/delete",{
-                      user_id: id,
-                      user_pw: pw,
-                      user_name: name,
-                      user_phone: "010" + phone,
-                      region: city,
-                      user_gender: gender,
-                      user_nick: nick,
-                      user_auth:"null",
-                      })
-                    .then((res) => {
-                      alert("성공!")
-                      //navigate("/mypage");
-                    })
+                {/* 페어 플레이 점수*/}
+                <div className="fairPlay">
+                    <h3>
+                        페어플레이 점수
+                    </h3>
+                </div>
 
-                    .catch((err) => {
-                      console.log(err);
-                      console.log(region);
-                    });
-                };
-  return (
-    <div claasName="">
-        <form className="inputLine">
-                  <div className="inputTitle">ID</div>
-                  <input
-                    type="text"
-                    className="userInput"
-                    onChange={handleInput}
-                    name="id"
-                  />
-                </form>
+            </div>
+        </div>
+    );
+};
 
-                <form className="inputLine">
-                  <div className="inputTitle">Password</div>
-                  <input
-                    type="password"
-                    className="userInput"
-                    onChange={handleInput}
-                    name="pw"
-                  />
-                  <div className="inputDescription">(영문 대소문자/숫자 4자~16자)</div>
-                </form>
-
-                <form className="inputLine">
-                  <div className="inputTitle">Name</div>
-                  <input
-                    type="text"
-                    className="userInput"
-                    onChange={handleInput}
-                    name="name"
-                  />
-                </form>
-
-                <form className="phoneLine">
-                  <div className="phone">Phone</div>
-                  <select name="phone" className="phoneSelect">
-                    <option>010</option>
-                    <option>011</option>
-                    <option>016</option>
-                    <option>017</option>
-                    <option>018</option>
-                    <option>019</option>
-                  </select>
-                  <input
-                    type="text"
-                    className="phoneSecond"
-                    onChange={handleInput}
-                    name="phone"
-                  />
-                </form>
-
-                <form className="cityLine">
-                  <div className="city">city</div>
-                  <select name="city" className="citySelect" onChange={handleInput}>
-                    <option value="광산구">광산구</option>
-                    <option value="북구">북구</option>
-                    <option value="동구">동구</option>
-                    <option value="남구">남구</option>
-                    <option value="서구">서구</option>
-                  </select>
-                </form>
-
-                <form className="regionLine">
-                  <div className="region">region</div>
-                  <select name="region" className="regionSelect" onChange={handleInput}>
-                    <option>월계동</option>
-                    <option>신창동</option>
-                  </select>
-                </form>
-
-                <form className="genderLine">
-                  <div className="gender">gender</div>
-                  <label for="male">남성</label>
-                  <input id="male" type="radio" value="M" name="gender" onChange={handleInput}/>
-                  <label for="female">여성</label>
-                  <input id="female" type="radio" value="F" name="gender" onChange={handleInput}/>
-                </form>
-
-                <form className="inputLine">
-                  <div className="inputTitle">Nick</div>
-                  <input
-                    type="text"
-                    className="nickInput"
-                    onChange={handleInput}
-                    name="nick"
-                  />
-                </form>
-
-                <button
-                  onClick={updateUser}
-                  className="updateBtn"
-                >
-                  회원정보수정
-                </button>
-
-                <button
-                  onClick={deleteUser}
-                  className="deleteBtn"
-                >
-                  회원탈퇴
-                </button>
-    </div>
-  )
-}
-
-export default MyPage
+export default Mypage;
