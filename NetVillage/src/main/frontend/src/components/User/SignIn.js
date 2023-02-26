@@ -1,6 +1,40 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
+import styled from "styled-components";
 import axios from "axios"
+
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  margin: 0px auto;
+  margin-top: 100px;
+  border: 1px solid #b0b0b0;
+  border-radius: 20px;
+  padding: 70px 50px 70px 50px;
+`;
+
+const P = styled.p`
+  font-size: 20px;
+  color: #fda970;
+  margin: 0px;
+  margin-bottom: 10px;
+`;
+
+const Input = styled.input`
+  width: 500px;
+  height: 40px;
+  margin: 0px 0px 10px 0px;
+`;
+
+const Button = styled.button`
+  width: 500px;
+  height: 45px;
+  margin: 10px 5px 10px 5px;
+  background-color: #ffd0b0;
+  border: 0px solid #ffd0b0;
+  border-radius: 5px;
+`;
 
 const SignIn = () => {
   const Navigate = useNavigate();
@@ -24,9 +58,9 @@ const SignIn = () => {
     };
 
   const toLogin = () => {
-      axios.post("/user/signin",{
-      user_id:id,
-      user_pw:pw,
+      axios.post("/user/login",{
+      user_id : id,
+      user_pw : pw,
       }).then((res) => {
         const user_info = res.data;
         if(inputValue.id === user_info.user_id){
@@ -39,7 +73,7 @@ const SignIn = () => {
     }
 
   const toSignUp = () =>{
-    Navigate("/SignUp")
+    Navigate("/Sign")
   }
 
   return (
