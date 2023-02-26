@@ -7,7 +7,7 @@ import { GiBowlingStrike } from "react-icons/gi";
 import { GiPingPongBat } from "react-icons/gi";
 import { FaVolleyballBall } from "react-icons/fa";
 import { GiTennisRacket } from "react-icons/gi";
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/mypage.css';
 import MatchHistory from "../components/MatchHistory";
 
