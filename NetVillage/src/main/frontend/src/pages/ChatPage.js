@@ -7,12 +7,6 @@ const ChatPage = () => {
 
   console.log("웹소켓 연결 대기", ws.readyState)
 
-  if (ws.readyState === 0) {
-    ws.onopen = () => {
-      console.log(ws.readyState)
-    }
-  }
-
   // 채팅 메시지를 저장하는 변수
   const [msg, setMsg] = useState("")
 
@@ -24,7 +18,10 @@ const ChatPage = () => {
 
   // 전송 버튼 클릭
   const sendBtn = () => {
-
+    ws.onopen = () => {
+      console.log(ws.readyState)
+      // ws.send(msg)
+    }
   }
 
 
