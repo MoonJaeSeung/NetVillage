@@ -1,7 +1,7 @@
 const MatchRoomCard = (props) => {
 
     return (
-        <div style={{background : "grey"}}>
+        <div style={{background : "rgb(233, 255, 228)"}}>
             <p>1월 27일 저녁</p>
             <div>
                 <div>아이콘</div>
