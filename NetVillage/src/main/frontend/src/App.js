@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Routes, Route} from "react-router-dom";
 import MainPage from './pages/MainPage';
 import Header from './components/Header';
@@ -16,6 +16,29 @@ import MatchHeader from "./components/Match/MatchHeader";
 
 
 function App() {
+    //socket 연결시 소켓 정보 저장
+    const [socket, setSocket] = useState();
+
+    useEffect(()=>{
+            console.log(socket)
+        socket && connect();
+        },[])
+    // socket 연결할때 실행할 함수
+    function connect() {
+        let ws = new WebSocket("ws://localhost:8090/socket/Chat")
+        setSocket(ws)
+        ws.onopen = () => {
+            console.log("websocket: connected")
+            // ws.send("sending message from client-server")
+        }
+        ws.onclose = function (event) {
+            console.log('Info: connection closed.');
+            // setTimeout( function(){connect()}, 1000)
+        };
+        ws.onerror = function (event) { console.log('Info: connection closed.'); };
+        setSocket(ws);
+    }
+
     //세션스토리지에 저장된 유저 정보 가져오기
     let user = sessionStorage.getItem("user_id");
 
@@ -38,10 +61,10 @@ function App() {
             <Routes>
                 <Route path="/" element={<MainPage/>}/>
                 <Route path="/Intro" element={<Intro/>}/>
-                <Route path="/Chat" element={<ChatPage/>}/>
+                <Route path="/Chat" element={<ChatPage socket={socket}/>}/>
                 <Route path="/Schedule" element={<SchedulePage/>}/>
                 <Route path="/MyPage" element={<MyPage/>}/>
-                <Route path="/SignIn" element={<SignIn/>}/>
+                <Route path="/SignIn" element={<SignIn connect={connect} socket={socket}/>}/>
                 <Route path="/Sign" element={<Sign/>}/>
                 <Route path="/Match" element={<MatchHeader/>}>
                     <Route index element={<MatchPage/>}/>

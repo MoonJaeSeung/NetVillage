@@ -1,11 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import '../styles/chatPage.css'
 
-const ChatPage = () => {
-
-  const socket = new WebSocket("ws://localhost:3000/socket/Chat");
-
-  console.log("웹소켓 연결 대기", socket.readyState)
+const ChatPage = ({ socket }) => {
 
   // 채팅 메시지를 저장하는 변수
   const [msg, setMsg] = useState("")
@@ -19,11 +15,10 @@ const ChatPage = () => {
   // 전송 버튼 클릭
   const sendBtn = () => {
     if (socket.readyState !== 1) return;
+    console.log("전송버튼",socket.readyState)
+    console.log("전송버튼 눌렀을때 msg", msg)
     socket.send(msg)
   }
-
-
-
 
   return (
     <div>

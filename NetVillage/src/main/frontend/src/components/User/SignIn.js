@@ -41,7 +41,7 @@ const LoginFooter = styled.div`
   justifyContent: center;
 `;
 
-const SignIn = () => {
+const SignIn = ({connect}) => {
   const Navigate = useNavigate();
 
   const [inputValue, setInputValue] = useState({
@@ -73,7 +73,8 @@ const SignIn = () => {
             window.sessionStorage.setItem('user_id', user_info.user_id);
             window.sessionStorage.setItem('user_name', user_info.user_name);
             window.sessionStorage.setItem('user_nick', user_info.user_nick);
-            window.location.href="/";
+            Navigate("/");
+            connect();
         }
       })
       .catch((err)=>{
@@ -82,7 +83,7 @@ const SignIn = () => {
     }
 
   const toSignUp = () =>{
-    Navigate("/Sign")
+    Navigate("/Sign");
   }
 
   return (
