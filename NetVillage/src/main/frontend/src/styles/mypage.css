@@ -60,21 +60,34 @@
 }
 
 /* 경기 전적 */
-.matchHistory, .fairPlay{
+.matchHistory, .fairPlay, .transactionHistory{
     margin: 2rem 0 0 1rem;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
 }
 
-.matchHistoryBox{
+.matchHistoryBox, .transactionHistoryBox {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 0.5rem;
 }
 
-/* 경기 전적 map함수 */
-.gameItem{
+/* 경기 전적, 거래 내역 map함수 */
+.gameItem {
     width: 8rem;
+    height: 6rem;
+    box-shadow: 6px 6px 5px #bdbaba;
+    margin-right: 4rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 1px solid #d5d4d4;
+}
+
+.transactionItem{
+    width: 9rem;
     height: 6rem;
     box-shadow: 6px 6px 5px #bdbaba;
     margin-right: 5rem;
@@ -85,7 +98,7 @@
     border: 1px solid #d5d4d4;
 }
 
-.gameName{
+.gameName {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -93,7 +106,13 @@
     margin-left: 0.5rem;
 }
 
-.matchHistoryName{
+.transactionTitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.matchHistoryName, .transactionHistoryTitle{
     font-weight: bold;
 }
 
@@ -106,7 +125,34 @@
     /*height: 100% !important*/
 }
 
-.matchRecord span{
+.matchRecord span, .transactionSeller span{
     font-size: smaller;
 }
 
+/* 페어플레이 점수 */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bar-container {
+    margin-top: 0.5rem;
+    width: 80%;
+    height: 20px;
+    background-color: #f2f2f2;
+    margin-bottom: 20px;
+}
+
+.bar {
+    height: 100%;
+    background-color: #4caf50;
+    width: 0%;
+    transition: width 0.5s;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+}

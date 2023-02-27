@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useRef, useState} from 'react'
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { Modal } from 'react-bootstrap';
@@ -9,10 +9,12 @@ import { FaVolleyballBall } from "react-icons/fa";
 import { GiTennisRacket } from "react-icons/gi";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/mypage.css';
-import MatchHistory from "../components/MatchHistory";
+import MatchHistory from "../components/Mypage/MatchHistory";
+import TransactionHistory from "../components/Mypage/TransactionHistory";
 
 const Mypage = () => {
 
+    //경기 전적 관련
     const [matchHistory, setMatchHistory] = useState([
         {
             game: "탁구",
@@ -43,6 +45,28 @@ const Mypage = () => {
     function matchResult() {
 
     };
+
+    // 페어플레이 점수 관련
+    const [score, setScore] = useState(50);
+
+    const updateProgressBar = (newScore) => {
+        setScore(newScore);
+    };
+
+    // const bar = useRef();
+
+    // 거래 내역
+    const [transactionHistory, setTransactionHistory] = useState([
+        {
+            seller: "테니스 공주",
+            title: "테니스 채 팝니다"
+        },
+        {
+            seller: "탁구 왕자",
+            title: "탁구대 무나합니다"
+        }
+    ])
+
 
     return (
         <div className="myPage">
@@ -86,6 +110,31 @@ const Mypage = () => {
                     <h3>
                         페어플레이 점수
                     </h3>
+                    <div className="container">
+                        <div className="bar-container">
+                            <div className="bar"  id="myBar" style={{ width: `${score}%` }}></div>
+                        </div>
+                        <div className="button-container">
+                            <button onClick={() => updateProgressBar(Math.max(score - 10, 0))}>
+                                -
+                            </button>
+                            <button onClick={() => updateProgressBar(Math.min(score + 10, 100))}>
+                                +
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                {/* 거래 내역 */}
+                <div className="transactionHistory">
+                    <h3>
+                        거래 내역
+                    </h3>
+                    <div className="transactionHistoryBox">
+                        {transactionHistory.map((transactionHistory, idx) => {
+                            return <TransactionHistory transactionHistory={transactionHistory}/>
+                        })}
+                    </div>
                 </div>
 
             </div>
