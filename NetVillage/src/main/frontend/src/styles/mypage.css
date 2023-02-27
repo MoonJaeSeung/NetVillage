@@ -59,15 +59,16 @@
     margin-right: 0.2rem;
 }
 
-/* 경기 전적 */
-.matchHistory, .fairPlay, .transactionHistory{
+/* 경기 전적, 페어플레이 점수, 거래 내역 제목 */
+.matchHistory, .fairPlay, .transactionHistory, .bookMark {
     margin: 2rem 0 0 1rem;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
 }
 
-.matchHistoryBox, .transactionHistoryBox {
+/* 경기 전적, 거래 내역 map 함수 받아주는 박스 */
+.matchHistoryBox, .transactionHistoryBox, bookMarkBox {
     display: flex;
     flex-wrap: wrap;
     margin-top: 0.5rem;
@@ -155,4 +156,26 @@
     display: flex;
     justify-content: space-between;
     width: 100px;
+}
+
+/* 내가 쓴 글, 댓글 */
+.myWriteAndComm {
+    margin: 2rem 0 0 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.line {
+    font-weight: 900;
+}
+
+.writeItem, .commentItem {
+    /*위 오른쪽 아래 왼쪽*/
+    margin: 1rem 0 0 2rem;
+}
+
+/* 북마크 내역 */
+.bookMarkList {
+    margin-left: 1rem;
 }

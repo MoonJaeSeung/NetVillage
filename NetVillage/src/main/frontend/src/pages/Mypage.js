@@ -11,6 +11,9 @@ import { GiTennisRacket } from "react-icons/gi";
 import '../styles/mypage.css';
 import MatchHistory from "../components/Mypage/MatchHistory";
 import TransactionHistory from "../components/Mypage/TransactionHistory";
+import MyWrite from "../components/Mypage/MyWrite";
+import MyComment from "../components/Mypage/MyComment";
+import BookMark from "../components/Mypage/BookMark";
 
 const Mypage = () => {
 
@@ -67,6 +70,20 @@ const Mypage = () => {
         }
     ])
 
+    // 내가 쓴 글, 댓글
+    const [click, setClick] = useState();
+   const myWriteAndCommList = (e) => {
+      console.log(e.target.innerText);
+      setClick(e.target.innerText)
+   };
+
+   const myList = () => {
+       if (click === "내가 쓴 글"){
+           return <MyWrite/>;
+       } else {
+           return <MyComment/>;
+       }
+   }
 
     return (
         <div className="myPage">
@@ -116,10 +133,10 @@ const Mypage = () => {
                         </div>
                         <div className="button-container">
                             <button onClick={() => updateProgressBar(Math.max(score - 10, 0))}>
-                                -
+                                ➖
                             </button>
                             <button onClick={() => updateProgressBar(Math.min(score + 10, 100))}>
-                                +
+                                ➕
                             </button>
                         </div>
                     </div>
@@ -137,7 +154,32 @@ const Mypage = () => {
                     </div>
                 </div>
 
+            {/* 내가 쓴 글, 내가 쓴 댓글*/}
+                <div className="myWriteAndComm">
+                    <div className="myWrite" onClick={myWriteAndCommList}>
+                        <h3>내가 쓴 글</h3>
+                    </div>
+                    <span className="line">│</span>
+                    <div className="myComment" onClick={myWriteAndCommList}>
+                        <h3>내가 쓴 댓글</h3>
+                    </div>
+                </div>
+                <div className="myList">
+                    {myList()}
+                </div>
+
+            {/* 북마크 내역 */}
+                <div className="bookMark">
+                    <h3>
+                        북마크 내역
+                    </h3>
+                    <div className="bookMarkBox">
+                        <BookMark/>
+                    </div>
+                </div>
+
             </div>
+
         </div>
     );
 };
