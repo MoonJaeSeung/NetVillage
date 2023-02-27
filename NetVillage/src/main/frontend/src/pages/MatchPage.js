@@ -10,11 +10,15 @@ const MatchCardGrid = styled.div`
   gap: 20px; /* 요소 간의 간격 설정 */
 `;
 
+const MatchContainer = styled.div`
+  
+  width:1300px
+`
 
 const MatchPage = () => {
-    const 대충데이터 = [0, 1, 2, 3];
+    const 대충데이터 = [0, 1, 2, 3, 4];
     return (
-        <div>
+        <MatchContainer>
             <div>
                 <div>드롭다운</div>
                 <div>
@@ -32,7 +36,7 @@ const MatchPage = () => {
                 </MatchCardGrid>
                 <div>페이지네이션</div>
             </div>
-        </div>
+        </MatchContainer>
     )
 }
 
