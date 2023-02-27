@@ -1,22 +1,21 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from "styled-components";
-import axios from "axios"
+import axios from "axios";
 
-const Div = styled.div`
+const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 600px;
   margin: 0px auto;
   margin-top: 100px;
-  border: 1px solid #b0b0b0;
+  border: 2px solid #CAFFBE;
   border-radius: 20px;
   padding: 70px 50px 70px 50px;
 `;
 
 const P = styled.p`
   font-size: 20px;
-  color: #fda970;
   margin: 0px;
   margin-bottom: 10px;
 `;
@@ -31,9 +30,15 @@ const Button = styled.button`
   width: 500px;
   height: 45px;
   margin: 10px 5px 10px 5px;
-  background-color: #ffd0b0;
-  border: 0px solid #ffd0b0;
+  background-color: #CAFFBE;
+  border: 0px solid #CAFFBE;
   border-radius: 5px;
+`;
+
+const LoginFooter = styled.div`
+  display: flex;
+  flexDirection: row;
+  justifyContent: center;
 `;
 
 const SignIn = () => {
@@ -64,7 +69,11 @@ const SignIn = () => {
       }).then((res) => {
         const user_info = res.data;
         if(inputValue.id === user_info.user_id){
-            alert("로그인 성공!");
+            window.sessionStorage.setItem('user_info', JSON.stringify(user_info));
+            window.sessionStorage.setItem('user_id', user_info.user_id);
+            window.sessionStorage.setItem('user_name', user_info.user_name);
+            window.sessionStorage.setItem('user_nick', user_info.user_nick);
+            window.location.href="/";
         }
       })
       .catch((err)=>{
@@ -77,53 +86,41 @@ const SignIn = () => {
   }
 
   return (
-    <div className='SignIn'>
-      <section className="login">
-        <div className="loginTitle">Camping Beaver</div>
-        <div className="inputArea">
-          <form className="idLine">
-            <span className="idInputLine">Id</span>
-            <input
+    <LoginContainer>
+      <h1>로그인을 해주세요.</h1>
+      <P>아이디</P>
+        <form className="idLine">
+            <Input
               className="idInput"
               onChange={handleInput}
               type="text"
-              name="id"
-            />
-          </form>
-          <form className="pwLine">
-            <span className="pwInputLine">Password</span>
-            <input
+              name="id"/>
+        </form>
+        <P>비밀번호</P>
+        <form className="pwLine">
+            <Input
               className="pwInput"
               onChange={handleInput}
               type="password"
               name="pw"
             />
           </form>
-        </div>
-        <button
-          className="signBtn"
-          onClick={toLogin}
-        >
-          SIGN IN
-        </button>
-
-        <div>카카오 로그인</div>
-        <br/>
-        <div>네이버 로그인</div>
-        <br/>
-
-        <div className="loginFooter">
-          <div className="findUser">
-            <div className="forgotId">Forgot Your Id?</div>
-            <div>or</div>
-            <div className="forgotPw">Password</div>
-          </div>
-          <div className="createAccount" onClick={toSignUp}>
-            CreateAccount
-          </div>
-        </div>
-      </section>
-    </div>
+        <LoginFooter>
+            <Button
+            className="signBtn"
+            onClick={toLogin}
+            >
+            로그인
+            </Button>
+            <Button onClick={toSignUp}>회원가입</Button>
+        </LoginFooter>
+        <LoginFooter>
+            <Button>카카오 로그인</Button>
+        </LoginFooter>
+        <LoginFooter>
+            <Button>네이버 로그인</Button>
+        </LoginFooter>
+    </LoginContainer>
   )
 }
 

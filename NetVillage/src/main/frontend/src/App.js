@@ -45,8 +45,8 @@ function App() {
                 <Route path="/Sign" element={<Sign/>}/>
                 <Route path="/Match" element={<MatchHeader/>}>
                     <Route index element={<MatchPage/>}/>
-                    <Route path="Write" element={<WriteMatchPage/>}/>
                 </Route>
+                <Route path="/Match/Write" element={<WriteMatchPage/>}/>
             </Routes>
             <Footer/>
         </div>
