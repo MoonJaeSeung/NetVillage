@@ -15,7 +15,7 @@ public interface UserMapper {
     @Select("select count(*) from user_info where user_nick=#{user_nick}")
     public int checkNick(UserInfo checknick);
 
-    @Select("select * from user_info where user_id=#{user_id} and user_pw=#{user_pw}")
+    @Select("select * from user_info where user_id=#{user_id}")
     public UserInfo loginUser(UserInfo login);
 
     @Update("update user_info set user_pw=#{user_pw}, user_name=#{user_name}, user_phone=#{user_phone}, region=#{region}, user_nick=#{user_nick} where user_id=#{user_id}")
