@@ -6,8 +6,7 @@ import "../App.css";
 const FooterStyled = styled.footer`
   padding: 4rem 2rem;
   border-top: 1px solid var(--color-lightgray);
-  font-family: 'GangwonEduSaeeum_OTFMediumA', serif;
-  font-size: 20px;
+  font-family: 'MapoPeacefull', serif;
   ${media.lessThan("medium")`
     padding: 3rem 1rem;
   `};
@@ -36,7 +35,6 @@ const FooterHead = styled.h1`
   font-size: 1rem;
   margin-bottom: 1rem;
   color: var(--color-black);
-  font-size: 20px;
 
   ${media.lessThan("medium")`
     margin-bottom: 0.5rem;

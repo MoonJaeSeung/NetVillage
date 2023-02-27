@@ -3,7 +3,6 @@ import { NavLink, Link } from 'react-router-dom'
 import styled from "styled-components";
 import media from "styled-media-query";
 import "../App.css";
-import logo from "../img/Logo1.png";
 
 const StyledHeader = styled.header`
   background-color: white;
@@ -23,6 +22,12 @@ const StyledHeader = styled.header`
   ${media.lessThan("medium")`
     padding: 1rem;
   `}
+`;
+
+const Logo = styled(NavLink)`
+  font-size: 40px;
+  color: #666666;
+  text-decoration: none;
 `;
 
 const HeaderBtn = styled(NavLink)`
@@ -73,9 +78,7 @@ const Header = () => {
     }
     return (
         <StyledHeader>
-            <LogoLink
-                src={logo}
-            />
+            <Logo to="/">어쩌다 짝꿍</Logo>
             {sessionStorage.user_info !=null?(
                 <div className='IsLogin1'>
                     <HeaderBtn to="/">홈</HeaderBtn>
