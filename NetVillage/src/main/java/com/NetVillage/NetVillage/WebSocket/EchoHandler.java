@@ -5,12 +5,15 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 
 public class EchoHandler extends TextWebSocketHandler {
 
 //    Map<String, WebSocketSession> users = new ConcurrentMap<String, WebSocketSession>();
+    private static List<WebSocketSession> list = new ArrayList<>();
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {

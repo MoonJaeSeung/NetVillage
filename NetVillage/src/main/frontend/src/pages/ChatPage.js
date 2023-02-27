@@ -3,9 +3,9 @@ import '../styles/chatPage.css'
 
 const ChatPage = () => {
 
-  const ws = new WebSocket("ws://localhost:3000/socket/Chat");
+  const socket = new WebSocket("ws://localhost:3000/socket/Chat");
 
-  console.log("웹소켓 연결 대기", ws.readyState)
+  console.log("웹소켓 연결 대기", socket.readyState)
 
   // 채팅 메시지를 저장하는 변수
   const [msg, setMsg] = useState("")
@@ -18,10 +18,8 @@ const ChatPage = () => {
 
   // 전송 버튼 클릭
   const sendBtn = () => {
-    ws.onopen = () => {
-      console.log(ws.readyState)
-      // ws.send(msg)
-    }
+    if (socket.readyState !== 1) return;
+    socket.send(msg)
   }
 
 
