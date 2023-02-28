@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import {CalendarContainer} from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { ko } from 'date-fns/esm/locale';
+import "../styles/WriteMatchPage.css"
 
 
 
@@ -44,11 +46,12 @@ const Select = styled.select`
   -moz-appearance: none;
   appearance: none;
   background-color:mintcream;
+  margin-bottom:30px;
   `
 
 const CategoryBox = () =>{
     return(
-        <Select style={{marginBottom:"30px"}}>
+        <Select>
             <option key="free" value="free">
                 자유
             </option>
@@ -62,6 +65,8 @@ const CategoryBox = () =>{
         </Select>
     )
 }
+
+
 
 const SportBox = () =>{
     return(
@@ -84,14 +89,34 @@ const SportBox = () =>{
 const Calendar = () => {
     const [startDate, setStartDate] = useState(new Date());
     return (
-        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+        <DatePicker
+            dateFormat="yyyy년 MM월 dd일"
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            locale={ko}
+            minDate={new Date()}
+            style={{}}>
+        </DatePicker>
+
     );
 };
+
+const Place = styled.input`
+
+  
+  
+  background: url(이미지 경로) no-repeat 95% 50%;  /* 화살표 모양의 이미지 */ 
+   width: 200px; /* 원하는 너비설정 */
+  padding: .8em .5em; /* 여백으로 높이 설정 */
+  font-family: inherit;  /* 폰트 상속 */
+  border: 1px solid #999; 
+  background-color:mintcream;
+  margin-bottom:10px
+`
 
 const WriteMatchPage = () => {
     return (<WriteMatchPageWrapper>
         <WriteMatchHeader>
-            <h2>글쓰기</h2>
             <Title type="text"  placeholder='제목'></Title>
         </WriteMatchHeader>
         <WriteMatchBody>
@@ -107,16 +132,22 @@ const WriteMatchPage = () => {
             </div>
             <div>
                 <small>날짜</small>
-                <Calendar></Calendar>
+                <Calendar/>
             </div>
-            <div>
+            <div style={{marginTop:"30px"}}>
                 <small>장소</small>
-                <input/>
-                <div>태그</div>
+                <div><Place/></div>
+                <button>지도로 보기</button>
             </div>
-            <div>
-                <small>코멘트</small>
-                <input type="text" />
+            <div id="map"></div>
+            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dd9bcaf5fddf48c987559f0ba743efa1"></script>
+
+
+
+
+            <div className="com" style={{marginTop:"30px"}}>
+                <div><small>코멘트</small></div>
+                <textarea style={{width:"30%"}}/>
             </div>
         </WriteMatchBody>
     </WriteMatchPageWrapper>
