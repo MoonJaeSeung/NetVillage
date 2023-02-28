@@ -33,6 +33,7 @@ const Button = styled.button`
   background-color: #CAFFBE;
   border: 0px solid #CAFFBE;
   border-radius: 5px;
+  cursor: pointer;
 `;
 
 const LoginFooter = styled.div`
@@ -70,9 +71,6 @@ const SignIn = () => {
         const user_info = res.data;
         if(inputValue.id === user_info.user_id){
             window.sessionStorage.setItem('user_info', JSON.stringify(user_info));
-            window.sessionStorage.setItem('user_id', user_info.user_id);
-            window.sessionStorage.setItem('user_name', user_info.user_name);
-            window.sessionStorage.setItem('user_nick', user_info.user_nick);
             window.location.href="/";
         }
       })
