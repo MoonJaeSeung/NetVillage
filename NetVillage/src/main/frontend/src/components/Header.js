@@ -48,29 +48,6 @@ const HeaderBtn = styled(NavLink)`
   color: #666666;
 `;
 
-const LogOutBtn = styled.button`
-  width: 100px;
-  border-radius: 5px;
-  border: solid 2px #CAFFBE;
-  box-sizing: border-box;
-  text-decoration: none;
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  padding: 7px;
-  height: 40px;
-  margin: 0px 5px;
-  background-color: #ffffff;
-  font-family: 'GangwonEduSaeeum_OTFMediumA', serif;
-  font-size: 24px;
-  color: #666666;
-`;
-
-const LogoLink = styled.img`
-  height: 120px;
-  //width: 120px;
-`;
-
 const Header = () => {
     const LogOut = () =>{
         sessionStorage.removeItem('user_info');
