@@ -5,15 +5,16 @@ import axios from "axios";
 const ChatPage = ({ socket }) => {
 
   // 로그인한 유저의 닉네임을 저장하는 변수
-  let nick = sessionStorage.getItem("user_nick");
+  const nick = JSON.parse(sessionStorage.getItem("user_info")).user_nick;
 
   // 채팅방 정보를 저장하는 변수
   const [roomInfo, setRoomInfo] = useState([]);
 
   // 로그인한 유저가 참여 중인 채팅방을 불러옴
   useEffect(() => {
-    axios.post('/socket/chat/roominfo', nick
-    ).then((res)=>{
+    axios.post('/socket/chat/roomlist', {
+      nick : nick
+    }).then((res)=>{
       console.log('보내는 값',res.config.data)
       console.log('받아오는 값',res.data)
       // setRoomInfo()
@@ -32,6 +33,15 @@ const ChatPage = ({ socket }) => {
   const sendBtn = () => {
     if (socket.readyState !== 1) return;
     socket.send(msg)
+
+    // DB에 저장하는 axios
+    // axios.post('/socket/chat/sendMsg', {
+    //   nick : nick,
+    //   msg : msg
+    // }).then((res)=>{
+    //   console.log('보내는 값',res.config.data)
+    //   console.log('받아오는 값',res.data)
+    // }).catch((error)=>(console.log(error)))
   }
 
   return (
