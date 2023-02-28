@@ -9,7 +9,7 @@ import java.security.Timestamp;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Chatcontent {
+public class ChatContent {
     // 채팅내용 번호
     private Integer ccIdx;
 

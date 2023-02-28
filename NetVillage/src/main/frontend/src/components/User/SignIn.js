@@ -42,7 +42,7 @@ const LoginFooter = styled.div`
   justifyContent: center;
 `;
 
-const SignIn = () => {
+const SignIn = ({connect}) => {
   const Navigate = useNavigate();
 
   const [inputValue, setInputValue] = useState({
@@ -71,7 +71,8 @@ const SignIn = () => {
         const user_info = res.data;
         if(inputValue.id === user_info.user_id){
             window.sessionStorage.setItem('user_info', JSON.stringify(user_info));
-            window.location.href="/";
+            Navigate("/");
+            connect();
         }
       })
       .catch((err)=>{
