@@ -5,15 +5,19 @@ import styled from "styled-components";
 
 
 const MatchCardGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2개의 열 생성 */
-  gap: 20px; /* 요소 간의 간격 설정 */
-`;
+   display: flex;
+   justify-content:center;
+ 
+  flex-wrap: wrap; // 복수의 행
+  gap:6%;
+    
+`
 
 const MatchContainer = styled.div`
-  
-  width:1300px
+  display:center;
+  width:1300px;
 `
+
 
 const MatchPage = () => {
     const 대충데이터 = [0, 1, 2, 3, 4];
