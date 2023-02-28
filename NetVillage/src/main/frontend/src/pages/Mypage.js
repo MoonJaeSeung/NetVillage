@@ -14,6 +14,8 @@ import TransactionHistory from "../components/Mypage/TransactionHistory";
 import MyWrite from "../components/Mypage/MyWrite";
 import MyComment from "../components/Mypage/MyComment";
 import BookMark from "../components/Mypage/BookMark";
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 const Mypage = () => {
 
@@ -71,19 +73,24 @@ const Mypage = () => {
     ])
 
     // 내가 쓴 글, 댓글
-    const [click, setClick] = useState();
-   const myWriteAndCommList = (e) => {
-      console.log(e.target.innerText);
-      setClick(e.target.innerText)
-   };
+   //  const [click, setClick] = useState();
+   // const myWriteAndCommList = (e) => {
+   //    console.log(e.target.innerText);
+   //    setClick(e.target.innerText)
+   // };
+   //
+   // const myList = () => {
+   //     if (click === "내가 쓴 글"){
+   //         return <MyWrite/>;
+   //     } else {
+   //         return <MyComment/>;
+   //     }
+   // }
 
-   const myList = () => {
-       if (click === "내가 쓴 글"){
-           return <MyWrite/>;
-       } else {
-           return <MyComment/>;
-       }
-   }
+    const navigate = useNavigate();
+    const goToEdit = () => {
+        navigate(`/MyEdit`);
+    }
 
     return (
         <div className="myPage">
@@ -93,9 +100,9 @@ const Mypage = () => {
                     <p className="myPUserText">
                         임다인님 안녕하세요!
                     </p>
-                    <span className="myPEdit">
+                    <span className="myPEdit" onClick={goToEdit}>
                     정보수정
-                </span>
+                    </span>
                 </div>
             </div>
             <div className="myPContent">
@@ -156,16 +163,14 @@ const Mypage = () => {
 
             {/* 내가 쓴 글, 내가 쓴 댓글*/}
                 <div className="myWriteAndComm">
-                    <div className="myWrite" onClick={myWriteAndCommList}>
-                        <h3>내가 쓴 글</h3>
-                    </div>
-                    <span className="line">│</span>
-                    <div className="myComment" onClick={myWriteAndCommList}>
-                        <h3>내가 쓴 댓글</h3>
-                    </div>
-                </div>
-                <div className="myList">
-                    {myList()}
+                    <Tabs defaultActiveKey="myWrite" transition={false} id="uncontrolled-tab-example" className="mb-3">
+                        <Tab eventKey="myWrite" title="내가 쓴 글">
+                            <MyWrite/>
+                        </Tab>
+                        <Tab eventKey="myComment" title="내가 쓴 댓글">
+                            <MyComment/>
+                        </Tab>
+                    </Tabs>
                 </div>
 
             {/* 북마크 내역 */}

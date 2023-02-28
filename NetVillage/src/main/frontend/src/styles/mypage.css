@@ -172,8 +172,14 @@
 
 .writeItem, .commentItem {
     /*위 오른쪽 아래 왼쪽*/
-    margin: 1rem 0 0 2rem;
+    margin: 1rem 0 0 1rem;
 }
+
+/* 내가 쓴 글, 댓ㄱㄹ */
+.writeTableBox, .commentTableBox, .bookMarkTableBox {
+    width: 43rem;
+}
+
 
 /* 북마크 내역 */
 .bookMarkList {
