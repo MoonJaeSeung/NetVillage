@@ -1,12 +1,16 @@
 const MatchRoomCard = (props) => {
 
+    const date ={
+        textAlign:"center"
+    }
+
     return (
-        <div style={{background : "rgb(233, 255, 228)"}}>
-            <p>1월 27일 저녁</p>
-            <div>
-                <div>아이콘</div>
-                <div>VS or With</div>
-                <div>글쓴이</div>
+        <div style={{background : "rgb(233, 255, 228)", width: "30%", height:"20%",marginBottom:"15px",borderRadius:"20px"}}>
+            <p style={date}>1월 27일 저녁</p>
+            <div style={{display:"flex",justifyContent:"center"}}>
+                <img src="https://mblogthumb-phinf.pstatic.net/20160826_183/sexyuno_14721791028174nR15_JPEG/%C6%E6%C8%A6%B4%F5_%B6%F3%C4%CF.jpg?type=w2" style={{width:"50px"}}></img>
+                <span>VS or With</span>
+                <div style={{marginLeft:"5px"}}>글쓴이</div>
             </div>
             { props.state
                 ? <small>10승 2패</small>
