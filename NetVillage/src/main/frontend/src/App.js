@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import MatchPage from "./pages/MatchPage";
 import WriteMatchPage from "./pages/WriteMatchPage";
 import MatchHeader from "./components/Match/MatchHeader";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {

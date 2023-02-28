@@ -5,6 +5,9 @@ const MyWrite = () => {
     return (
         <div className="writeItem">
             내가 쓴 글
+            <div className="writeTableBox">
+
+            </div>
         </div>
     );
 };
