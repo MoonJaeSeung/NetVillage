@@ -13,7 +13,7 @@ import org.springframework.web.socket.server.support.HttpSessionHandshakeInterce
 public class WebSocketConfig implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(new EchoHandler(), "/socket/Chat")
+        registry.addHandler(new EchoHandler(), "/socket")
                 .setAllowedOriginPatterns("*");
     }
 

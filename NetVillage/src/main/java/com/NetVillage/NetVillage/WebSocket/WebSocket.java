@@ -6,7 +6,7 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint("/socket/Chat")
+@ServerEndpoint("/socket")
 public class WebSocket {
 
     @OnOpen
