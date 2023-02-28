@@ -8,7 +8,7 @@ const MatchRoomCard = (props) => {
         <div style={{background : "rgb(233, 255, 228)", width: "30%", height:"20%",marginBottom:"15px",borderRadius:"20px"}}>
             <p style={date}>1월 27일 저녁</p>
             <div style={{display:"flex",justifyContent:"center"}}>
-                <img src="https://o.remove.bg/downloads/5b21b4b7-569d-4149-940e-e6aca5f027f5/softee-%E1%84%90%E1%85%A1%E1%86%A8%E1%84%80%E1%85%AE-%E1%84%85%E1%85%A1%E1%84%8F%E1%85%A6%E1%86%BA-p-300-removebg-preview.png" style={{width:"50px"}}></img>
+                <img src="https://mblogthumb-phinf.pstatic.net/20160826_183/sexyuno_14721791028174nR15_JPEG/%C6%E6%C8%A6%B4%F5_%B6%F3%C4%CF.jpg?type=w2" style={{width:"50px"}}></img>
                 <span>VS or With</span>
                 <div style={{marginLeft:"5px"}}>글쓴이</div>
             </div>
