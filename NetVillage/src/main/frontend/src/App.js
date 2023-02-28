@@ -13,6 +13,8 @@ import Footer from './components/Footer';
 import MatchPage from "./pages/MatchPage";
 import WriteMatchPage from "./pages/WriteMatchPage";
 import MatchHeader from "./components/Match/MatchHeader";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import MyEdit from "./components/Mypage/MyEdit";
 
 
 function App() {
@@ -41,6 +43,7 @@ function App() {
                 <Route path="/Chat" element={<ChatPage/>}/>
                 <Route path="/Schedule" element={<SchedulePage/>}/>
                 <Route path="/MyPage" element={<MyPage/>}/>
+                <Route path="/MyEdit" element={<MyEdit/>}/>
                 <Route path="/SignIn" element={<SignIn/>}/>
                 <Route path="/Sign" element={<Sign/>}/>
                 <Route path="/Match" element={<MatchHeader/>}>
