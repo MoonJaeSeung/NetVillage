@@ -1,14 +1,16 @@
 import React,{ useState } from 'react';
 import styled from 'styled-components';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const SelectContainer = styled.div`
     display: flex;
     justify-content: center;
-`
+`;
 
 const Select = styled.select`
   padding: 16px 32px;
-  width: 100%;
+  width: 200px;
   outline: none;
   border-radius: 4px;
   margin: 20px;
@@ -16,10 +18,74 @@ const Select = styled.select`
   -webkit-appearance: none;
   -moz-appearance: none;
 `;
+
+const SelectBtn = styled.button`
+  width: 40px;
+  border: solid 0px;
+  background-color: #CAFFBE;
+  margin: 20px;
+`;
+
+const DateHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+`;
+
+const DateMonth = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+`;
+
+const DateYear = styled.div`
+  font-size: 16px;
+`;
+
+const DateBtn = styled.button`
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  :hover {
+    color: #000;
+  }
+`;
+
+const DatePickerContainer = styled.div`
+  padding: 16px 32px;
+  width: 200px;
+  outline: none;
+  border-radius: 4px;
+  margin: 20px;
+`;
+
 const SearchBar = () => {
+    const [selectedSports,setSelectedSports] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
     const [selectedRegion, setSelectedRegion] = useState('');
+    const [startDate, setStartDate] = useState(new Date());
 
+    const renderCustomHeader = ({ date, decreaseMonth, increaseMonth }) => {
+        return (
+            <DateHeader>
+                <div>
+                    <DateMonth>{date.toLocaleString("default", { month: "long" })}</DateMonth>
+                    <DateYear>{date.getFullYear()}</DateYear>
+                </div>
+                <DateBtn onClick={decreaseMonth}>{"<"}</DateBtn>
+                <DateBtn onClick={increaseMonth}>{">"}</DateBtn>
+            </DateHeader>
+        );
+    };
+
+    function handleSportsChange(event){
+        const sports = event.target.value;
+        setSelectedSports(sports);
+    }
     function handleCityChange(event) {
         const city = event.target.value;
         setSelectedCity(city);
@@ -53,6 +119,20 @@ const SearchBar = () => {
         }
     }
 
+    const sportsOptions =(
+      <>
+          <option>종목을 선택해주세요</option>
+          <option value="축구">축구</option>
+          <option value="농구">농구</option>
+          <option value="배구">배구</option>
+          <option value="탁구">탁구</option>
+          <option value="당구">당구</option>
+          <option value="야구">야구</option>
+          <option value="배드민턴">배드민턴</option>
+          <option value="테니스">테니스</option>
+      </>
+    );
+
     const cityOptions = (
         <>
             <option>구를 선택해주세요</option>
@@ -70,12 +150,25 @@ const SearchBar = () => {
 
     return (
         <SelectContainer>
+            <Select value={selectedSports} onChange={handleSportsChange}>
+                {sportsOptions}
+            </Select>
             <Select value={selectedCity} onChange={handleCityChange}>
                 {cityOptions}
             </Select>
             <Select value={selectedRegion} onChange={handleRegionChange}>
                 {regionOptions}
             </Select>
+            <DatePickerContainer>
+                <DatePicker
+                    selected={startDate}
+                    onChange={date => setStartDate(date)}
+                    renderCustomHeader={renderCustomHeader}
+                />
+            </DatePickerContainer>
+            <SelectBtn>
+                검색
+            </SelectBtn>
         </SelectContainer>
     );
 };

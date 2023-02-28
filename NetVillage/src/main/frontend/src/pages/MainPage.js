@@ -132,9 +132,6 @@ const MainPage = () => {
         <SearchContainer>
           <SearchTitle>어떤 운동을 찾으시나요?</SearchTitle>
             <SearchBar/>
-          <button>
-            운동 찾기
-          </button>
         </SearchContainer>
         <ListContainer>
               <ListSubTitle>검색 결과</ListSubTitle>
@@ -145,7 +142,7 @@ const MainPage = () => {
               <ListLoadingContainer>
                   경기들
               </ListLoadingContainer>
-              <EmptyContainer>모임이 없어요</EmptyContainer>
+              <EmptyContainer>경기가 없어요</EmptyContainer>
         </ListContainer>
       </HomeContainer>
   )
