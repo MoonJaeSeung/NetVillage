@@ -1,7 +1,9 @@
 import React,{ useState } from 'react';
 import styled from 'styled-components';
-import DatePicker from "react-datepicker";
+import DatePicker, {registerLocale} from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import ko from 'date-fns/locale/ko';
+registerLocale('ko',ko);
 
 const SelectContainer = styled.div`
     display: flex;
@@ -159,13 +161,16 @@ const SearchBar = () => {
             <Select value={selectedRegion} onChange={handleRegionChange}>
                 {regionOptions}
             </Select>
-            <DatePickerContainer>
+            <div style={{display:"flex", flexDirection:"column", justifyContent:"center", margin:"20px"}}>
                 <DatePicker
+                    locale="ko"
+                    dateFormat="yyyy-MM-dd"
                     selected={startDate}
+                    minDate={new Date()}
                     onChange={date => setStartDate(date)}
                     renderCustomHeader={renderCustomHeader}
                 />
-            </DatePickerContainer>
+            </div>
             <SelectBtn>
                 검색
             </SelectBtn>
