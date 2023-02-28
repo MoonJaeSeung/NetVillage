@@ -1,12 +1,24 @@
 import React, {useEffect, useState} from "react";
 import {Link, Outlet} from "react-router-dom";
 import MatchRoomCard from "../components/Match/MatchRoomCard";
+import styled from "styled-components";
 
+
+const MatchCardGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2개의 열 생성 */
+  gap: 20px; /* 요소 간의 간격 설정 */
+`;
+
+const MatchContainer = styled.div`
+  
+  width:1300px
+`
 
 const MatchPage = () => {
-    const 대충데이터 = [0, 1, 2, 3];
+    const 대충데이터 = [0, 1, 2, 3, 4];
     return (
-        <div>
+        <MatchContainer>
             <div>
                 <div>드롭다운</div>
                 <div>
@@ -17,12 +29,14 @@ const MatchPage = () => {
                 <Link to="Write">글 작성</Link>
             </div>
             <div>
-                <div>
-                    {대충데이터.map((item, index) => <MatchRoomCard key={index}/>)}
-                </div>
+                <MatchCardGrid>
+                    {대충데이터.map((item, index) => (
+                        <MatchRoomCard key={index} />
+                    ))}
+                </MatchCardGrid>
                 <div>페이지네이션</div>
             </div>
-        </div>
+        </MatchContainer>
     )
 }
 
