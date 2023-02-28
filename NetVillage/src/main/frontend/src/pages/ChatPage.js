@@ -1,31 +1,48 @@
 import React, { useRef, useState, useEffect } from 'react';
 import '../styles/chatPage.css'
+import axios from "axios";
 
-const ChatPage = () => {
+const ChatPage = ({ socket }) => {
 
-  const ws = new WebSocket("ws://localhost:3000/socket/Chat");
+  // 로그인한 유저의 닉네임을 저장하는 변수
+  const nick = JSON.parse(sessionStorage.getItem("user_info")).user_nick;
 
-  console.log("웹소켓 연결 대기", ws.readyState)
+  // 채팅방 정보를 저장하는 변수
+  const [roomInfo, setRoomInfo] = useState([]);
+
+  // 로그인한 유저가 참여 중인 채팅방을 불러옴
+  useEffect(() => {
+    axios.post('/socket/chat/roomlist', {
+      nick : nick
+    }).then((res)=>{
+      console.log('보내는 값',res.config.data)
+      console.log('받아오는 값',res.data)
+      // setRoomInfo()
+    }).catch((error)=>(console.log(error)))
+  }, [])
 
   // 채팅 메시지를 저장하는 변수
   const [msg, setMsg] = useState("")
 
   // 타이핑 중인 메시지를 저장하는 함수(onChange)
   const sendText = (e) => {
-    console.log(e.target.value)
     setMsg(e.target.value)
   }
 
   // 전송 버튼 클릭
   const sendBtn = () => {
-    ws.onopen = () => {
-      console.log(ws.readyState)
-      // ws.send(msg)
-    }
+    if (socket.readyState !== 1) return;
+    socket.send(msg)
+
+    // DB에 저장하는 axios
+    // axios.post('/socket/chat/sendMsg', {
+    //   nick : nick,
+    //   msg : msg
+    // }).then((res)=>{
+    //   console.log('보내는 값',res.config.data)
+    //   console.log('받아오는 값',res.data)
+    // }).catch((error)=>(console.log(error)))
   }
-
-
-
 
   return (
     <div>
