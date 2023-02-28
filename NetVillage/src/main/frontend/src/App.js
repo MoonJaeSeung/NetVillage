@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Routes, Route} from "react-router-dom";
 import MainPage from './pages/MainPage';
 import Header from './components/Header';
@@ -13,6 +13,8 @@ import Footer from './components/Footer';
 import MatchPage from "./pages/MatchPage";
 import WriteMatchPage from "./pages/WriteMatchPage";
 import MatchHeader from "./components/Match/MatchHeader";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import MyEdit from "./components/Mypage/MyEdit";
 
 
 function App() {
@@ -64,6 +66,7 @@ function App() {
                 <Route path="/Chat" element={<ChatPage socket={socket}/>}/>
                 <Route path="/Schedule" element={<SchedulePage/>}/>
                 <Route path="/MyPage" element={<MyPage/>}/>
+                <Route path="/MyEdit" element={<MyEdit/>}/>
                 <Route path="/SignIn" element={<SignIn connect={connect} socket={socket}/>}/>
                 <Route path="/Sign" element={<Sign/>}/>
                 <Route path="/Match" element={<MatchHeader/>}>

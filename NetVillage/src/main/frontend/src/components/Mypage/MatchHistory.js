@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/mypage.css';
+import '../../styles/mypage.css';
 import { RiPingPongFill } from "react-icons/ri";
 import { GiBowlingStrike } from "react-icons/gi";
 
