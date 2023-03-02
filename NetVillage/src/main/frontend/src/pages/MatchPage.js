@@ -3,7 +3,7 @@ import {Link, Outlet, useNavigate} from "react-router-dom";
 import MatchRoomCard from "../components/Match/MatchRoomCard";
 import styled from "styled-components";
 import navigate from "react-router-dom";
-
+import Paging from "../components/Match/Paging";
 
 const MatchCardGrid = styled.div`
    display: flex;
@@ -38,6 +38,8 @@ const Wb = styled.button`
 
 
 
+
+
 const MatchPage = () => {
     const 대충데이터 = [0, 1, 2, 3, 4, 5, 6];
     const navigate=useNavigate();
@@ -62,8 +64,9 @@ const MatchPage = () => {
                         <MatchRoomCard key={index} />
                     ))}
                 </MatchCardGrid>
-                <div>페이지네이션</div>
+                <div><paging></paging></div>
             </div>
+            <Paging></Paging>
         </MatchContainer>
     )
 }
