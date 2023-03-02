@@ -31,6 +31,7 @@ dependencies {
 	implementation 'org.mariadb.jdbc:mariadb-java-client:3.1.2'
 	implementation 'org.springframework.boot:spring-boot-starter-security'    /* Spring security */
 	implementation 'org.springframework.boot:spring-boot-devtools'
+	implementation 'com.google.code.gson:gson:2.10.1'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'

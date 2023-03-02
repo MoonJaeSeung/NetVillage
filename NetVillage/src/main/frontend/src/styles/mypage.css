@@ -1,4 +1,4 @@
-.myPage, .myPage div, .myPage span{
+.myPage, .myPage div, .myPage span, .userEdit{
     font-family: 'MapoPeacefull';
 }
 
@@ -38,6 +38,14 @@
 
 .myPUserText{
     font-size: x-large;
+}
+
+.myPEdit{
+    cursor:pointer;
+}
+
+.myPEdit:hover{
+    font-weight: bold;
 }
 
 .myPContent{
@@ -184,4 +192,9 @@
 /* 북마크 내역 */
 .bookMarkList {
     margin-left: 1rem;
+}
+
+/* 회원정보 수정 페이지*/
+.userEdit{
+    margin-left: 5rem;
 }
