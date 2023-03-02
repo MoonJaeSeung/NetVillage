@@ -8,6 +8,7 @@ const MyEdit = () => {
     const user_id = JSON.parse(sessionStorage.getItem("user_info")).user_id;
     const user_nick = JSON.parse(sessionStorage.getItem("user_info")).user_nick;
     const user_gender = JSON.parse(sessionStorage.getItem("user_info")).user_gender;
+    const user_birth = JSON.parse(sessionStorage.getItem("user_info")).user_birth;
 
     //초기 설정
     const [nick, setNick] = useState();
@@ -196,7 +197,7 @@ const MyEdit = () => {
                     </tr>
                     <tr>
                         <td className="editTitle">생년월일</td>
-                        <td className="editContent">주상민이 회원가입할 때 안 받음 ㅠ</td>
+                        <td className="editContent">{user_birth}</td>
                     </tr>
                 </table>
                 <button disabled={editBtn} className="editSubmit" onClick={goToEdit}>수정하기</button>
