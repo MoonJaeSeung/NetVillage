@@ -58,10 +58,10 @@ const Header = () => {
             <Logo to="/">어쩌다 짝꿍</Logo>
             {sessionStorage.user_info !=null?(
                 <div className='IsLogin1'>
-                    <HeaderBtn to="/">홈</HeaderBtn>
-                    <HeaderBtn to="/Chat">채팅페이지</HeaderBtn>
-                    <HeaderBtn to="/Schedule">일정페이지</HeaderBtn>
-                    <HeaderBtn to="/Match">매치페이지</HeaderBtn>
+                    <HeaderBtn to="/Board">게시판</HeaderBtn>
+                    <HeaderBtn to="/Chat">채팅</HeaderBtn>
+                    <HeaderBtn to="/Schedule">일정</HeaderBtn>
+                    <HeaderBtn to="/Match">매치</HeaderBtn>
                 </div>):
                 (<div></div>)}
             {sessionStorage.user_info !=null?(

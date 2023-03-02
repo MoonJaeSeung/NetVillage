@@ -15,6 +15,7 @@ import WriteMatchPage from "./pages/WriteMatchPage";
 import MatchHeader from "./components/Match/MatchHeader";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyEdit from "./components/Mypage/MyEdit";
+import TrBoard from "./pages/TrBoard";
 
 
 function App() {
@@ -69,6 +70,7 @@ function App() {
                 <Route path="/MyEdit" element={<MyEdit/>}/>
                 <Route path="/SignIn" element={<SignIn connect={connect} socket={socket}/>}/>
                 <Route path="/Sign" element={<Sign/>}/>
+                <Route path="/Board" element={<TrBoard/>}/>
                 <Route path="/Match" element={<MatchHeader/>}>
                     <Route index element={<MatchPage/>}/>
                 </Route>
