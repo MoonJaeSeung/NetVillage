@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.*;
 @Mapper
 public interface UserMapper {
 
-    @Insert("insert into user_info values(#{user_id},#{user_pw},#{user_name},#{user_phone},#{region},#{user_gender},#{user_nick},'null',0,0,0,0,'null',#{user_birth})")
+    @Insert("insert into user_info (user_id, user_pw, user_name, user_phone, region, user_gender, user_nick, user_birth) values(#{user_id},#{user_pw},#{user_name},#{user_phone},#{region},#{user_gender},#{user_nick},#{user_birth})")
     public int signUser(UserInfo join);
 
     @Select("select count(*) from user_info where user_id=#{user_id}")

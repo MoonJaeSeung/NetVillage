@@ -29,23 +29,14 @@ public class UserInfo {
     // 회원 닉네임
     private String user_nick;
 
+    // 페어플레이 점수
+    private Integer user_fairplay;
+
     // 회원 권한
     private String user_auth;
 
-    // 승
-    private Integer win;
-
-    // 패
-    private Integer lose;
-
-    // 페어플레이 점수
-    private Integer score;
-
     // 신고 횟수
     private Integer report_num;
-
-    // 회원 ip
-    private String user_ip;
 
     // 생년월일
     private String user_birth;

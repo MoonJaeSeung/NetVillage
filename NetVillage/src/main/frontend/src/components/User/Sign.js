@@ -132,7 +132,6 @@ const Sign = () => {
       region: selectedRegion,
       user_gender: gender,
       user_nick: nick,
-      user_auth:"null",
       user_birth:birth,
     })
         .then((res) => {
