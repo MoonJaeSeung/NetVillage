@@ -15,6 +15,7 @@ import WriteMatchPage from "./pages/WriteMatchPage";
 import MatchHeader from "./components/Match/MatchHeader";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyEdit from "./components/Mypage/MyEdit";
+import Kakao from "../src/components/Match/Kakao"
 
 
 function App() {
@@ -73,6 +74,7 @@ function App() {
                     <Route index element={<MatchPage/>}/>
                 </Route>
                 <Route path="/Match/Write" element={<WriteMatchPage/>}/>
+                <Route path="/Match/Kakao" element={<Kakao/>}/>
             </Routes>
             <Footer/>
         </div>
