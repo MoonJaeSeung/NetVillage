@@ -15,8 +15,18 @@ const MatchCardGrid = styled.div`
 
 const MatchContainer = styled.div`
   display:center;
-  width:1300px;
+  width:1430px;
 `
+const Cb = styled.button`
+    background-color:rgb(233, 255, 228);
+    border:none;
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+    margin-right:70px;
+    
+`
+
 
 
 const MatchPage = () => {
@@ -24,11 +34,10 @@ const MatchPage = () => {
     return (
         <MatchContainer>
             <div>
-                <div>드롭다운</div>
-                <div>
-                    <Link to="">자유</Link>
-                    <Link to="">대결</Link>
-                    <Link to="">멘토</Link>
+                <div style={{display:"flex" , justifyContent:"center"}}>
+                    <Cb>자유</Cb>
+                    <Cb>대결</Cb>
+                    <Cb>멘토</Cb>
                 </div>
                 <Link to="Write">글 작성</Link>
             </div>
