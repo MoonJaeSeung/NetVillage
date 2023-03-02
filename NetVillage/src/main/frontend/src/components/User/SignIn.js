@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from "styled-components";
 import axios from "axios";
+import {KAKAO_AUTH_URL} from "./KakaoAuth";
 
 const LoginContainer = styled.div`
   display: flex;
@@ -34,6 +35,19 @@ const Button = styled.button`
   border: 0px solid #CAFFBE;
   border-radius: 5px;
   cursor: pointer;
+`;
+const SignIna = styled.a`
+  width: 500px;
+  height: 45px;
+  margin: 10px 5px 10px 5px;
+  background-color: #CAFFBE;
+  border: 0px solid #CAFFBE;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  line-height: 45px;
 `;
 
 const LoginFooter = styled.div`
@@ -114,7 +128,7 @@ const SignIn = ({connect}) => {
             <Button onClick={toSignUp}>회원가입</Button>
         </LoginFooter>
         <LoginFooter>
-            <Button>카카오 로그인</Button>
+            <SignIna href={KAKAO_AUTH_URL}>카카오 로그인</SignIna>
         </LoginFooter>
         <LoginFooter>
             <Button>네이버 로그인</Button>

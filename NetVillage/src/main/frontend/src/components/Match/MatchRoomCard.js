@@ -12,14 +12,17 @@ const MatchRoomCard = (props) => {
                 <span>VS or With</span>
                 <div style={{marginLeft:"5px"}}>글쓴이</div>
             </div>
+            <div style={{display:"flex",justifyContent:"center"}}>
             { props.state
                 ? <small>10승 2패</small>
                 : <p>코멘트</p>
             }
+            </div>
             <div>
+
+                <p style={{display:"flex",justifyContent:"center"}}>장소</p>
                 <small>D-7</small>
-                <p>장소</p>
-                <div>
+                <div style={{display:"flex", flexDirection:"row-reverse"}}>
                     <button>수정</button>
                     <button>삭제</button>
                 </div>
