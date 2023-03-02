@@ -198,3 +198,31 @@
 .userEdit{
     margin-left: 5rem;
 }
+
+.editBox{
+    margin-top: 2rem;
+}
+
+.editTitle{
+    font-weight: bold;
+    font-size: large;
+    width: 10rem;
+    text-align: left;
+}
+
+.editContent{
+    width: 15rem;
+}
+
+.editTable tr{
+    height: 3rem;
+}
+
+.editTable input{
+    border: 2px solid #CAFFBE;
+    border-radius: 10px;
+}
+
+.editTable input:focus{
+    outline: none;
+}
