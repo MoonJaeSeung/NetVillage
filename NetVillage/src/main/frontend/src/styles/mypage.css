@@ -196,7 +196,11 @@
 
 /* 회원정보 수정 페이지*/
 .userEdit{
-    margin-left: 5rem;
+    /*위 오른쪽 아래 왼쪽*/
+    margin: 8rem 0 5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .editBox{
@@ -219,10 +223,32 @@
 }
 
 .editTable input{
+    width: 15rem;
     border: 2px solid #CAFFBE;
     border-radius: 10px;
 }
 
 .editTable input:focus{
     outline: none;
+}
+
+.nickCK{
+    margin-left: 0.5rem;
+    border: 1px solid #CAFFBE;
+    border-radius: 10px;
+    background-color: #CAFFBE;
+}
+
+.message{
+    font-size: small;
+    color: lightslategray;
+}
+
+.editSubmit{
+    margin-top: 2rem;
+    width: 25rem;
+    height: 3rem;
+    border: 1px solid #CAFFBE;
+    border-radius: 10px;
+    background-color: #CAFFBE;
 }
