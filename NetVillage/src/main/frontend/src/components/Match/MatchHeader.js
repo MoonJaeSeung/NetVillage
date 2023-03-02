@@ -8,9 +8,29 @@ const H=styled.div`
   justify-content: "center";
 `
 
+const Select = styled.select`
+-webkit-appearance: none;  /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none;
+  background: url(이미지 경로) no-repeat 95% 50%;  /* 화살표 모양의 이미지 */ 
+   width: 200px; /* 원하는 너비설정 */
+  padding: .8em .5em; /* 여백으로 높이 설정 */
+  font-family: inherit;  /* 폰트 상속 */
+  background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%; /* 네이티브 화살표 대체 */  
+  border: 1px solid #999; 
+  border-radius: 0px; /* iOS 둥근모서리 제거 */
+  -webkit-appearance: none; /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none;
+  background-color:mintcream;
+  margin-bottom:30px;
+  margin-right:10px;
+  `
+
+
 const SportBox = () =>{
     return(
-        <select>
+        <Select>
             <option key="free" value="free">
                 탁구
             </option>
@@ -21,13 +41,13 @@ const SportBox = () =>{
                 테니스
             </option>
             }
-        </select>
+        </Select>
     )
 }
 
 const RecruitBox = () =>{
     return(
-        <select>
+        <Select>
             <option key="free" value="free">
                 모집 중
             </option>
@@ -35,13 +55,13 @@ const RecruitBox = () =>{
                 모집 완료
             </option>
             }
-        </select>
+        </Select>
     )
 }
 
 const FilterBox = () =>{
     return(
-        <select>
+        <Select>
             <option key="free" value="free">
                 작성자 이름
             </option>
@@ -52,9 +72,11 @@ const FilterBox = () =>{
                 경기 장소
             </option>
             }
-        </select>
+        </Select>
     )
 }
+
+
 
 const MatchHeader = () => {
     return(
@@ -70,8 +92,8 @@ const MatchHeader = () => {
                 <SportBox></SportBox>
                 <RecruitBox></RecruitBox>
                 <FilterBox></FilterBox>
-                <input type="text"/>
-                <button>검색</button>
+                <input type="text" style={{height:"50px"}}/>
+                <button style={{height:"50px"}}>검색</button>
             </span>
 
 
