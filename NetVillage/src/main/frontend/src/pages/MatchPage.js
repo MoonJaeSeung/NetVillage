@@ -1,36 +1,62 @@
 import React, {useEffect, useState} from "react";
-import {Link, Outlet} from "react-router-dom";
+import {Link, Outlet, useNavigate} from "react-router-dom";
 import MatchRoomCard from "../components/Match/MatchRoomCard";
 import styled from "styled-components";
-
+import navigate from "react-router-dom";
+import Paging from "../components/Match/Paging";
 
 const MatchCardGrid = styled.div`
    display: flex;
    justify-content:center;
- 
-  flex-wrap: wrap; // 복수의 행
-  gap:6%;
+   flex-wrap: wrap; // 복수의 행
+   gap:6%;
     
 `
 
 const MatchContainer = styled.div`
   display:center;
-  width:1300px;
+  width:1430px;
+`
+const Cb = styled.button`
+    background-color:rgb(233, 255, 228);
+    border:none;
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+    margin-right:70px;
+`
+
+const Wb = styled.button`
+    background-color:rgb(233, 255, 228);
+    border:none;
+    height: 50px;
+    width: 80px;
+    border-radius: 100px;
+    margin-right:70px;
 `
 
 
+
+
+
+
 const MatchPage = () => {
-    const 대충데이터 = [0, 1, 2, 3, 4];
+    const 대충데이터 = [0, 1, 2, 3, 4, 5, 6];
+    const navigate=useNavigate();
+
+    const navigateToWrite = () => {
+        navigate("/Match/Write");
+    };
     return (
         <MatchContainer>
             <div>
-                <div>드롭다운</div>
-                <div>
-                    <Link to="">자유</Link>
-                    <Link to="">대결</Link>
-                    <Link to="">멘토</Link>
+                <div style={{display:"flex" , justifyContent:"center" ,marginBottom:"20px"}}>
+                    <Cb>자유</Cb>
+                    <Cb>대결</Cb>
+                    <Cb>멘토</Cb>
+                    <Wb onClick={navigateToWrite}>글 작성</Wb>
                 </div>
-                <Link to="Write">글 작성</Link>
+
             </div>
             <div>
                 <MatchCardGrid>
@@ -38,8 +64,9 @@ const MatchPage = () => {
                         <MatchRoomCard key={index} />
                     ))}
                 </MatchCardGrid>
-                <div>페이지네이션</div>
+                <div><paging></paging></div>
             </div>
+            <Paging></Paging>
         </MatchContainer>
     )
 }
