@@ -16,7 +16,8 @@ import MatchHeader from "./components/Match/MatchHeader";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyEdit from "./components/Mypage/MyEdit";
 import TrBoard from "./pages/TrBoard";
-
+import kakaoLogin from "./components/User/KakaoLogin";
+import KakaoLogin from "./components/User/KakaoLogin";
 
 function App() {
     //socket 연결시 소켓 정보 저장
@@ -69,6 +70,7 @@ function App() {
                 <Route path="/MyPage" element={<MyPage/>}/>
                 <Route path="/MyEdit" element={<MyEdit/>}/>
                 <Route path="/SignIn" element={<SignIn connect={connect} socket={socket}/>}/>
+                <Route path="/kakaoLogin" element={<KakaoLogin/>}/>
                 <Route path="/Sign" element={<Sign/>}/>
                 <Route path="/Board" element={<TrBoard/>}/>
                 <Route path="/Match" element={<MatchHeader/>}>

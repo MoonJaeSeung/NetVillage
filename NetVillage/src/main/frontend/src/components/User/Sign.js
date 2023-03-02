@@ -92,10 +92,10 @@ const Sign = () => {
     pw2: "",
     name: "",
     phone: "",
-    city:"",
     region: "",
     gender: "",
     nick: "",
+    birth:"",
   });
 
   const [idAlertSentence, setIdAlertSentence] = useState(
@@ -109,10 +109,10 @@ const Sign = () => {
     pw2,
     name,
     phone,
-    city,
     region,
     gender,
     nick,
+    birth,
   } = inputValue;
 
   const handleInput = (e) => {
@@ -133,6 +133,7 @@ const Sign = () => {
       user_gender: gender,
       user_nick: nick,
       user_auth:"null",
+      user_birth:birth,
     })
         .then((res) => {
           navigate("/signin");
@@ -362,6 +363,15 @@ const Sign = () => {
           </form>
           <CheckButton onClick={checkNick}>닉네임 중복확인</CheckButton>
         </InputContainer>
+          <P>생년월일</P>
+          <form className="inputLine">
+            <Input
+                type="text"
+                className="birthInput"
+                onChange={handleInput}
+                name="birth"
+            />
+          </form>
 
 
         <Button
@@ -372,7 +382,8 @@ const Sign = () => {
                   id.length > 3 &&
                   pw2.length > 3 &&
                   name.length > 1 &&
-                  phone.length > 1
+                  phone.length > 1 &&
+                      nick.length >=2 && nick.length <=6
               )
             }
         >

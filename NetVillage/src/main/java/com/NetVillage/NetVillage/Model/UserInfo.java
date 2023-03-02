@@ -46,4 +46,7 @@ public class UserInfo {
 
     // 회원 ip
     private String user_ip;
+
+    // 생년월일
+    private String user_birth;
 }
