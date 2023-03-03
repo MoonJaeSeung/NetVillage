@@ -13,8 +13,8 @@ public class ChatService {
     @Autowired
     ChatMapper chatMapper;
 
-    public List<Chatroom> ChatRoomList(String user_nick) {
-        return chatMapper.ChatRoomList(user_nick);
+    public List<Chatroom> ChatRoomList() {
+        return chatMapper.ChatRoomList();
     }
 
     public void ChatSendMsg(String nick, String msg) {

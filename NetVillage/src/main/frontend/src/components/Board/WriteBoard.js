@@ -1,21 +1,48 @@
 import React from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {Button, Input, Select, Space} from "antd";
+import {useLocation} from "react-router-dom";
 
 const WriteBoard = () => {
+    const location = useLocation();
+
+    const handleChange = (value) => {
+        console.log(`selected ${value}`);
+    };
     return (
-        <div>
-            <div className='movie-container'>
-                <h2>제목</h2>
-                <div>
-                    내용
-                </div>
-            </div>
+        <div className='boardWriteContainer'>
             <div className='form-wrapper'>
-                <input className="title-input" type='text' placeholder='제목' />
+                <Space wrap
+                       style={{
+                           marginBottom: "1rem",
+                       }}>
+                    <Select
+                        defaultValue={location.state.category}
+                        style={{
+                            width: 120,
+                        }}
+                        onChange={handleChange}
+                        options={[
+                            {
+                                value: '자유게시판',
+                                label: '자유게시판',
+                            },
+                            {
+                                value: '팁게시판',
+                                label: '팁게시판',
+                            },
+                            {
+                                value: '거래게시판',
+                                label: '거래게시판',
+                            },
+                        ]}
+                    />
+                <Input placeholder="제목" />
+                </Space>
                 <CKEditor
                     editor={ClassicEditor}
-                    data="<p>Hello from CKEditor 5!</p>"
+                    data="<p>어쩌다 짝꿍의 커뮤니티입니다.</p>"
                     onReady={editor => {
                         // You can store the "editor" and use when it is needed.
                         console.log('Editor is ready to use!', editor);
@@ -31,8 +58,11 @@ const WriteBoard = () => {
                         console.log('Focus.', editor);
                     }}
                 />
+                <Button type="primary"
+                        style={{
+                            marginTop: "2rem",
+                        }}>글작성</Button>
             </div>
-            <button className="submit-button">입력</button>
         </div>
     );
 };

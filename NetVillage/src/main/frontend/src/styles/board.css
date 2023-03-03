@@ -39,3 +39,20 @@ main {
 .ant-input-group-wrapper ant-input-search css-dev-only-do-not-override-10ed4xt {
     width: 100%;
 }
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.boardWriteContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ck.ck-editor__editable:not(.ck-editor__nested-editable) {
+    min-height: 500px;
+    width: 60rem;
+}

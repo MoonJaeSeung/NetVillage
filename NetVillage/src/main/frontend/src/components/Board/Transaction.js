@@ -24,6 +24,7 @@ const IconText = ({ icon, text }) => (
 );
 
 const Transaction = () => (
+
     <List
         itemLayout="vertical"
         size="large"

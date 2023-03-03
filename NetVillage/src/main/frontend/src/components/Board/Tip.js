@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, Input, Select, Space, Table} from 'antd';
+import {useNavigate} from "react-router-dom";
 
 const columns = [
     {
@@ -92,14 +93,20 @@ const data = [
 ];
 const Tip = () => {
 
+    const navigate = useNavigate();
+
     const handleChange = (value) => {
         console.log(`selected ${value}`);
     };
 
+    const writeBoard = () => {
+        navigate('/Board/Write', { state: { category: '팁게시판' }});
+    }
+
     return (
         <div>
             <div className='boardContainer'>
-                <Button>글쓰기</Button>
+                <Button onClick={writeBoard}>글쓰기</Button>
                 <Space wrap>
                     <Select
                         defaultValue="작성자"

@@ -99,7 +99,7 @@ const Free = () => {
     };
 
     const writeBoard = () => {
-        navigate('/Board/Write')
+        navigate('/Board/Write', { state: { category: '자유게시판' }});
     }
 
     return (
