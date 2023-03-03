@@ -11,19 +11,19 @@ import java.security.Timestamp;
 @AllArgsConstructor
 public class TbMatch {
     // 매치번호
-    private Integer matchIdx;
+    private Integer match_idx;
 
     // 작성자
-    private String userNick1;
+    private String user_nick1;
 
     // 신청자
-    private String userNick2;
+    private String user_nick2;
 
     // 매치날짜
-    private Timestamp matchDate;
+    private Timestamp match_date;
 
     // 매치시작시간
-    private String matchTime;
+    private String match_time;
 
     // 승자
     private String win;
@@ -41,5 +41,5 @@ public class TbMatch {
     private String game;
 
     // 생성일자
-    private Timestamp createDate;
+    private Timestamp create_date;
 }
