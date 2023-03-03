@@ -12,7 +12,6 @@ const MatchRoomCard = (props) => {
          border : none;
          margin-right:10px;
          border-radius : 100%;
-   
 `
 
     return (
