@@ -14,10 +14,7 @@ import WriteMatchPage from "./pages/WriteMatchPage";
 import MatchHeader from "./components/Match/MatchHeader";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyEdit from "./components/Mypage/MyEdit";
-
 import Kakao from "../src/components/Match/Kakao"
-
-
 import TrBoard from "./pages/TrBoard";
 import KakaoLogin from "./components/User/KakaoLogin";
 import MapPage from "./pages/MapPage";

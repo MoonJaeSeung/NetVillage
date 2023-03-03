@@ -102,22 +102,22 @@ const SignIn = ({connect}) => {
     <LoginContainer>
       <h1>로그인을 해주세요.</h1>
       <P>아이디</P>
-        <form className="idLine">
+        <div>
             <Input
               className="idInput"
               onChange={handleInput}
               type="text"
               name="id"/>
-        </form>
+        </div>
         <P>비밀번호</P>
-        <form className="pwLine">
+        <div>
             <Input
               className="pwInput"
               onChange={handleInput}
               type="password"
               name="pw"
             />
-          </form>
+          </div>
         <LoginFooter>
             <Button
             className="signBtn"
