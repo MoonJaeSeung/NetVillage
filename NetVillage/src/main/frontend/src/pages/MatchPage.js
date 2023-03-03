@@ -17,6 +17,7 @@ const MatchCardGrid = styled.div`
 const MatchContainer = styled.div`
   display:center;
   width:1430px;
+  min-height: 1000px;
 `
 const Cb = styled.button`
     background-color:rgb(233, 255, 228);
@@ -74,7 +75,7 @@ const MatchPage = () => {
                         <MatchRoomCard key={index} />
                     ))}
                 </MatchCardGrid>
-                <div><Paging></Paging></div>
+                <div><paging></paging></div>
             </div>
 
         </MatchContainer>
