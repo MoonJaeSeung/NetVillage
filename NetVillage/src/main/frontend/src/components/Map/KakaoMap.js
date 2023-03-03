@@ -5,6 +5,7 @@ const { kakao } = window;
 
 const KakaoMap = () => {
     useEffect(() => {
+
         const container = document.getElementById("map");
 
         const options = {
