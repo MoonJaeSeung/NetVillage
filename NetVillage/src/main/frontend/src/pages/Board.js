@@ -6,7 +6,6 @@ import {
     SmileOutlined,
     UserOutlined,
     LikeOutlined,
-    SearchOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
 import Free from "../components/Board/Free";
@@ -35,10 +34,6 @@ const Board = () => {
         }else {
             return <Free/>
         }
-    }
-
-    const searchBtn = () => {
-
     }
 
     return (
@@ -83,10 +78,6 @@ const Board = () => {
                             className: 'trigger',
                             onClick: () => setCollapsed(!collapsed),
                         })}
-                        {/*<div className='searchBox'>*/}
-                            <input type="text"/>
-                            <SearchOutlined onClick={searchBtn} />
-                        {/*</div>*/}
                     </Header>
                     <Content
                         style={{
