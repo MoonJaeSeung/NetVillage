@@ -2,8 +2,12 @@ import React, {useEffect, useRef, useState} from 'react';
 import '../../styles/mypage.css';
 import axios from "axios";
 import {renderToReadableStream} from "react-dom/server";
+import {useNavigate} from "react-router-dom";
 
 const MyEdit = () => {
+
+    //네이게이티 호출
+    const navigate = useNavigate();
 
     const user_name = JSON.parse(sessionStorage.getItem("user_info")).user_name;
     const user_id = JSON.parse(sessionStorage.getItem("user_info")).user_id;
@@ -135,21 +139,22 @@ const MyEdit = () => {
     function myInfoEdit() {
         alert("회원정보 수정 관련 백 로직 추가하기~");
 
-        // axios
-        //     .post("/userInfoUpdate", {
-        //         user_nick: nickRef.current.value,
-        //         user_pw: pwRef.current.value,
-        //     })
-        //     .then(function (res) {
-        //         console.log(res.data); //넘어오는 데이터 값 확인, 나중에 지우기
-        //         res.data == 1
-        //             ? navigate("/myPage")
-        //             : alert("회원정보 수정에 실패하였습니다. 다시 시도해주세요.");
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //         alert("오류발생");
-        //     });
+        axios
+            .post("/userInfoUpdate", {
+                user_id: user_id,
+                user_nick: nickRef.current.value,
+                user_pw: pwRef.current.value,
+            })
+            .then(function (res) {
+                console.log(res.data); //넘어오는 데이터 값 확인, 나중에 지우기
+                res.data == 1
+                    ? navigate("/myPage")
+                    : alert("회원정보 수정에 실패하였습니다. 다시 시도해주세요.");
+            })
+            .catch(function (error) {
+                console.log(error);
+                alert("오류발생");
+            });
     }
 
 
