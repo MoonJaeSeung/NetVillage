@@ -31,7 +31,7 @@ function App() {
         socket && connect();
         },[])
     // socket 연결할때 실행할 함수
-    function connect() {
+    function connect(user_name) {
         let ws = new WebSocket("ws://localhost:8090/socket")
         setSocket(ws)
         ws.onopen = () => {
