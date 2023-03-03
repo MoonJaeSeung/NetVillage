@@ -15,9 +15,11 @@ import MatchHeader from "./components/Match/MatchHeader";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyEdit from "./components/Mypage/MyEdit";
 import Kakao from "../src/components/Match/Kakao"
-import TrBoard from "./pages/TrBoard";
 import KakaoLogin from "./components/User/KakaoLogin";
 import MapPage from "./pages/MapPage";
+import Board from "./pages/Board";
+import ReportBoard from "./pages/ReportBoard";
+
 
 
 function App() {
@@ -73,7 +75,8 @@ function App() {
                 <Route path="/SignIn" element={<SignIn connect={connect} socket={socket}/>}/>
                 <Route path="/kakaoLogin" element={<KakaoLogin/>}/>
                 <Route path="/Sign" element={<Sign/>}/>
-                <Route path="/Board" element={<TrBoard/>}/>
+                <Route path="/Board" element={<Board/>}/>
+                <Route path="/ReportBoard" element={<ReportBoard/>}/>
                 <Route path="/Match" element={<MatchHeader/>}>
                     <Route index element={<MatchPage/>}/>
                 </Route>

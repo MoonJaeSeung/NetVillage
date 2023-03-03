@@ -40,4 +40,7 @@ public class UserController {
     public int deleteUser(@RequestBody UserInfo delete) throws Exception{
         return userService.deleteUser(delete);
     }
+    
+//    마이페이지
+    //닉네임 가져오기    
 }
