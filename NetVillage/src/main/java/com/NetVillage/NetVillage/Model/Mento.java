@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Mento {
     // 방번호
-    private Integer roomIdx;
+    private Integer room_idx;
 
     // 모집여부
     private Integer room;
@@ -18,10 +18,10 @@ public class Mento {
     private String ment;
 
     // 멘티
-    private String userNick1;
+    private String user_nick1;
 
     // 멘토
-    private String userNick2;
+    private String user_nick2;
 
     // 종목
     private String game;

@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Bookmark {
     // 북마크 번호
-    private Integer bookmarkIdx;
+    private Integer bookmark_idx;
 
     // 게시글 번호
-    private Integer boardIdx;
+    private Integer board_idx;
 
     // 회원 아이디
-    private String userId;
+    private String user_id;
 }
