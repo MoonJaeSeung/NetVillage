@@ -71,6 +71,14 @@ const Button = styled.button`
   border: 0px solid #CAFFBE;
   border-radius: 5px;
 `;
+const CheckBtn = styled.button`
+  width: 100%;
+  height: 40px;
+  margin-left: 10px;
+  background-color: #CAFFBE;
+  border: 0px solid #CAFFBE;
+  border-radius: 5px;
+`;
 
 const SelectContainer = styled.div`
     display: flex;
@@ -173,9 +181,10 @@ const Sign = () => {
 
   const checkId = () => {
     axios.post("/user/checkid",{
-      userId:id,
+      user_id:id,
     })
         .then((res)=>{
+            console.log(res.data);
           if(res.data===1){
             alert("이미있는 아이디입니다.")
           }else{
@@ -189,11 +198,11 @@ const Sign = () => {
 
   const checkNick = () => {
     axios.post("/user/checknick",{
-      userNick:nick,
+      user_nick:nick,
     })
         .then((res)=>{
             console.log(res);
-          if(res.data===0){
+          if(res.data===1){
             alert("이미있는 아이디입니다.")
           }else{
             alert("사용가능한 아이디입니다.")
@@ -260,7 +269,7 @@ const Sign = () => {
         <h1>회원가입을 해주세요.</h1>
         <P>아이디</P>
         <InputContainer>
-          <form className="inputLine">
+          <div>
             <CheckInput
                 type="text"
                 className="userInput"
@@ -269,11 +278,15 @@ const Sign = () => {
                 name="id"
             />
             <div className="inputDescription">{idAlertSentence}</div>
-          </form>
-          <CheckButton onClick={checkId}>아이디 중복확인</CheckButton>
+          </div>
+          <CheckButton onClick={checkId}
+                       disabled={
+                           !(
+                               nick.id >=2 && nick.length <=6
+                           )}>아이디 중복확인</CheckButton>
         </InputContainer>
         <P>비밀번호</P>
-        <form className="inputLine">
+        <div>
           <Input
               type="password"
               className="userInput"
@@ -281,9 +294,9 @@ const Sign = () => {
               name="pw1"
           />
           <div className="inputDescription">(영문 대소문자/숫자 4자~16자)</div>
-        </form>
+        </div>
         <P>비밀번호 확인</P>
-        <form className="inputLine">
+        <div>
           <Input
               type="password"
               className="userInput"
@@ -292,18 +305,18 @@ const Sign = () => {
               name="pw2"
           />
           <div className="inputDescription">{pwAlertSentence}</div>
-        </form>
+        </div>
         <P>이름</P>
-        <form className="inputLine">
+        <div>
           <Input
               type="text"
               className="userInput"
               onChange={handleInput}
               name="name"
           />
-        </form>
+        </div>
         <P>휴대폰</P>
-        <form className="phoneLine">
+        <div>
           <InputContainerLine>
             <select name="phone" className="phoneSelect">
               <option>010</option>
@@ -322,8 +335,8 @@ const Sign = () => {
             />
           </InputContainerLine>
           <div className="phoneDescription">{phoneAlertSentence}</div>
-        </form>
-        <form className="cityLine">
+        </div>
+        <div>
           <InputContainerLine>
             <P>지역을 선택해주세요.</P>
               <SelectContainer>
@@ -335,9 +348,9 @@ const Sign = () => {
                   </Select>
               </SelectContainer>
           </InputContainerLine>
-        </form>
+        </div>
 
-        <form className="genderLine">
+        <div>
           <InputContainerLine>
             <P>성별을 선택해주세요.</P>
             <div>
@@ -349,28 +362,32 @@ const Sign = () => {
               <input id="female" type="radio" value="F" name="gender" onChange={handleInput}/>
             </div>
           </InputContainerLine>
-        </form>
+        </div>
         <P>닉네임</P>
         <InputContainer>
-          <form className="inputLine">
+          <div>
             <CheckInput
                 type="text"
                 className="nickInput"
                 onChange={handleInput}
                 name="nick"
             />
-          </form>
-          <CheckButton onClick={checkNick}>닉네임 중복확인</CheckButton>
+          </div>
+          <CheckBtn onClick={checkNick}
+                    disabled={
+                           !(
+                               nick.length >=2 && nick.length <=6
+                           )}>닉네임 중복확인</CheckBtn>
         </InputContainer>
           <P>생년월일</P>
-          <form className="inputLine">
+          <div>
             <Input
                 type="text"
                 className="birthInput"
                 onChange={handleInput}
                 name="birth"
             />
-          </form>
+          </div>
 
 
         <Button
