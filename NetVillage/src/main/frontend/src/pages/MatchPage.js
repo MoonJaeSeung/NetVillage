@@ -48,7 +48,7 @@ const MatchPage = () => {
     useEffect(() => {
         axios.get('/Match/list')
             .then((result)=> {
-
+                console.log(result)
                 setMatchList(result.data);
 
             })
@@ -73,9 +73,8 @@ const MatchPage = () => {
             <div>
                 <MatchCardGrid>
                     {matchList.map(match => <MatchRoomCard key={match.id} item={match} />)}
-
                 </MatchCardGrid>
-                <div><paging></paging></div>
+                <div><Paging></Paging></div>
             </div>
 
         </MatchContainer>
