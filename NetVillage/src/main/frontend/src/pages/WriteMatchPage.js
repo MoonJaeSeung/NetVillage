@@ -5,23 +5,28 @@ import {CalendarContainer} from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from 'date-fns/esm/locale';
-import "../styles/WriteMatchPage.css"
+import "../styles/WriteMatchPage.css";
 
+import {useNavigate} from "react-router-dom";
 
 
 const WriteMatchPageWrapper = styled.div`
   color: blue;
-  padding: 20px;
-  padding-left: 30px;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const WriteMatchHeader = styled.div`
   color: black;
   padding-bottom: 30px;
+  width:50%;
 `
 
 const WriteMatchBody = styled.div`
   color: black;
+  
 `
 const Title = styled.input`
     width: 91%;
@@ -115,6 +120,13 @@ const Place = styled.input`
 `
 
 const WriteMatchPage = () => {
+
+    const navigate=useNavigate();
+
+    const navigateToMap = () => {
+        navigate("/Match/Kakao");
+    };
+
     return (<WriteMatchPageWrapper>
         <WriteMatchHeader>
             <Title type="text"  placeholder='제목'></Title>
@@ -137,17 +149,15 @@ const WriteMatchPage = () => {
             <div style={{marginTop:"30px"}}>
                 <small>장소</small>
                 <div><Place/></div>
-                <button>지도로 보기</button>
+                <button onClick={navigateToMap}>지도로 보기</button>
+                <map></map>
+
             </div>
             <div id="map"></div>
             <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dd9bcaf5fddf48c987559f0ba743efa1"></script>
-
-
-
-
-            <div className="com" style={{marginTop:"30px"}}>
+            <div className="com" style={{marginTop:"30px" }}>
                 <div><small>코멘트</small></div>
-                <textarea style={{width:"30%"}}/>
+                <textarea style={{width:"100%"}}/>
             </div>
         </WriteMatchBody>
     </WriteMatchPageWrapper>
