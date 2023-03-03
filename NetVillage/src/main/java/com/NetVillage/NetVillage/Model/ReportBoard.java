@@ -11,34 +11,34 @@ import java.security.Timestamp;
 @AllArgsConstructor
 public class ReportBoard {
     // 게시글 번호
-    private Integer boardIdx;
+    private Integer board_idx;
 
     // 게시글 유형
-    private String boardCate;
+    private String board_cate;
 
     // 게시글 제목
-    private String boardTitle;
+    private String board_title;
 
     // 게시글 내용
-    private String boardContents;
+    private String board_contents;
 
     // 게시글 작성일
-    private Timestamp boardDate;
+    private Timestamp board_date;
 
     // 게시글 수정일
-    private Timestamp boardUpdate;
+    private Timestamp board_update;
 
     // 파일1
-    private String boardFile1;
+    private String board_file1;
 
     // 파일2
-    private String boardFile2;
+    private String board_file2;
 
     // 파일3
-    private String boardFile3;
+    private String board_file3;
 
     // 회원 닉네임
-    private String userNick;
+    private String user_nick;
 
     private String confirm;
 

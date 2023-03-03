@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class KakaoLogin {
     // 카카오 회원번호
-    private Integer kIdx;
+    private Integer k_idx;
 
     // 카카오 이름
-    private String kName;
+    private String k_name;
 
     // 카카오 계정
-    private String kEmail;
+    private String k_email;
 }
