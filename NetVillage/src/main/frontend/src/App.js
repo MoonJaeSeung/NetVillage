@@ -3,7 +3,6 @@ import {Routes, Route} from "react-router-dom";
 import MainPage from './pages/MainPage';
 import Header from './components/Header';
 import ChatPage from './pages/ChatPage';
-import SchedulePage from './pages/SchedulePage';
 import MyPage from './pages/Mypage';
 import SignIn from './components/User/SignIn';
 import Intro from './pages/Intro';
@@ -15,7 +14,13 @@ import WriteMatchPage from "./pages/WriteMatchPage";
 import MatchHeader from "./components/Match/MatchHeader";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyEdit from "./components/Mypage/MyEdit";
+
 import Kakao from "../src/components/Match/Kakao"
+
+
+import TrBoard from "./pages/TrBoard";
+import KakaoLogin from "./components/User/KakaoLogin";
+import MapPage from "./pages/MapPage";
 
 
 function App() {
@@ -65,11 +70,13 @@ function App() {
                 <Route path="/" element={<MainPage/>}/>
                 <Route path="/Intro" element={<Intro/>}/>
                 <Route path="/Chat" element={<ChatPage socket={socket}/>}/>
-                <Route path="/Schedule" element={<SchedulePage/>}/>
                 <Route path="/MyPage" element={<MyPage/>}/>
                 <Route path="/MyEdit" element={<MyEdit/>}/>
+                <Route path="/KakaoMap" element={<MapPage/>}/>
                 <Route path="/SignIn" element={<SignIn connect={connect} socket={socket}/>}/>
+                <Route path="/kakaoLogin" element={<KakaoLogin/>}/>
                 <Route path="/Sign" element={<Sign/>}/>
+                <Route path="/Board" element={<TrBoard/>}/>
                 <Route path="/Match" element={<MatchHeader/>}>
                     <Route index element={<MatchPage/>}/>
                 </Route>
