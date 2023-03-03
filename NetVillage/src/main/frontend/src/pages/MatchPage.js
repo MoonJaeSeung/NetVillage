@@ -4,6 +4,7 @@ import MatchRoomCard from "../components/Match/MatchRoomCard";
 import styled from "styled-components";
 import navigate from "react-router-dom";
 import Paging from "../components/Match/Paging";
+import axios from "axios";
 
 const MatchCardGrid = styled.div`
    display: flex;
@@ -16,6 +17,7 @@ const MatchCardGrid = styled.div`
 const MatchContainer = styled.div`
   display:center;
   width:1430px;
+  min-height: 1000px;
 `
 const Cb = styled.button`
     background-color:rgb(233, 255, 228);
@@ -41,7 +43,15 @@ const Wb = styled.button`
 
 
 const MatchPage = () => {
-    const 대충데이터 = [0, 1, 2, 3, 4, 5, 6];
+    const [matchList, setMatchList] = useState([])
+
+    useEffect(() => {
+        axios.get('/Match/list')
+            .then(result=> {
+                setMatchList(result);
+            })
+    }, [])
+
     const navigate=useNavigate();
 
     const navigateToWrite = () => {
@@ -60,13 +70,14 @@ const MatchPage = () => {
             </div>
             <div>
                 <MatchCardGrid>
+                    {matchList.map(match => <MatchRoomCard key={match.id} item={match} />)}
                     {대충데이터.map((item, index) => (
                         <MatchRoomCard key={index} />
                     ))}
                 </MatchCardGrid>
                 <div><paging></paging></div>
             </div>
-            <Paging></Paging>
+
         </MatchContainer>
     )
 }

@@ -13,8 +13,8 @@ const MatchRoomCard = (props) => {
                 <div style={{marginLeft:"5px"}}>글쓴이</div>
             </div>
             <div style={{display:"flex",justifyContent:"center"}}>
-            { props.state
-                ? <small>10승 2패</small>
+            { props.item.win
+                ? <small>{`${props.item.win}승`}</small>
                 : <p>코멘트</p>
             }
             </div>
