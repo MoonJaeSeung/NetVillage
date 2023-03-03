@@ -106,6 +106,9 @@ const Mypage = () => {
                     정보수정
                     </span>
                 </div>
+                <div>
+                    회원탈퇴
+                </div>
             </div>
             <div className="myPContent">
                 {/*경고창

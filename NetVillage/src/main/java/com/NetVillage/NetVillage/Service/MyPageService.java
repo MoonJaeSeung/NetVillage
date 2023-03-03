@@ -22,11 +22,7 @@ public class MyPageService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    //닉네임 중복 확인
-    public String nickCk(String user_nick){
-        return myPageMapper.nickCk(user_nick);
-    }
-
+    //비밀번호 변경
     public int userUpdate(UserInfo editInfo){
 
         editInfo.setUser_pw(passwordEncoder.encode(editInfo.getUser_pw()));

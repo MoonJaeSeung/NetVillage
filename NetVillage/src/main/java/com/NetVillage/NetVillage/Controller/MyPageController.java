@@ -19,38 +19,13 @@ public class MyPageController {
     @Autowired
     MyPageService myPageService;
 
-
-    //닉네임 중복 확인
-    @RequestMapping(value = "/MyEdit/nickCK", method = RequestMethod.POST, produces = "application/json; charset=utf8")
-    public String nickCk(@RequestBody UserInfo nick) {
-
-//        System.out.println(nick);
-
-       String jsonStr = gson.toJson(nick);
-
-        UserInfo user = gson.fromJson(jsonStr, UserInfo.class);
-//        System.out.println("수정할 닉네임: "+user);
-
-        String nickCk = myPageService.nickCk(user.getUser_nick());
-//        System.out.println(myPageService.nickCk(user.getUser_nick()));
-
-        if (nickCk != null) {
-            return "fail";// 중복된다는 뜻
-        } else {
-            return "success";// 중복이 아니라는 뜻
-        }
-
-    }
-
-    //회원 정보 수정
+    //비밀번호 변경
     @RequestMapping(value = "/userInfoUpdate", method = RequestMethod.POST, produces = "application/json; charset=utf8")
     public int userUpdate(@RequestBody UserInfo editInfo) {
 
         System.out.println("수정할 정보: "+editInfo);
 
-        int userUpdate = myPageService.userUpdate(editInfo);
-
-       return userUpdate;
+        return myPageService.userUpdate(editInfo);
 
     }
 

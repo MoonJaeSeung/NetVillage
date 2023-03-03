@@ -31,10 +31,10 @@ public class UserController {
         return userService.loginUser(login);
     }
 
-    @PostMapping("/update")
-    public int updateUser(@RequestBody UserInfo update) throws Exception{
-        return userService.updateUser(update);
-    }
+//    @PostMapping("/update")
+//    public int updateUser(@RequestBody UserInfo update) throws Exception{
+//        return userService.updateUser(update);
+//    }
 
     @PostMapping("/delete")
     public int deleteUser(@RequestBody UserInfo delete) throws Exception{
