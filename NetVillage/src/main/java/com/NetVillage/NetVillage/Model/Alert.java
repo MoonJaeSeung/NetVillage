@@ -11,19 +11,19 @@ import java.security.Timestamp;
 @AllArgsConstructor
 public class Alert {
     // 알림번호
-    private Integer alertIdx;
+    private Integer alert_idx;
 
     // 회원 닉네임
-    private String userNick;
+    private String user_nick;
 
     // 알림 내용
-    private String alertContent;
+    private String alert_content;
 
     // 알림 시간
-    private Timestamp alertTime;
+    private Timestamp alert_time;
 
     // 알림 보낸 사람
-    private String sendFrom;
+    private String send_from;
 
     // 알림 확인 여부
     private String checking;

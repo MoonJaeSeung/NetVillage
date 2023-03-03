@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class MapMark {
     // 마커번호
-    private Integer mapIdx;
+    private Integer map_idx;
 
     // 장소
     private String place;
