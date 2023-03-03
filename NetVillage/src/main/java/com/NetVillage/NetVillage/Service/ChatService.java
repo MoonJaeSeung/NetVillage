@@ -5,9 +5,7 @@ import com.NetVillage.NetVillage.Model.Chatroom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ChatService {

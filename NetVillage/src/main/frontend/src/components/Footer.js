@@ -110,6 +110,8 @@ const Footer = () => {
         </Wrapper>
       </FooterContainer>
       <Copyright>© 2023 어쩌다 짝꿍. All rights reserved.</Copyright>
+      <br/>
+      <a href='#'>신고센터</a>
     </FooterStyled>
   )
 }

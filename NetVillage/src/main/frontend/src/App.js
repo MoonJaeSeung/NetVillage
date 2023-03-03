@@ -3,7 +3,6 @@ import {Routes, Route} from "react-router-dom";
 import MainPage from './pages/MainPage';
 import Header from './components/Header';
 import ChatPage from './pages/ChatPage';
-import SchedulePage from './pages/SchedulePage';
 import MyPage from './pages/Mypage';
 import SignIn from './components/User/SignIn';
 import Intro from './pages/Intro';
@@ -18,6 +17,7 @@ import MyEdit from "./components/Mypage/MyEdit";
 import KakaoLogin from "./components/User/KakaoLogin";
 import MapPage from "./pages/MapPage";
 import Board from "./pages/Board";
+import ReportBoard from "./pages/ReportBoard";
 
 
 function App() {
@@ -74,6 +74,7 @@ function App() {
                 <Route path="/kakaoLogin" element={<KakaoLogin/>}/>
                 <Route path="/Sign" element={<Sign/>}/>
                 <Route path="/Board" element={<Board/>}/>
+                <Route path="/ReportBoard" element={<ReportBoard/>}/>
                 <Route path="/Match" element={<MatchHeader/>}>
                     <Route index element={<MatchPage/>}/>
                 </Route>
