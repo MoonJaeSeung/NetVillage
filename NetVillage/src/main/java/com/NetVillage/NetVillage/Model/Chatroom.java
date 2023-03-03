@@ -14,17 +14,17 @@ public class Chatroom {
     private Integer crIdx;
 
     // 게시글 번호
-    private Integer boardIdx;
+    private Integer board_idx;
 
     // 내 닉네임
-    private String userNick1;
+    private String user_nick1;
 
     // 채팅방 생성일
-    private Timestamp crDate;
+    private Timestamp cr_date;
 
     // 상대방 닉네임
-    private String userNick2;
+    private String user_nick2;
 
     // 채팅방 상태
-    private String crStatus;
+    private String cr_status;
 }

@@ -279,11 +279,11 @@ const Sign = () => {
             />
             <div className="inputDescription">{idAlertSentence}</div>
           </div>
-          <CheckButton onClick={checkId}
+          <CheckBtn onClick={checkId}
                        disabled={
                            !(
-                               nick.id >=2 && nick.length <=6
-                           )}>아이디 중복확인</CheckButton>
+                               id.length > 3
+                           )}>아이디 중복확인</CheckBtn>
         </InputContainer>
         <P>비밀번호</P>
         <div>

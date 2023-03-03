@@ -11,24 +11,24 @@ import java.security.Timestamp;
 @AllArgsConstructor
 public class Transaction {
     // 거래 번호
-    private Integer trIdx;
+    private Integer tr_idx;
 
     // 거래 물품
-    private String trItem;
+    private String tr_item;
 
     // 판매자
-    private String userNick1;
+    private String user_nick1;
 
     // 구매자
-    private String userNick2;
+    private String user_nick2;
 
     // 게시글 번호
-    private Integer boardIdx;
+    private Integer board_idx;
 
     // 거래 완료일자
-    private Timestamp trDate;
+    private Timestamp tr_date;
 
-    private String trState;
+    private String tr_state;
 
-    private String trStateYn;
+    private String tr_stateYn;
 }
