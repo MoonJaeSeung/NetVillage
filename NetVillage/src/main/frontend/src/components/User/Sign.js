@@ -193,7 +193,7 @@ const Sign = () => {
     })
         .then((res)=>{
             console.log(res);
-          if(res.data===0){
+          if(res.data===1){
             alert("이미있는 아이디입니다.")
           }else{
             alert("사용가능한 아이디입니다.")
