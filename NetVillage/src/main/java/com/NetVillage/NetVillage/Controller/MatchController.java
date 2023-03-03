@@ -18,7 +18,6 @@ public class MatchController {
     @GetMapping("/Match/list")
     public List<TbMatch> getMatchList()
     {
-        System.out.println("abc");
         return matchService.getMatchList();
     }
 }
