@@ -12,12 +12,14 @@ const MyWrite = () => {
                     <tr>
                         <th>글 번호</th>
                         <th>제목</th>
+                        <th>게시판</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>1</td>
                         <td>안녕하세요</td>
+                        <td>자유게시판</td>
                     </tr>
                     </tbody>
                 </Table>

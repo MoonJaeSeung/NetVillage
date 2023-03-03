@@ -19,6 +19,8 @@ import Tabs from 'react-bootstrap/Tabs';
 
 const Mypage = () => {
 
+    const user_nick = JSON.parse(sessionStorage.getItem("user_info")).user_nick;
+
     //경기 전적 관련
     const [matchHistory, setMatchHistory] = useState([
         {
@@ -98,7 +100,7 @@ const Mypage = () => {
                 <span className="myPTitle">마이페이지</span>
                 <div className="myPUser">
                     <p className="myPUserText">
-                        임다인님 안녕하세요!
+                        {user_nick}님 안녕하세요!
                     </p>
                     <span className="myPEdit" onClick={goToEdit}>
                     정보수정
