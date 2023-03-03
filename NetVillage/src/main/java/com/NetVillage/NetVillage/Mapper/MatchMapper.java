@@ -1,6 +1,5 @@
 package com.NetVillage.NetVillage.Mapper;
 
-import com.NetVillage.NetVillage.Model.Match;
 import com.NetVillage.NetVillage.Model.TbMatch;
 import org.apache.ibatis.annotations.*;
 

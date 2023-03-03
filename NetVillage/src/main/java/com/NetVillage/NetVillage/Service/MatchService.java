@@ -2,7 +2,6 @@ package com.NetVillage.NetVillage.Service;
 
 
 import com.NetVillage.NetVillage.Mapper.MatchMapper;
-import com.NetVillage.NetVillage.Model.Match;
 import com.NetVillage.NetVillage.Model.TbMatch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

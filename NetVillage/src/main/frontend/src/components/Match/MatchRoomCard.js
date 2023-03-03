@@ -15,7 +15,7 @@ const MatchRoomCard = (props) => {
             <div style={{display:"flex",justifyContent:"center"}}>
             { props.item.win
                 ? <small>{`${props.item.win}승`}</small>
-                : <p>{`${props.item.ment}승`}</p>
+                : <p>{`${props.item.ment}`}</p>
             }
             </div>
             <div>
