@@ -79,7 +79,6 @@ const MyEdit = () => {
     }
 
     function myInfoEdit() {
-        // alert("회원정보 수정 관련 백 로직 추가하기~");
 
         axios
             .post("/userInfoUpdate", {
@@ -126,24 +125,12 @@ const MyEdit = () => {
                             <p className="message">{passwordMessage}</p>
                         </td>
                     </tr>
-                    {/*<tr>*/}
-                    {/*    /!*<td></td>*!/*/}
-                    {/*    /!*<td className="message">{passwordMessage}</td>*!/*/}
-                    {/*</tr>*/}
                     <tr>
                         <td className="editTitle">비밀번호 확인</td>
                         <td className="editContent"><input type="password" name="user_pw" placeholder="변경할 비밀번호를 입력해주세요" onChange={onChangePasswordConfirm} maxlength='12'/>
                             <p className="message">{passwordConfirmMessage}</p>
                         </td>
                     </tr>
-                    {/*<tr>*/}
-                    {/*    /!*<td></td>*!/*/}
-                    {/*    <td className="message">{passwordConfirmMessage}</td>*/}
-                    {/*</tr>*/}
-                    {/*<tr>*/}
-                    {/*    <td className="editTitle">생년월일</td>*/}
-                    {/*    <td className="editContent">{user_birth}</td>*/}
-                    {/*</tr>*/}
                 </table>
                 <button disabled={editBtn} className="editSubmit" onClick={goToEdit}>수정하기</button>
             </div>
