@@ -1,12 +1,15 @@
 package com.NetVillage.NetVillage.Mapper;
 
 import com.NetVillage.NetVillage.Model.Match;
-import org.apache.ibatis.annotations.Mapper;
+import com.NetVillage.NetVillage.Model.TbMatch;
+import org.apache.ibatis.annotations.*;
+
 
 import java.util.List;
 
 @Mapper
 public interface MatchMapper {
 
-    List<Match> getMatchList();
+    @Select("select * from tb_match")
+    public List<TbMatch> getMatchList();
 }
