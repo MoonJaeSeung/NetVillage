@@ -11,13 +11,13 @@ import java.security.Timestamp;
 @AllArgsConstructor
 public class ChatContent {
     // 채팅내용 번호
-    private Integer ccIdx;
+    private Integer cc_idx;
 
     // 채팅방 번호
-    private Integer crIdx;
+    private Integer cr_idx;
 
     // 게시글 번호
-    private Integer boardIdx;
+    private Integer board_idx;
 
     // 발화자
     private String talker;
@@ -26,6 +26,6 @@ public class ChatContent {
     private String msg;
 
     // 메세지 시간
-    private Timestamp msgTime;
+    private Timestamp msg_time;
 
 }
