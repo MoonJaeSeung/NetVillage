@@ -5,7 +5,7 @@ const { kakao } = window;
 
 const KakaoMap = () => {
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition(get,errorHandler,getOptions);
+
         const container = document.getElementById("map");
 
         const options = {

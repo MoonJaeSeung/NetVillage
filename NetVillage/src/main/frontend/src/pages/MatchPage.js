@@ -71,9 +71,7 @@ const MatchPage = () => {
             <div>
                 <MatchCardGrid>
                     {matchList.map(match => <MatchRoomCard key={match.id} item={match} />)}
-                    {대충데이터.map((item, index) => (
-                        <MatchRoomCard key={index} />
-                    ))}
+                    
                 </MatchCardGrid>
                 <div><paging></paging></div>
             </div>
