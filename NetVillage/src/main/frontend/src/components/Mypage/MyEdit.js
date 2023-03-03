@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import '../../styles/mypage.css';
+import axios from "axios";
 import {renderToReadableStream} from "react-dom/server";
 
 const MyEdit = () => {
@@ -59,28 +60,27 @@ const MyEdit = () => {
     };
     function nickCheck() {
         console.log(nickRef.current.value);
-        
         // 여기 사이는 지우기
-        alert("중복확인 로직 백에서 작성하기~");
-        setNickMessage("사용 가능한 닉네임 입니다.");
-        setIsNick(false);
+        // alert("중복확인 로직 백에서 작성하기~");
+        // setNickMessage("사용 가능한 닉네임 입니다.");
+        // setIsNick(false);
         //위에 코드 지우기
+        axios
+            .post("/MyEdit/nickCK", { user_nick: nickRef.current.value })
+            .then(function (res) {
+                console.log(res.data);
 
-        // axios
-        //     .post("/join/nickck", { user_nick: nickRef.current.value })
-        //     .then(function (res) {
-        //         console.log(res.data);
-        //         if (res.data == "fail") {
-        //             setNickMessage("중복된 닉네임은 사용할 수 없습니다.");
-        //             setIsNick(true);
-        //         } else {
-        //             setNickMessage("사용 가능한 닉네임 입니다.");
-        //             setIsNick(false);
-        //         }
-        //     })
-        //     .catch(function (error) {
-        //         alert("오류발생");
-        //     });
+                if (res.data == "fail") {
+                    setNickMessage("중복된 닉네임은 사용할 수 없습니다.");
+                    setIsNick(true);
+                } else {
+                    setNickMessage("사용 가능한 닉네임 입니다.");
+                    setIsNick(false);
+                }
+            })
+            .catch(function (error) {
+                alert("오류발생");
+            });
     };
 
     //비밀번호 유효성 검사
