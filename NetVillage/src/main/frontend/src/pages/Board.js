@@ -11,6 +11,7 @@ import { Layout, Menu, theme } from 'antd';
 import Free from "../components/Board/Free";
 import Transaction from "../components/Board/Transaction";
 import Tip from "../components/Board/Tip";
+import axios from "axios";
 const { Header, Sider, Content } = Layout;
 // import 'antd/dist/antd.less';
 
@@ -28,13 +29,26 @@ const Board = () => {
 
     const showBoard = () => {
         if (ckMenu == 2) {
-            return <Tip/>
+            return <Tip viewList={viewList}/>
         }else if (ckMenu == 3) {
-            return <Transaction/>
+            return <Transaction viewList={viewList}/>
         }else {
-            return <Free/>
+            return <Free viewList={viewList}/>
         }
     }
+
+    const [viewList, setViewList] = useState([])
+    const boardView = () => {
+        axios.post('/board/view')
+            .then((res)=>{
+                console.log(res.data)
+                setViewList(res.data)
+            }).catch((error)=>console.log(error));
+    }
+
+    useEffect(() => {
+        boardView()
+    }, [])
 
     return (
         <div>

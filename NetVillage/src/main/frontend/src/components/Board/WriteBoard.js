@@ -1,15 +1,51 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {Button, Input, Select, Space} from "antd";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
+import axios from "axios";
 
 const WriteBoard = () => {
+    const navigate = useNavigate();
+
+    // 게시판 이름을 가져오는 location
     const location = useLocation();
 
-    const handleChange = (value) => {
-        console.log(`selected ${value}`);
+    // 게시판의 카테고리를 저장하는 변수
+    const [cateVal, setCateVal] = useState('');
+
+    // 게시글의 제목과 내용을 저장하는 변수
+    const [post, setPost] = useState({
+        nick : JSON.parse(sessionStorage.getItem("user_info")).user_nick,
+        category : location.state.category,
+        title : '',
+        content : '',
+    })
+
+    // 제목과 본문의 input 변화를 감지하는 함수
+    const getValue = (e) => {
+        const { name, value } = e.target;
+        setPost({
+            ...post,
+            [name]: value
+        })
+        console.log(post);
     };
+
+    const handleChange = (value) => {
+        console.log(value);
+        setCateVal(value);
+    };
+
+    const submitPost = () => {
+        axios.post('/board/free', post)
+            .then((res)=>{
+            console.log('보내는 값',res.config.data)
+            console.log('받아오는 값',res.data)
+        }).catch((error)=>(console.log(error)))
+        // navigate('/Board')
+    }
+
     return (
         <div className='boardWriteContainer'>
             <div className='form-wrapper'>
@@ -38,11 +74,13 @@ const WriteBoard = () => {
                             },
                         ]}
                     />
-                <Input placeholder="제목" />
+                <Input placeholder="제목"
+                       onChange={getValue}
+                       name='title'/>
                 </Space>
                 <CKEditor
                     editor={ClassicEditor}
-                    data="<p>어쩌다 짝꿍의 커뮤니티입니다.</p>"
+                    data=""
                     onReady={editor => {
                         // You can store the "editor" and use when it is needed.
                         console.log('Editor is ready to use!', editor);
@@ -50,6 +88,11 @@ const WriteBoard = () => {
                     onChange={(event, editor) => {
                         const data = editor.getData();
                         console.log({ event, editor, data });
+                        setPost({
+                            ...post,
+                            content: data
+                        })
+                        console.log(post)
                     }}
                     onBlur={(event, editor) => {
                         console.log('Blur.', editor);
@@ -61,7 +104,9 @@ const WriteBoard = () => {
                 <Button type="primary"
                         style={{
                             marginTop: "2rem",
-                        }}>글작성</Button>
+                        }}
+                    onClick={submitPost}
+                >글작성</Button>
             </div>
         </div>
     );

@@ -16,16 +16,15 @@ public class ChatController {
     @Autowired
     ChatService chatService;
 
-    Gson gson = new Gson();
+//    Gson gson = new Gson();
 
     @PostMapping("/roomlist")
-    public String ChatRoomList(@RequestBody Map<String, String> data){
+    public List<Chatroom> ChatRoomList(@RequestBody Map<String, String> data){
         String user_nick = data.get("nick");
-        System.out.println(data);
-        List<Chatroom> myChatList = chatService.ChatRoomList();
+//        List<Chatroom> myChatList = chatService.ChatRoomList(user_nick);
         System.out.println("로그인 중인 닉네임 : "+ user_nick);
-        System.out.println("채팅방 목록 : "+myChatList);
-        return gson.toJson(myChatList);
+        System.out.println("채팅방 목록 : "+chatService.ChatRoomList(user_nick));
+        return chatService.ChatRoomList(user_nick);
     }
 
     @PostMapping("/sendMsg")

@@ -1,105 +1,63 @@
-import React from 'react';
-import {Space, Table, Tag, Input, Select, Button} from 'antd';
-import navigate, {useNavigate} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {Space, Table, Input, Select, Button} from 'antd';
+import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 const columns = [
     {
         title: '번호',
-        dataIndex: 'key',
-        key: 'key',
+        dataIndex: 'board_idx',
+        key: 'board_idx',
+        align: "center",
         render: (text) => <a>{text}</a>,
     },
     {
         title: '제목',
-        dataIndex: 'title',
-        key: 'title',
+        dataIndex: 'board_title',
+        key: 'board_title',
+        align: "center",
     },
     {
         title: '작성자',
-        dataIndex: 'name',
-        key: 'name',
+        dataIndex: 'user_nick',
+        key: 'user_nick',
+        align: "center",
     },
     {
         title: '작성일',
-        dataIndex: 'date',
-        key: 'date',
+        dataIndex: 'board_date',
+        key: 'board_date',
+        align: "center",
     },
     {
         title: '조회수',
-        dataIndex: 'hits',
-        key: 'hits',
+        dataIndex: 'board_cnt',
+        key: 'board_cnt',
+        align: "center",
     },
     {
         title: '좋아요',
         dataIndex: 'like',
         key: 'like',
-    },
-    // {
-    //     title: 'Tags',
-    //     key: 'tags',
-    //     dataIndex: 'tags',
-    //     render: (_, { tags }) => (
-    //         <>
-    //             {tags.map((tag) => {
-    //                 let color = tag.length > 5 ? 'geekblue' : 'green';
-    //                 if (tag === 'loser') {
-    //                     color = 'volcano';
-    //                 }
-    //                 return (
-    //                     <Tag color={color} key={tag}>
-    //                         {tag.toUpperCase()}
-    //                     </Tag>
-    //                 );
-    //             })}
-    //         </>
-    //     ),
-    // },
-    // {
-    //     title: 'Action',
-    //     key: 'action',
-    //     render: (_, record) => (
-    //         <Space size="middle">
-    //             <a>Invite {record.name}</a>
-    //             <a>Delete</a>
-    //         </Space>
-    //     ),
-    // },
-];
-const data = [
-    {
-        key: '1',
-        title: '안녕하세요',
-        name: '노한서',
-        date: '2023-03-02',
-        hits: '0',
-        like: '1',
-    },
-    {
-        key: '2',
-        title: '자유게시판',
-        name: '노한서',
-        date: '2023-03-02',
-        hits: '0',
-        like: '1',
-    },
-    {
-        key: '3',
-        title: '게시판 만드는 중',
-        name: '노한서',
-        date: '2023-03-02',
-        hits: '0',
-        like: '1',
+        align: "center",
     },
 ];
-const Free = () => {
 
+const Free = ({viewList}) => {
     const navigate = useNavigate();
     const handleChange = (value) => {
         console.log(`selected ${value}`);
     };
-
     const writeBoard = () => {
         navigate('/Board/Write', { state: { category: '자유게시판' }});
+    }
+
+    let fbViewList = [];
+
+    for (var i = 0; i<viewList.length; i++) {
+        if(viewList[i].board_cate == '자유게시판') {
+            fbViewList.push(viewList[i]);
+        }
     }
 
     return (
@@ -138,7 +96,7 @@ const Free = () => {
                 style={{
                     marginTop: '10px',
                 }}
-                columns={columns} dataSource={data}/>
+                columns={columns} dataSource={fbViewList}/>
         </div>
     );
 };

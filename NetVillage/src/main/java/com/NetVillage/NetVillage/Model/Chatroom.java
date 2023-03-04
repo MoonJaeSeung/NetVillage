@@ -5,13 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.security.Timestamp;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Chatroom {
     // 채팅방 번호
-    private Integer crIdx;
+    private Integer cr_idx;
 
     // 게시글 번호
     private Integer board_idx;
@@ -20,7 +21,7 @@ public class Chatroom {
     private String user_nick1;
 
     // 채팅방 생성일
-    private Timestamp cr_date;
+    private Date cr_date;
 
     // 상대방 닉네임
     private String user_nick2;

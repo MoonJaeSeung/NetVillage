@@ -17,7 +17,8 @@ const ChatPage = ({ socket }) => {
     }).then((res)=>{
       console.log('보내는 값',res.config.data)
       console.log('받아오는 값',res.data)
-      // setRoomInfo()
+      setRoomInfo(res.data)
+      console.log(roomInfo[0].user_nick2)
     }).catch((error)=>(console.log(error)))
   }, [])
 
@@ -53,15 +54,14 @@ const ChatPage = ({ socket }) => {
             <input type="text" placeholder="닉네임 검색" className="nickSearchInput"/>
           </header>
           <ul>
-            <li>
-              {/*<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt=""/>*/}
-                <div>
-                  <h2>상대방 닉네임</h2>
-                  <h3>
-                    가장 마지막에 입력 된 메시지
-                  </h3>
-                </div>
-            </li>
+              {roomInfo && roomInfo.map((item, index) => (
+                  <li key={index}>
+                  <div>
+                    <h2>{item.user_nick2}</h2>
+                    <h3>마지막 메시지</h3>
+                  </div>
+                  </li>
+              ))}
           </ul>
         </aside>
         <main>
