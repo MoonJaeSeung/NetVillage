@@ -21,4 +21,8 @@ public class BoardService {
     public List<Board> boardView() {
         return boardMapper.boardView();
     }
+
+    public List<Board> freeViewDetail(String idx) {
+        return boardMapper.freeViewDetail(idx);
+    }
 }

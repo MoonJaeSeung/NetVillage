@@ -31,7 +31,12 @@ public class BoardController {
 
     @PostMapping("/view")
     public List<Board> boardView() {
-        System.out.println(boardService.boardView());
         return boardService.boardView();
+    }
+
+    @PostMapping("/free/viewdetail")
+    public List<Board> freeViewDetail(@RequestBody Map<String, String> data) {
+        String idx = data.get("idx");
+        return boardService.freeViewDetail(idx);
     }
 }

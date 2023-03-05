@@ -15,4 +15,7 @@ public interface BoardMapper {
 
     @Select("select * from board order by board_idx desc")
     public List<Board> boardView();
+
+    @Select("select * from board where board_idx=#{idx}")
+    public List<Board> freeViewDetail(String idx);
 }

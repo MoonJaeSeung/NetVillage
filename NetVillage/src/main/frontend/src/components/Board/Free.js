@@ -1,50 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Space, Table, Input, Select, Button} from 'antd';
-import {useNavigate} from "react-router-dom";
-import axios from "axios";
-
-const columns = [
-    {
-        title: '번호',
-        dataIndex: 'board_idx',
-        key: 'board_idx',
-        align: "center",
-        render: (text) => <a>{text}</a>,
-    },
-    {
-        title: '제목',
-        dataIndex: 'board_title',
-        key: 'board_title',
-        align: "center",
-    },
-    {
-        title: '작성자',
-        dataIndex: 'user_nick',
-        key: 'user_nick',
-        align: "center",
-    },
-    {
-        title: '작성일',
-        dataIndex: 'board_date',
-        key: 'board_date',
-        align: "center",
-    },
-    {
-        title: '조회수',
-        dataIndex: 'board_cnt',
-        key: 'board_cnt',
-        align: "center",
-    },
-    {
-        title: '좋아요',
-        dataIndex: 'like',
-        key: 'like',
-        align: "center",
-    },
-];
+import {Link, useLocation, useNavigate} from "react-router-dom";
 
 const Free = ({viewList}) => {
     const navigate = useNavigate();
+
+    const freeDetail = (e) => {
+        // navigate('/Board/Free');
+        console.log(e.target);
+    }
+
     const handleChange = (value) => {
         console.log(`selected ${value}`);
     };
@@ -55,10 +20,54 @@ const Free = ({viewList}) => {
     let fbViewList = [];
 
     for (var i = 0; i<viewList.length; i++) {
-        if(viewList[i].board_cate == '자유게시판') {
+        if(viewList[i].board_cate === '자유게시판') {
             fbViewList.push(viewList[i]);
         }
     }
+
+    const columns = [
+        {
+            title: '번호',
+            dataIndex: 'board_idx',
+            key: 'board_idx',
+            align: "center",
+        },
+        {
+            title: '제목',
+            dataIndex: 'board_title',
+            key: 'board_title',
+            align: "center",
+            render: (_, record) => (
+                <Link to={`/Board/Free?idx=${record.board_idx}`}>
+                    {record.board_title}
+                </Link>
+            ),
+        },
+        {
+            title: '작성자',
+            dataIndex: 'user_nick',
+            key: 'user_nick',
+            align: "center",
+        },
+        {
+            title: '작성일',
+            dataIndex: 'board_date',
+            key: 'board_date',
+            align: "center",
+        },
+        {
+            title: '조회수',
+            dataIndex: 'board_cnt',
+            key: 'board_cnt',
+            align: "center",
+        },
+        {
+            title: '좋아요',
+            dataIndex: 'board_like',
+            key: 'board_like',
+            align: "center",
+        },
+    ];
 
     return (
         <div>

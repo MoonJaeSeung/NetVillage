@@ -20,6 +20,7 @@ import MapPage from "./pages/MapPage";
 import Board from "./pages/Board";
 import ReportBoard from "./pages/ReportBoard";
 import WriteBoard from "./components/Board/WriteBoard";
+import BoardDetail from "./components/Board/BoardDetail";
 
 
 
@@ -85,6 +86,7 @@ function App() {
                 <Route path="/Match/Write" element={<WriteMatchPage/>}/>
                 <Route path="/Match/Kakao" element={<Kakao/>}/>
                 <Route path="/Board/Write" element={<WriteBoard/>}/>
+                <Route path="/Board/Free" element={<BoardDetail/>}/>
             </Routes>
             <Footer/>
         </div>

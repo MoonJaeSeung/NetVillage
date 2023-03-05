@@ -20,6 +20,7 @@ const WriteBoard = () => {
         category : location.state.category,
         title : '',
         content : '',
+        // datetime : ''
     })
 
     // 제목과 본문의 input 변화를 감지하는 함수
@@ -43,7 +44,7 @@ const WriteBoard = () => {
             console.log('보내는 값',res.config.data)
             console.log('받아오는 값',res.data)
         }).catch((error)=>(console.log(error)))
-        // navigate('/Board')
+        navigate('/Board', { state: { ckMenu: '1' }});
     }
 
     return (
