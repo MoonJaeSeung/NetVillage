@@ -2,15 +2,16 @@ import React, {useEffect, useState} from 'react';
 import Parser from 'html-react-parser';
 import axios from "axios";
 import {Button, Space, Dropdown} from "antd";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import TextArea from "antd/es/input/TextArea";
 import Comment from './Comment';
 import {BsBookmark, BsFillBookmarkFill, BsHeart, BsHeartFill} from "react-icons/bs";
+import Swal from "sweetalert2";
 
 const BoardDetail = () => {
     const navigate = useNavigate();
 
-    // 파라미터를 decoding 해주는 함수
+    // 파라미터를 decoding 해줌
     let str = decodeURI(window.location.search);
 
     const params = new URLSearchParams(str);
@@ -19,6 +20,12 @@ const BoardDetail = () => {
 
     const [viewDetail, setViewDetail] = useState([]);
     const [contents, setContents] = useState('');
+
+    // 작성자 닉네임을 저장하는 변수
+    const [writerNick, setWriterNick] = useState('');
+
+    // 로그인 된 유저 닉네임을 저장
+    let loginNick = JSON.parse(sessionStorage.getItem("user_info")).user_nick
 
     const viewList = () => {
         navigate('/Board')
@@ -34,29 +41,53 @@ const BoardDetail = () => {
             .then((res) => {
                 setViewDetail(res.data);
                 setContents(res.data[0].board_contents)
+                setWriterNick(res.data[0].user_nick);
             })
             .catch((err) => console.log(err));
     };
 
+    // 댓글 감지 함수
     const onChange = (e) => {
         console.log('Change:', e.target.value);
+    };
+
+    // 작성자 닉네임과 내 닉네임을 비교함
+    const showChat = (e) => {
+        if (loginNick === writerNick) {
+            Swal.fire({
+                icon: 'warning',
+                title: '',
+                text: '나와의 채팅은 불가능합니다.',
+            })
+            e.preventDefault();
+        }else {
+            // 새로운 채팅방을 만드는 함수
+            axios.post('/socket/chat/newchat', {
+                board_idx: idx,
+                user_nick1: loginNick,
+                user_nick2: writerNick
+            }).then((res)=>{
+                console.log(res.config.data)
+                console.log(res.data)
+            }).catch((err)=>console.log(err));
+        }
     };
 
     const items = [
         {
             key: '1',
             label: (
-                <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+                <Link to='/MyPage'>
                     프로필 보기
-                </a>
+                </Link>
             ),
         },
         {
             key: '2',
             label: (
-                <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+                <Link to='/Chat' onClick={showChat}>
                     1:1 채팅
-                </a>
+                </Link>
             ),
         },
     ];
