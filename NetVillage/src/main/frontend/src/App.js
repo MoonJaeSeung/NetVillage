@@ -71,7 +71,7 @@ function App() {
                 <Route path="/Chat" element={<ChatPage socket={socket}/>}/>
                 <Route path="/MyPage" element={<MyPage/>}/>
                 <Route path="/MyEdit" element={<MyEdit/>}/>
-                <Route path="/KakaoMap" element={<MapPage/>}/>
+                <Route path="/UserMap" element={<MapPage/>}/>
                 <Route path="/SignIn" element={<SignIn connect={connect} socket={socket}/>}/>
                 <Route path="/kakaoLogin" element={<KakaoLogin/>}/>
                 <Route path="/Sign" element={<Sign/>}/>
