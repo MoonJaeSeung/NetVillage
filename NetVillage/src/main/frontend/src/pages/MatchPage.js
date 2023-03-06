@@ -62,12 +62,11 @@ const MatchPage = () => {
 
     
     useEffect(() => {
-        getMatchList()
-        // axios.get('/Match/list')
-        //     .then((result)=> {
-        //         console.log(result)
-        //         setMatchList(result.data);
-        //     })
+        axios.get('/Match/list')
+            .then((result)=> {
+                console.log("화면 렌더링")
+                setMatchList(result.data);
+            })
     }, [])
 
     const navigate=useNavigate();
@@ -83,34 +82,24 @@ const MatchPage = () => {
     /**
      * @param category {'free', 'vs', 'mento'=} 값이 없으면 모두 불러오기
      */
-    const getMatchList = (category) => {
-        const params = {
-            category: category,
-        }
+    const getMatchList = () => {
+        const params= category ? {category} : {};
 
+        console.log("야호")
         axios.get('/Match/list', {params})
-            // promise: 비동기 통신할 때
+
             .then(result => {
-                setMatchList(result.data);
+                const filteredList = category
+                ? result.data.filter(match => match.category ===category)
+                    :result.data;
+                setMatchList(filteredList)
+
+
+
             })
             .catch(() => console.log('오류'))
 
-        // Ajax, fetch, axios
-        // A 동기, B 비동기, C 동기
-        // A -> B -> C
-        // axios.post('url', params)
 
-        // get: 조회
-        // post: 정보 수정, 변경
-        // patch: 수정, 우리들이 생각하면 수정
-        // put: 수정, {id=1, name='재승', age=12} // {id =2} 수정 요청 => {id=2, name=, age=}
-        // delete: 삭제
-
-        // RestAPI: Restful 하게 작성.
-        // URI에서 자원을 표현하는 방식 urlad 자원을 표현한다고 할 수 X
-
-        // header : 출발지, 목적지, 바디길이 메타데이터
-        // body : 정보들...
     }
 
     return (
@@ -118,24 +107,26 @@ const MatchPage = () => {
             <div>
                 <div style={{display:"flex" , justifyContent:"center" ,marginBottom:"20px"}}>
                     <Button width='50px' onClick={() => {
-                        getMatchList('free')
-                        // const params = {
-                        //     category: 'free'
-                        // }
-                        // axios.get('url', {params})
-                        // matchList=처음 불러왔던 정보들
-                        // setFilterList(matchList.filter(i => i.category === 'free'));
-                        setCategory('free')
+                        setCategory('free');
+                        getMatchList()
                     }}>자유</Button>
-                    <Button width='50px'>대결</Button>
-                    <Button width='50px'>멘토</Button>
+                    <Button width='50px' onClick={() => {
+                        setCategory('vs');
+                        getMatchList()
+                    }}>대결</Button>
+                    <Button width='50px' onClick={() => {
+                        setCategory('mento');
+                        getMatchList()
+                    }}>멘토</Button>
+
+
                     <Button width='80px' onClick={navigateToWrite}>글 작성</Button>
                 </div>
             </div>
 
             <div>
                 <MatchCardGrid>
-                    {matchList.map(match => <MatchRoomCard onClick={setOpenModal(true)} category={category} key={match.id} item={match} />)}
+                    {matchList.map(match => <MatchRoomCard category={category} key={match.id} item={match} />)}
                 </MatchCardGrid>
                 <div><Paging></Paging></div>
             </div>
