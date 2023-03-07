@@ -11,7 +11,7 @@ import java.security.Timestamp;
 @AllArgsConstructor
 public class Chatroom {
     // 채팅방 번호
-    private Integer crIdx;
+    private Integer cr_idx;
 
     // 게시글 번호
     private Integer board_idx;

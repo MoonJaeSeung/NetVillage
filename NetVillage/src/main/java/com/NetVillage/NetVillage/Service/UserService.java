@@ -31,10 +31,9 @@ public class UserService {
         return userMapper.loginUser(login);
     }
 
-//    public int updateUser(UserInfo update){
-//        update.setUser_pw(passwordEncoder.encode(update.getUser_pw()));
-//        return userMapper.updateUser(update);
-//    }
+    public int updateUser(UserInfo update){
+        return userMapper.updateUser(update);
+    }
 
     public int deleteUser(UserInfo delete){
         return userMapper.deleteUser(delete);

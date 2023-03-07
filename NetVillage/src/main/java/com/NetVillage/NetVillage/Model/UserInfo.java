@@ -17,9 +17,6 @@ public class UserInfo {
     // 회원 이름
     private String user_name;
 
-    // 회원 전화번호
-    private String user_phone;
-
     // 지역
     private String region;
 
@@ -38,6 +35,4 @@ public class UserInfo {
     // 신고 횟수
     private Integer report_num;
 
-    // 생년월일
-    private String user_birth;
 }

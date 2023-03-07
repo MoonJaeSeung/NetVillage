@@ -36,6 +36,7 @@ const Button = styled.button`
   border-radius: 5px;
   cursor: pointer;
 `;
+
 const SignIna = styled.a`
   width: 500px;
   height: 45px;
@@ -97,6 +98,11 @@ const SignIn = ({connect}) => {
   const toSignUp = () =>{
     Navigate("/Sign")
   }
+    const handleOnKeyPress = e => {
+        if (e.key === 'Enter') {
+            toLogin(); // Enter 입력이 되면 클릭 이벤트 실행
+        }
+    };
 
   return (
     <LoginContainer>
@@ -116,6 +122,7 @@ const SignIn = ({connect}) => {
               onChange={handleInput}
               type="password"
               name="pw"
+              onKeyPress={handleOnKeyPress} // Enter 입력 이벤트 함수
             />
           </div>
         <LoginFooter>
