@@ -19,6 +19,7 @@ import KakaoLogin from "./components/User/KakaoLogin";
 import MapPage from "./pages/MapPage";
 import Board from "./pages/Board";
 import ReportBoard from "./pages/ReportBoard";
+import UserDelete from "./components/Mypage/UserDelete";
 
 
 
@@ -72,6 +73,8 @@ function App() {
                 <Route path="/MyPage" element={<MyPage/>}/>
                 <Route path="/MyEdit" element={<MyEdit/>}/>
                 <Route path="/UserMap" element={<MapPage/>}/>
+                <Route path="/UserDelete" element={<UserDelete/>}/>
+                <Route path="/KakaoMap" element={<MapPage/>}/>
                 <Route path="/SignIn" element={<SignIn connect={connect} socket={socket}/>}/>
                 <Route path="/kakaoLogin" element={<KakaoLogin/>}/>
                 <Route path="/Sign" element={<Sign/>}/>

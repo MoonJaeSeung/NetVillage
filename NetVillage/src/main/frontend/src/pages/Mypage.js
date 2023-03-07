@@ -19,6 +19,8 @@ import Tabs from 'react-bootstrap/Tabs';
 
 const Mypage = () => {
 
+    const navigate = useNavigate();
+
     const user_nick = JSON.parse(sessionStorage.getItem("user_info")).user_nick;
 
     //경기 전적 관련
@@ -59,7 +61,6 @@ const Mypage = () => {
     const updateProgressBar = (newScore) => {
         setScore(newScore);
     };
-
     // const bar = useRef();
 
     // 거래 내역
@@ -89,107 +90,113 @@ const Mypage = () => {
    //     }
    // }
 
-    const navigate = useNavigate();
+    //회원정보수정
     const goToEdit = () => {
         navigate(`/MyEdit`);
     }
+    
+    //회원탈퇴
+    const goToDelete = () =>{
+        navigate(`/UserDelete`);
+    }
 
     return (
-        <div className="myPage">
-            <div className="myPColor">
-                <span className="myPTitle">마이페이지</span>
-                <div className="myPUser">
-                    <p className="myPUserText">
-                        {user_nick}님 안녕하세요!
-                    </p>
-                    <span className="myPEdit" onClick={goToEdit}>
-                    정보수정
-                    </span>
-                </div>
-                <div>
-                    회원탈퇴
-                </div>
-            </div>
-            <div className="myPContent">
-                {/*경고창
-            db랑 연결하고 게시글 작성되면 조건문으로 작성자인지 신정차인지 구별한 후 멘트 띄워주기, 평소엔 사라져야함*/}
-                <div className="myPAlertBox">
-                    <div className="myPImgDiv">
-                        <RiErrorWarningLine className="myPIcon"/>
+        <div id="myPage">
+            <div className="myPage">
+                <div className="myPColor">
+                    <span className="myPTitle">마이페이지</span>
+                    <div className="myPUser">
+                        <p className="myPUserText">
+                            {user_nick}님 안녕하세요!
+                        </p>
+                        <span className="myPEdit" onClick={goToEdit}>
+                        정보수정
+                        </span>
                     </div>
-                    <div>
-                        경기 결과를 승인해주세요
-                        경기 결과를 입력해주세요
-                    </div>
-                </div>
-                {/* 경기 전적 */}
-                <div className="matchHistory">
-                    <h3>
-                        경기 전적
-                    </h3>
-                    <div className="matchHistoryBox">
-                        {matchHistory.map((matchHistory, idx) => {
-                            return <MatchHistory matchHistory={matchHistory}/>
-                        })}
-                    </div>
-                </div>
 
-                {/* 페어 플레이 점수*/}
-                <div className="fairPlay">
-                    <h3>
-                        페어플레이 점수
-                    </h3>
-                    <div className="container">
-                        <div className="bar-container">
-                            <div className="bar"  id="myBar" style={{ width: `${score}%` }}></div>
+                </div>
+                <div className="myPContent">
+                    {/*경고창
+                db랑 연결하고 게시글 작성되면 조건문으로 작성자인지 신정차인지 구별한 후 멘트 띄워주기, 평소엔 사라져야함*/}
+                    <div className="myPAlertBox">
+                        <div className="myPImgDiv">
+                            <RiErrorWarningLine className="myPIcon"/>
                         </div>
-                        <div className="button-container">
-                            <button onClick={() => updateProgressBar(Math.max(score - 10, 0))}>
-                                ➖
-                            </button>
-                            <button onClick={() => updateProgressBar(Math.min(score + 10, 100))}>
-                                ➕
-                            </button>
+                        <div>
+                            경기 결과를 승인해주세요
+                            경기 결과를 입력해주세요
+                        </div>
+                    </div>
+                    {/* 경기 전적 */}
+                    <div className="matchHistory">
+                        <h3>
+                            경기 전적
+                        </h3>
+                        <div className="matchHistoryBox">
+                            {matchHistory.map((matchHistory, idx) => {
+                                return <MatchHistory matchHistory={matchHistory}/>
+                            })}
                         </div>
                     </div>
 
-                </div>
-                {/* 거래 내역 */}
-                <div className="transactionHistory">
-                    <h3>
-                        거래 내역
-                    </h3>
-                    <div className="transactionHistoryBox">
-                        {transactionHistory.map((transactionHistory, idx) => {
-                            return <TransactionHistory transactionHistory={transactionHistory}/>
-                        })}
+                    {/* 페어 플레이 점수*/}
+                    <div className="fairPlay">
+                        <h3>
+                            페어플레이 점수
+                        </h3>
+                        <div className="container">
+                            <div className="bar-container">
+                                <div className="bar"  id="myBar" style={{ width: `${score}%` }}></div>
+                            </div>
+                            <div className="button-container">
+                                <button onClick={() => updateProgressBar(Math.max(score - 10, 0))}>
+                                    ➖
+                                </button>
+                                <button onClick={() => updateProgressBar(Math.min(score + 10, 100))}>
+                                    ➕
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    {/* 거래 내역 */}
+                    <div className="transactionHistory">
+                        <h3>
+                            거래 내역
+                        </h3>
+                        <div className="transactionHistoryBox">
+                            {transactionHistory.map((transactionHistory, idx) => {
+                                return <TransactionHistory transactionHistory={transactionHistory}/>
+                            })}
+                        </div>
+                    </div>
+
+                {/* 내가 쓴 글, 내가 쓴 댓글*/}
+                    <div className="myWriteAndComm">
+                        <Tabs defaultActiveKey="myWrite" transition={false} id="uncontrolled-tab-example" className="mb-3">
+                            <Tab eventKey="myWrite" title="내가 쓴 글">
+                                <MyWrite/>
+                            </Tab>
+                            <Tab eventKey="myComment" title="내가 쓴 댓글">
+                                <MyComment/>
+                            </Tab>
+                        </Tabs>
+                    </div>
+
+                {/* 북마크 내역 */}
+                    <div className="bookMark">
+                        <h3>
+                            북마크 내역
+                        </h3>
+                        <div className="bookMarkBox">
+                            <BookMark/>
+                        </div>
                     </div>
                 </div>
-
-            {/* 내가 쓴 글, 내가 쓴 댓글*/}
-                <div className="myWriteAndComm">
-                    <Tabs defaultActiveKey="myWrite" transition={false} id="uncontrolled-tab-example" className="mb-3">
-                        <Tab eventKey="myWrite" title="내가 쓴 글">
-                            <MyWrite/>
-                        </Tab>
-                        <Tab eventKey="myComment" title="내가 쓴 댓글">
-                            <MyComment/>
-                        </Tab>
-                    </Tabs>
-                </div>
-
-            {/* 북마크 내역 */}
-                <div className="bookMark">
-                    <h3>
-                        북마크 내역
-                    </h3>
-                    <div className="bookMarkBox">
-                        <BookMark/>
-                    </div>
-                </div>
-
             </div>
-
+            <div className="userDelete" onClick={goToDelete}>
+                회원탈퇴
+            </div>
         </div>
     );
 };
