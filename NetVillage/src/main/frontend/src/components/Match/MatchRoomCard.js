@@ -1,7 +1,21 @@
 import styled from "styled-components";
-
+import axios from "axios";
 
 const MatchRoomCard = (props) => {
+
+    const edit = () => {
+        console.log('edit');
+        axios.get('/Match/list/edit')
+
+            .then(result =>{
+                console.log(result.data);
+            })
+    }
+
+    const del= () => {
+        console.log('delete');
+        axios.get('/Match/list/del')
+    }
 
     const date ={
         textAlign:"center"
@@ -35,8 +49,13 @@ const MatchRoomCard = (props) => {
                 <p style={{display:"flex",justifyContent:"center"}}>장소</p>
                 <small>D-7</small>
                 <div style={{display:"flex", flexDirection:"row-reverse"}}>
-                    <Edit>수정</Edit>
-                    <Edit>삭제</Edit>
+                    <Edit onClick={()=>{
+                        edit();
+                    }}>수정</Edit>
+                    <Edit onClick={()=>{
+                        del();
+                    }}
+                    >삭제</Edit>
                 </div>
             </div>
         </div>

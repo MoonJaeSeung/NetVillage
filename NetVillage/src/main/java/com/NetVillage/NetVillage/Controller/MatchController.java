@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
@@ -28,4 +29,11 @@ public class MatchController {
         System.out.println("ss");
         return matchService.getMatchList1(category);
     }
+
+//    @PostMapping("/Match/list/edit")
+//    public int edit()
+//    {
+//        return matchService.e
+//    }
+
 }

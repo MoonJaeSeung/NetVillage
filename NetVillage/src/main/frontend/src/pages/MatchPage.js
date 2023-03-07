@@ -17,6 +17,8 @@ const MatchCardGrid = styled.div`
 const MatchContainer = styled.div`
   width:1430px;
   min-height: 1000px;
+  margin-left: 230px;
+  
 `
 const Button = styled.button`
   background-color:rgb(233, 255, 228);
@@ -62,12 +64,19 @@ const MatchPage = () => {
 
     
     useEffect(() => {
+        console.log("화면 렌더링")
+        getMatchList()
         axios.get('/Match/list')
             .then((result)=> {
-                console.log("화면 렌더링")
+
                 setMatchList(result.data);
             })
     }, [])
+
+    useEffect(() => {
+        console.log("화면 렌더링");
+        getMatchList();
+    }, [category]);
 
     const navigate=useNavigate();
 
@@ -83,16 +92,19 @@ const MatchPage = () => {
      * @param category {'free', 'vs', 'mento'=} 값이 없으면 모두 불러오기
      */
     const getMatchList = () => {
-        const params= category ? {category} : {};
 
-        console.log("야호")
-        axios.get('/Match/list', {params})
+
+        console.log(category);
+        axios.get(`/Match/list/${category}`)
 
             .then(result => {
-                const filteredList = category
-                ? result.data.filter(match => match.category ===category)
-                    :result.data;
-                setMatchList(filteredList)
+                setMatchList(result.data);
+
+                // console.log(result.data)
+                // const filteredList = category
+                // ? result.data.filter(match => match.category ===1)
+                //     :result.data;
+                // setMatchList(filteredList)
 
 
 
@@ -108,15 +120,15 @@ const MatchPage = () => {
                 <div style={{display:"flex" , justifyContent:"center" ,marginBottom:"20px"}}>
                     <Button width='50px' onClick={() => {
                         setCategory('free');
-                        getMatchList()
+                        // getMatchList()
                     }}>자유</Button>
                     <Button width='50px' onClick={() => {
                         setCategory('vs');
-                        getMatchList()
+                        // getMatchList()
                     }}>대결</Button>
                     <Button width='50px' onClick={() => {
                         setCategory('mento');
-                        getMatchList()
+                        // getMatchList()
                     }}>멘토</Button>
 
 
