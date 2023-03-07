@@ -31,5 +31,18 @@ public class MyPageService {
 //        return 1;
     }
 
+    //회원탈퇴
+    public int userDelete(UserInfo deleteInfo){
+        boolean result = passwordEncoder.matches(deleteInfo.getUser_pw(), myPageMapper.userCK(deleteInfo));
+
+        if(result == true){
+            //비밀번호가 일치하면 회원정보 삭제
+            return myPageMapper.userDelete(deleteInfo);
+        } else {
+            return 0;
+        }
+
+    }
+
 
 }

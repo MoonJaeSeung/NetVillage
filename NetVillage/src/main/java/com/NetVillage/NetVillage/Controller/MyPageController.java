@@ -23,9 +23,19 @@ public class MyPageController {
     @RequestMapping(value = "/userInfoUpdate", method = RequestMethod.POST, produces = "application/json; charset=utf8")
     public int userUpdate(@RequestBody UserInfo editInfo) {
 
-        System.out.println("수정할 정보: "+editInfo);
+//        System.out.println("수정할 정보: "+editInfo);
 
         return myPageService.userUpdate(editInfo);
+
+    }
+
+    //회원탈퇴
+    @RequestMapping(value = "/userInfoDelete", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+    public int userDelete(@RequestBody UserInfo deleteInfo) {
+
+//        System.out.println("수정할 정보: "+deleteInfo);
+
+        return myPageService.userDelete(deleteInfo);
 
     }
 
