@@ -39,6 +39,7 @@ const ChatPage = ({ socket }) => {
     board_idx: curCtR.board_idx,
     talker: nick,
     msg: ctMsg,
+    sendto: curCtR.user_nick2
   }
 
   // 전송 버튼 클릭
