@@ -36,9 +36,4 @@ public class UserController {
         return userService.updateUser(update);
     }
 
-    @PostMapping("/delete")
-    public int deleteUser(@RequestBody UserInfo delete) throws Exception{
-        return userService.deleteUser(delete);
-    }
-
 }
