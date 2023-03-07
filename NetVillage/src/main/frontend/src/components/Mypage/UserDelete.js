@@ -25,7 +25,7 @@ const UserDelete = () => {
                         </td>
                     </tr>
                 </table>
-                <button disabled={deleteBtn} className="deleteSubmit" onClick={goToDelete}>탈퇴하기</button>
+                {/*<button disabled={deleteBtn} className="deleteSubmit" onClick={goToDelete}>탈퇴하기</button>*/}
             </div>
         </div>
     );

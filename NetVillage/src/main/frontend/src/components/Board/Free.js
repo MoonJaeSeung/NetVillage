@@ -103,11 +103,11 @@ const Free = ({viewList}) => {
             </div>
             <Table
                 style={{
-                    marginTop: '10px',
-                }}
-                columns={columns} dataSource={fbViewList}/>
-        </div>
-    );
+marginTop: '10px',
+}}
+columns={columns} dataSource={fbViewList}/>
+</div>
+);
 };
 
 export default Free;

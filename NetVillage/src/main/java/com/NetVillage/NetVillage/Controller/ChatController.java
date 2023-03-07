@@ -1,5 +1,6 @@
 package com.NetVillage.NetVillage.Controller;
 
+import com.NetVillage.NetVillage.Model.ChatContent;
 import com.NetVillage.NetVillage.Model.Chatroom;
 import com.NetVillage.NetVillage.Service.ChatService;
 import com.google.gson.Gson;
@@ -40,5 +41,13 @@ public class ChatController {
         msg.put("talker", data.get("talker"));
         msg.put("msg", data.get("msg"));
         chatService.ChatSendMsg(msg);
+    }
+
+    @PostMapping("/chatting")
+    public List<ChatContent> MsgList(@RequestBody Map<String, String> data) {
+        System.out.println("채팅 데이터 : " +data);
+        System.out.println("채팅방 index : "+data.get("cr_idx"));
+        String cr_idx = data.get("cr_idx");
+        return chatService.MsgList(cr_idx);
     }
 }

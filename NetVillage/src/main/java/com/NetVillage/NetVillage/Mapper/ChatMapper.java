@@ -1,5 +1,6 @@
 package com.NetVillage.NetVillage.Mapper;
 
+import com.NetVillage.NetVillage.Model.ChatContent;
 import com.NetVillage.NetVillage.Model.Chatroom;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -20,4 +21,6 @@ public interface ChatMapper {
     @Insert("insert into chatcontent values(null, #{cr_idx}, #{board_idx}, #{talker}, #{msg}, now())")
     public void ChatSendMsg(HashMap<String, String> msg);
 
+    @Select("select * from chatcontent where cr_idx = #{cr_idx}")
+    public List<ChatContent> MsgList(String cr_idx);
 }

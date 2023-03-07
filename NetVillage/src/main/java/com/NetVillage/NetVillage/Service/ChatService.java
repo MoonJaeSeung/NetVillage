@@ -1,12 +1,14 @@
 package com.NetVillage.NetVillage.Service;
 
 import com.NetVillage.NetVillage.Mapper.ChatMapper;
+import com.NetVillage.NetVillage.Model.ChatContent;
 import com.NetVillage.NetVillage.Model.Chatroom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ChatService {
@@ -24,5 +26,9 @@ public class ChatService {
 
     public void ChatSendMsg(HashMap<String, String> msg) {
         chatMapper.ChatSendMsg(msg);
+    }
+
+    public List<ChatContent> MsgList(String cr_idx) {
+        return chatMapper.MsgList(cr_idx);
     }
 }

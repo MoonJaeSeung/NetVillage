@@ -29,11 +29,12 @@ const ChatPage = ({ socket }) => {
   // 채팅 메시지를 저장하는 변수
   const [ctMsg, setCtMsg] = useState("")
 
-  // 타이핑 중인 메시지를 저장하는 함수(onChange)
+  // 타이핑 중인 메시지를 확인하는 함수(onChange)
   const sendText = (e) => {
     setCtMsg(e.target.value)
   }
 
+  // 메시지에 담아서 보낼 내용을 저장하는 변수
   const sendMsgInfo = {
     cr_idx: curCtR.cr_idx,
     board_idx: curCtR.board_idx,
@@ -53,6 +54,8 @@ const ChatPage = ({ socket }) => {
       console.log('보내는 값',res.config.data)
       console.log('받아오는 값',res.data)
     }).catch((error)=>(console.log(error)))
+
+    setCtMsg("")
   }
 
   const chatExit = () => {
@@ -63,10 +66,32 @@ const ChatPage = ({ socket }) => {
         }).catch((err)=>console.log(err));
   }
 
+  //메시지 리스트를 저장하는 함수
+  const [msgList, setMsgList] = useState([]);
+
+  //현재 채팅방의 메시지 리스트를 저장하는 함수
+  // const [curMsgList, setCurMsgList] = useState([]);
+
+  let curMsgList = [];
   const curCtRCk = (item) => {
     setCurCtR(item);
     console.log("curCtR에 저장된", curCtR);
+
+    axios.post('/socket/chat/chatting', {cr_idx : curCtR.cr_idx})
+        .then((res)=>{
+          console.log(res.data);
+          setMsgList(res.data)
+        }).catch((err)=>console.log(err));
   }
+
+  //소켓에서 오는 메세지를 받는 함수
+  socket.onmessage = function (event) {
+    let message = JSON.parse(event.data);
+    console.log(message)
+    message.talker !== undefined &&
+    setMsgList(msgList.concat({ cr_idx: message.cr_idx, board_idx: message.board_idx, talker: message.talker, msg: message.msg, sendto: message.sendto }))
+    // setMsgList(msgList.concat({ cc_seq: 0, talker: message.talker, msg: message.msg, msg_time: message.msg_time, cr_seq: message.cr_seq }))
+  };
 
   return (
     <div>
@@ -96,25 +121,28 @@ const ChatPage = ({ socket }) => {
               </div>
           </header>
           <ul id="chat">
-            <li className="you">
-              <div className="entete">
-                <h2>상대방 닉네임</h2>
-              </div>
-              <div className="triangle"></div>
-              <div className="message">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-              </div>
-                <h3>10:12AM, Today</h3>
-            </li>
-            <li className="me">
-              <div className="entete">
-              </div>
-              <div className="triangle"></div>
-              <div className="message">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-              </div>
-                <h3>10:12AM, Today</h3>
-            </li>
+            {msgList && msgList.map((item, index) => (
+                <li key={index} className="me">
+                  <div className="entete">
+                    <h2>{item.talker}</h2>
+                  </div>
+                  <div className="triangle"></div>
+                  <div className="message">
+                    {item.msg}
+                  </div>
+                  {/*<h3>시간</h3>*/}
+                </li>
+            ))}
+
+            {/*<li className="you">*/}
+            {/*  <div className="entete">*/}
+            {/*  </div>*/}
+            {/*  <div className="triangle"></div>*/}
+            {/*  <div className="message">*/}
+            {/*    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.*/}
+            {/*  </div>*/}
+            {/*    <h3>10:12AM, Today</h3>*/}
+            {/*</li>*/}
           </ul>
           <footer>
             <textarea id="msg" onChange={sendText} placeholder="Type your message"></textarea>

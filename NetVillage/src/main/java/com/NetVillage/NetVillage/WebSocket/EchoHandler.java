@@ -21,9 +21,9 @@ public class EchoHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         System.out.println("afterConnectionEstablished:" + session);
-        String[] uri = session.getUri().toString().split("/");
-        users.put(uri[uri.length - 1], session);
-        System.out.println(users.toString());
+//        String[] uri = session.getUri().toString().split("/");
+//        users.put(uri[uri.length - 1], session);
+//        System.out.println("users 정보 : "+users.toString());
 
     }
 
@@ -35,9 +35,8 @@ public class EchoHandler extends TextWebSocketHandler {
         System.out.println("객체 변환한 데이터"+data);
         System.out.println(data.get("talker"));
 
-        if(data.get("talker") != null && users.containsKey(data.get("sendto"))) {
-            System.out.println("데이터 뿌려짐");
-            users.get(data.get("sendto")).sendMessage(new TextMessage(payload));
+        if(data.get("talker") != null) {
+            session.sendMessage(new TextMessage(payload));
         }
     }
 
