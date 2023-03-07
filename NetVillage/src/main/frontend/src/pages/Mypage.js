@@ -52,6 +52,20 @@ const Mypage = () => {
     ]);
 
     function matchResult() {
+        axios
+            .post("/matchResult", {
+                user_nick: user_nick,
+            })
+            .then(function (res) {
+                console.log(res.data); //넘어오는 데이터 값 확인, 나중에 지우기
+                // res.data == 1
+                //     ? navigate("/myPage")
+                //     : alert("회원정보 수정에 실패하였습니다. 다시 시도해주세요.");
+            })
+            .catch(function (error) {
+                console.log(error);
+                alert("오류발생");
+            });
 
     };
 
@@ -61,7 +75,6 @@ const Mypage = () => {
     const updateProgressBar = (newScore) => {
         setScore(newScore);
     };
-    // const bar = useRef();
 
     // 거래 내역
     const [transactionHistory, setTransactionHistory] = useState([
@@ -73,22 +86,7 @@ const Mypage = () => {
             seller: "탁구 왕자",
             title: "탁구대 무나합니다"
         }
-    ])
-
-    // 내가 쓴 글, 댓글
-   //  const [click, setClick] = useState();
-   // const myWriteAndCommList = (e) => {
-   //    console.log(e.target.innerText);
-   //    setClick(e.target.innerText)
-   // };
-   //
-   // const myList = () => {
-   //     if (click === "내가 쓴 글"){
-   //         return <MyWrite/>;
-   //     } else {
-   //         return <MyComment/>;
-   //     }
-   // }
+    ]);
 
     //회원정보수정
     const goToEdit = () => {
@@ -102,6 +100,7 @@ const Mypage = () => {
 
     return (
         <div id="myPage">
+            {matchResult()}
             <div className="myPage">
                 <div className="myPColor">
                     <span className="myPTitle">마이페이지</span>

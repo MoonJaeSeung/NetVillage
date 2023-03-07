@@ -1,4 +1,4 @@
-.myPage, .myPage div, .myPage span, .userEdit, .userDelete{
+.myPage, .myPage div, .myPage span, .userEdit, .deletePage{
     font-family: 'MapoPeacefull';
 }
 #myPage{
@@ -190,7 +190,7 @@
     margin: 1rem 0 0 1rem;
 }
 
-/* 내가 쓴 글, 댓ㄱㄹ */
+/* 내가 쓴 글, 댓글 */
 .writeTableBox, .commentTableBox, .bookMarkTableBox {
     width: 43rem;
 }
@@ -203,7 +203,7 @@
 }
 
 /* 회원정보 수정 페이지*/
-.userEdit{
+.userEdit, .deletePage{
     /*위 오른쪽 아래 왼쪽*/
     margin: 8rem 0 5rem 0;
     display: flex;
@@ -211,32 +211,32 @@
     align-items: center;
 }
 
-.editBox{
+.editBox, .deleteBox{
     margin-top: 2rem;
 }
 
-.editTitle{
+.editTitle, .deleteTitle{
     font-weight: bold;
     font-size: large;
     width: 10rem;
     text-align: left;
 }
 
-.editContent{
+.editContent, .deleteContent{
     width: 15rem;
 }
 
-.editTable tr{
+.editTable tr, .deleteTable tr{
     height: 4rem;
 }
 
-.editTable input{
+.editTable input, .deleteTable input{
     width: 15rem;
     border: 2px solid #CAFFBE;
     border-radius: 10px;
 }
 
-.editTable input:focus{
+.editTable input:focus, .deleteTable input:focus{
     outline: none;
 }
 
@@ -252,7 +252,7 @@
     color: lightslategray;
 }
 
-.editSubmit{
+.editSubmit, .deleteSubmit{
     margin-top: 2rem;
     width: 25rem;
     height: 3rem;
@@ -261,7 +261,7 @@
     background-color: #CAFFBE;
 }
 
-/*회원 탈퇴*/
+/*회원 탈퇴 글씨*/
 .userDelete{
     width: 4rem;
     margin-left: 65rem;
