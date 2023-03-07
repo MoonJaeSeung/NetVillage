@@ -124,14 +124,11 @@ const SearchBar = () => {
     const sportsOptions =(
       <>
           <option>종목을 선택해주세요</option>
-          <option value="축구">축구</option>
-          <option value="농구">농구</option>
-          <option value="배구">배구</option>
           <option value="탁구">탁구</option>
           <option value="당구">당구</option>
-          <option value="야구">야구</option>
-          <option value="배드민턴">배드민턴</option>
+          <option value="볼링">볼링</option>
           <option value="테니스">테니스</option>
+          <option value="배드민턴">배드민턴</option>
       </>
     );
 
