@@ -1,55 +1,42 @@
-import React, {useEffect, useState} from "react";
-import '../../styles/paging.css'
-import Pagination from "react-js-pagination";
-import axios from "axios";
-import MatchRoomCard from "./MatchRoomCard";
+import React from 'react';
+import styled from 'styled-components';
 
-/**
- * 페이지네이션
- *
- * 고려할 점
- * 한 페이지에서 얼마나 보여줄 것인지? (itemsCountPerPage)
- * ==> 보여줄 만큼의 수를 넘어서면 페이지 숫자가 하나씩 증가
- *
- * 이전 2 3 4 다음
- *
- * itemsCountPerPage = 한 페이지에 나타낼 아이템의 수
- * >> 1. 현재 아이템 수가 itemsCountPerPage를 넘었는지?
- * >> 넘었다면 아래 블럭이 하나 추가되겠지?
- * >> 아이템이 25를 넘으면 >> 활성
- *
- * DB 데이터 불러올 때, select * from user limit (start, end)
- *
- * totalItemsCount = 전체 아이템의 수
- *
- * pageRangeDisplayed = 블록 범위 (5)
- *
- */
+const PageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+`;
+
+const PageButton = styled.button`
+  background-color: ${({ active }) => (active ? '#333' : 'white')};
+  color: ${({ active }) => (active ? 'white' : '#333')};
+  border: 1px solid #333;
+  margin: 0 0.5rem;
+  padding: 0.5rem;
+  cursor: ${({ active }) => (active ? 'default' : 'pointer')};
+
+  &:hover {
+    background-color: ${({ active }) => (active ? '#333' : '#e6e6e6')};
+  }
+`;
 
 
-const Paging = () => {
-    const [page, setPage] = useState(1);
 
-    const handlePageChange = (page) => {
-        setPage(page);
-        console.log(page);
+const Paging = ({ pageNum, setPageNum }) => {
+    const handlePageClick = (page) => {
+        setPageNum(page);
     };
 
-
+    const pages = [1, 2, 3, 4, 5];
 
     return (
-        <>
-
-        <Pagination
-            activePage={page}
-            itemsCountPerPage={5}
-            totalItemsCount={100}
-            pageRangeDisplayed={5}
-            prevPageText={"‹"}
-            nextPageText={"›"}
-            onChange={setPage}
-        />
-        </>
+        <PageContainer>
+            {pages.map((page) => (
+                <PageButton key={page} active={page === pageNum} onClick={() => handlePageClick(page)}>
+                    {page}
+                </PageButton>
+            ))}
+        </PageContainer>
     );
 };
 
