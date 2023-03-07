@@ -11,6 +11,7 @@
   border-radius:5px;
   overflow:hidden;
 }
+
 aside{
   width:260px;
   height:800px;
@@ -59,7 +60,7 @@ aside li{
   padding:10px 0;
 }
 aside li:hover{
-  background-color:#5e616a;
+  background-color: whitesmoke;
 }
 h2,h3{
   margin:0;

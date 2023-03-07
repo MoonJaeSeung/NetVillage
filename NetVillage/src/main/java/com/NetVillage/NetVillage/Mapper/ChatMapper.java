@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper
 public interface ChatMapper {
 
-    @Select("select * from chatroom where user_nick1=#{user_nick} and cr_status='1'")
+    @Select("select * from chatroom where (user_nick1=#{user_nick} or user_nick2=#{user_nick}) and cr_status='1'")
     public List<Chatroom> ChatRoomList(String user_nick);
 
     @Insert("insert into chatroom values(null, #{board_idx}, #{user_nick1}, now(), #{user_nick2}, 1)")

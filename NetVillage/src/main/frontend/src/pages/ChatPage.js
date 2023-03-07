@@ -34,13 +34,21 @@ const ChatPage = ({ socket }) => {
     setCtMsg(e.target.value)
   }
 
+  const getSendTo = () => {
+    if (nick == curCtR.user_nick2) {
+      return curCtR.user_nick1
+    } else {
+      return curCtR.user_nick2
+    }
+  }
+
   // 메시지에 담아서 보낼 내용을 저장하는 변수
   const sendMsgInfo = {
     cr_idx: curCtR.cr_idx,
     board_idx: curCtR.board_idx,
     talker: nick,
     msg: ctMsg,
-    sendto: curCtR.user_nick2
+    sendto: getSendTo()
   }
 
   // 전송 버튼 클릭
@@ -54,7 +62,7 @@ const ChatPage = ({ socket }) => {
       console.log('보내는 값',res.config.data)
       console.log('받아오는 값',res.data)
     }).catch((error)=>(console.log(error)))
-
+    // setMsgList(msgList.concat({ cr_idx: curCtR.cr_idx, board_idx: curCtR.board_idx, talker: nick, msg: ctMsg, sendto: getSendTo() }))
     setCtMsg("")
   }
 
@@ -68,11 +76,7 @@ const ChatPage = ({ socket }) => {
 
   //메시지 리스트를 저장하는 함수
   const [msgList, setMsgList] = useState([]);
-
-  //현재 채팅방의 메시지 리스트를 저장하는 함수
-  // const [curMsgList, setCurMsgList] = useState([]);
-
-  let curMsgList = [];
+  
   const curCtRCk = (item) => {
     setCurCtR(item);
     console.log("curCtR에 저장된", curCtR);
@@ -90,8 +94,13 @@ const ChatPage = ({ socket }) => {
     console.log(message)
     message.talker !== undefined &&
     setMsgList(msgList.concat({ cr_idx: message.cr_idx, board_idx: message.board_idx, talker: message.talker, msg: message.msg, sendto: message.sendto }))
-    // setMsgList(msgList.concat({ cc_seq: 0, talker: message.talker, msg: message.msg, msg_time: message.msg_time, cr_seq: message.cr_seq }))
   };
+
+  // 스크롤 고정
+  const scrollRef = useRef();
+  useEffect(() => {
+    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  });
 
   return (
     <div>
@@ -104,7 +113,7 @@ const ChatPage = ({ socket }) => {
               {roomInfo && roomInfo.map((item, index) => (
                   <li key={index} onClick={() => curCtRCk(item)}>
                   <div>
-                    <h2>{item.user_nick2}</h2>
+                    <h2>{item.user_nick2 === nick? item.user_nick1 : item.user_nick2}</h2>
                     <h3>마지막 메시지</h3>
                   </div>
                   </li>
@@ -120,9 +129,9 @@ const ChatPage = ({ socket }) => {
                 <Button onClick={chatExit}>나가기</Button>
               </div>
           </header>
-          <ul id="chat">
+          <ul id="chat" ref={scrollRef}>
             {msgList && msgList.map((item, index) => (
-                <li key={index} className="me">
+                <li key={index} className={item.talker == nick ? 'me' : 'you'}>
                   <div className="entete">
                     <h2>{item.talker}</h2>
                   </div>
@@ -133,16 +142,6 @@ const ChatPage = ({ socket }) => {
                   {/*<h3>시간</h3>*/}
                 </li>
             ))}
-
-            {/*<li className="you">*/}
-            {/*  <div className="entete">*/}
-            {/*  </div>*/}
-            {/*  <div className="triangle"></div>*/}
-            {/*  <div className="message">*/}
-            {/*    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.*/}
-            {/*  </div>*/}
-            {/*    <h3>10:12AM, Today</h3>*/}
-            {/*</li>*/}
           </ul>
           <footer>
             <textarea id="msg" onChange={sendText} placeholder="Type your message"></textarea>
