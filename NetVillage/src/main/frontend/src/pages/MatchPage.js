@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {Link, Outlet, useNavigate} from "react-router-dom";
 import MatchRoomCard from "../components/Match/MatchRoomCard";
 import styled from "styled-components";
-import navigate from "react-router-dom";
 import Paging from "../components/Match/Paging";
 import axios from "axios";
 
@@ -58,9 +57,14 @@ const Wb = styled.button`
 // MatchPageWrapper 암묵적인 규칙
 
 
+
+
 const MatchPage = () => {
     const [matchList, setMatchList] = useState([]);
     const [category, setCategory] = useState('');
+    const [pageNum, setPageNum] = useState(1);
+    const [pageSize,setPageSize] = useState(10);
+
 
     
     useEffect(() => {
@@ -95,7 +99,7 @@ const MatchPage = () => {
 
 
         console.log(category);
-        axios.get(`/Match/list/${category}`)
+        axios.get(`/Match/list/${category}`,{params:{pageNum,pageSize}})
 
             .then(result => {
                 setMatchList(result.data);
@@ -138,9 +142,12 @@ const MatchPage = () => {
 
             <div>
                 <MatchCardGrid>
-                    {matchList.map(match => <MatchRoomCard category={category} key={match.id} item={match} />)}
+                    {matchList.slice((pageNum - 1) * pageSize, pageNum * pageSize)
+                        .map(match => <MatchRoomCard category={category} key={match.id} item={match} />)}
                 </MatchCardGrid>
-                <div><Paging></Paging></div>
+                <div>
+                    <Paging pageNum={pageNum} setPageNum={setPageNum}/>
+                </div>
             </div>
 
         </MatchContainer>
