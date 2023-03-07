@@ -3,6 +3,7 @@ import styled from "styled-components";
 import media from "styled-media-query";
 import "../App.css";
 import SearchBar from "../components/Main/SearchBar";
+import MainList from "../components/Main/MainList";
 
 const HomeContainer = styled.div`
   width: 100%;
@@ -136,11 +137,9 @@ const MainPage = () => {
         <ListContainer>
               <ListSubTitle>검색 결과</ListSubTitle>
               <ListSubTitle>현재</ListSubTitle>
-          <ListHeader>
                 <ListTitle>이런 운동 경기들이 있어요!</ListTitle>
-          </ListHeader>
               <ListLoadingContainer>
-                  경기들
+              <MainList/>
               </ListLoadingContainer>
               <EmptyContainer>경기가 없어요</EmptyContainer>
         </ListContainer>
