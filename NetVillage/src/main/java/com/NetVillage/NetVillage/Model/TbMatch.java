@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.security.Timestamp;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -20,7 +21,7 @@ public class TbMatch {
     private String user_nick2;
 
     // 매치날짜
-    private Timestamp match_date;
+    private String match_date;
 
     // 매치시작시간
     private String match_time;
@@ -41,5 +42,7 @@ public class TbMatch {
     private String game;
 
     // 생성일자
-    private Timestamp create_date;
+    private String create_date;
+
+    private Integer category;
 }
