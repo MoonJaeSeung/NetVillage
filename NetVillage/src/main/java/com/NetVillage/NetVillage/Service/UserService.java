@@ -32,7 +32,6 @@ public class UserService {
     }
 
     public int updateUser(UserInfo update){
-        update.setUser_pw(passwordEncoder.encode(update.getUser_pw()));
         return userMapper.updateUser(update);
     }
 

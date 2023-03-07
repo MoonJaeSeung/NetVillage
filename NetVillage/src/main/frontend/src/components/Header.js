@@ -61,7 +61,7 @@ const Header = () => {
                 <div className='IsLogin1'>
                     <HeaderBtn to="/Match">매치</HeaderBtn>
                     <HeaderBtn to="/Chat">채팅</HeaderBtn>
-                    <HeaderBtn to="/KakaoMap">지도</HeaderBtn>
+                    <HeaderBtn to="/UserMap">지도</HeaderBtn>
                     <HeaderBtn to="/Board">게시판</HeaderBtn>
                 </div>):
                 (<div></div>)}

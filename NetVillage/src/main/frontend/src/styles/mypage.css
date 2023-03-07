@@ -1,12 +1,19 @@
-.myPage, .myPage div, .myPage span, .userEdit{
+.myPage, .myPage div, .myPage span, .userEdit, .userDelete{
     font-family: 'MapoPeacefull';
+}
+#myPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .myPage{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    height: 100rem;
+    height: 100%;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
 }
 
 .myPColor{
@@ -192,6 +199,7 @@
 /* 북마크 내역 */
 .bookMarkList {
     margin-left: 1rem;
+    margin-bottom: 2rem;
 }
 
 /* 회원정보 수정 페이지*/
@@ -219,7 +227,7 @@
 }
 
 .editTable tr{
-    height: 3rem;
+    height: 4rem;
 }
 
 .editTable input{
@@ -251,4 +259,12 @@
     border: 1px solid #CAFFBE;
     border-radius: 10px;
     background-color: #CAFFBE;
+}
+
+/*회원 탈퇴*/
+.userDelete{
+    width: 4rem;
+    margin-left: 65rem;
+    color: #a0a1a2;
+    cursor:pointer
 }
