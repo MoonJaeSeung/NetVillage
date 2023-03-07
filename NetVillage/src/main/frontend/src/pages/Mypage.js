@@ -16,8 +16,12 @@ import MyComment from "../components/Mypage/MyComment";
 import BookMark from "../components/Mypage/BookMark";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import { ExclamationCircleFilled } from '@ant-design/icons';
+import { Button, Space } from 'antd';
+
 
 const Mypage = () => {
+    const { confirm } = Modal;
 
     const navigate = useNavigate();
 
@@ -51,6 +55,37 @@ const Mypage = () => {
         }
     ]);
 
+    //승패 입력을 위한 메치 결과
+    const [myMatch, setMyMatch] = useState([
+        {
+            user_nick1:"",
+            user_nick2: "",
+            match_date: "",
+            game: ""
+        }
+    ])
+
+    //승패 입력 모달창
+    const showPropsConfirm = () => {
+        confirm({
+            title: 'Are you sure delete this task?',
+            icon: <ExclamationCircleFilled />,
+            content: 'Some descriptions',
+            okText: 'Yes',
+            okType: 'danger',
+            okButtonProps: {
+                disabled: true,
+            },
+            cancelText: 'No',
+            onOk() {
+                console.log('OK');
+            },
+            onCancel() {
+                console.log('Cancel');
+            },
+        });
+    };
+    
     function matchResult() {
         axios
             .post("/matchResult", {
@@ -58,9 +93,12 @@ const Mypage = () => {
             })
             .then(function (res) {
                 console.log(res.data); //넘어오는 데이터 값 확인, 나중에 지우기
+                setMyMatch(res.data);
+
                 // res.data == 1
                 //     ? navigate("/myPage")
                 //     : alert("회원정보 수정에 실패하였습니다. 다시 시도해주세요.");
+                // showDeleteConfirm()
             })
             .catch(function (error) {
                 console.log(error);
@@ -97,10 +135,13 @@ const Mypage = () => {
     const goToDelete = () =>{
         navigate(`/UserDelete`);
     }
+    
+
+    // 매치 결과가 있을 때 모달버튼 활성화 되게 하기!
 
     return (
         <div id="myPage">
-            {matchResult()}
+            {/*{matchResult()}*/}
             <div className="myPage">
                 <div className="myPColor">
                     <span className="myPTitle">마이페이지</span>
