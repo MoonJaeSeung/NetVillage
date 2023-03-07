@@ -10,8 +10,18 @@ import "../styles/WriteMatchPage.css";
 import {useNavigate} from "react-router-dom";
 
 
+const SubmitButton = styled.button`
+  background-color: yellowgreen;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
+
 const WriteMatchPageWrapper = styled.div`
-  color: blue;
+  color: green;
   width:100%;
   display: flex;
   flex-direction: column;
@@ -159,6 +169,8 @@ const WriteMatchPage = () => {
                 <div><small>코멘트</small></div>
                 <textarea style={{width:"100%"}}/>
             </div>
+
+            <SubmitButton>글 작성</SubmitButton>
         </WriteMatchBody>
     </WriteMatchPageWrapper>
 )

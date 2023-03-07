@@ -63,7 +63,8 @@ const MatchPage = () => {
     const [matchList, setMatchList] = useState([]);
     const [category, setCategory] = useState('');
     const [pageNum, setPageNum] = useState(1);
-    const [pageSize,setPageSize] = useState(10);
+    const [pageSize,setPageSize] = useState(4);
+    const getPageCount = () => Math.ceil(matchList.length / pageSize);
 
 
     
@@ -146,7 +147,7 @@ const MatchPage = () => {
                         .map(match => <MatchRoomCard category={category} key={match.id} item={match} />)}
                 </MatchCardGrid>
                 <div>
-                    <Paging pageNum={pageNum} setPageNum={setPageNum}/>
+                    <Paging pageNum={pageNum} setPageNum={setPageNum} pageCount={getPageCount()} />
                 </div>
             </div>
 
