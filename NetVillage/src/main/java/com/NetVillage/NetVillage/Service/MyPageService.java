@@ -1,11 +1,14 @@
 package com.NetVillage.NetVillage.Service;
 
 import com.NetVillage.NetVillage.Mapper.MyPageMapper;
+import com.NetVillage.NetVillage.Model.TbMatch;
 import com.NetVillage.NetVillage.Model.UserInfo;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class MyPageService {
@@ -41,6 +44,13 @@ public class MyPageService {
         } else {
             return 0;
         }
+
+    }
+
+    //경기 승패 입력
+    public List<TbMatch> matchResult(String user_nick){
+
+        return myPageMapper.matchResult(user_nick);
 
     }
 

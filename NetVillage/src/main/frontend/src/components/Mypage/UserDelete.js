@@ -30,7 +30,8 @@ const UserDelete = () => {
                 if(res.data == 1){
                     alert("회원탈퇴가 완료되었습니다.");
                     sessionStorage.clear("user_info");
-                    navigate("/");
+                    window.location.replace("/");
+                    // navigate("/");
                 }else{
                     alert("비밀번호가 일치하지 않습니다.");
                 }
