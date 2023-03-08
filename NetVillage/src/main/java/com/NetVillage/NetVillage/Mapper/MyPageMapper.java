@@ -41,4 +41,8 @@ public interface MyPageMapper {
     @Update("update tb_match set win = #{user_nick} where match_idx = #{match_idx}")
     public int matchResultLoser(Map<String, Object> data);
 
+    //경기전적 불러오기, 내가 쓴 글 & 댓글 & 북마크 내역 불러오기
+    @Select("select * from tb_match")
+    public Map<String, Object> myPageSelect(Map<String, Object> data);
+
 }

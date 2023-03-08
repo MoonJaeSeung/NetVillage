@@ -24,13 +24,39 @@ const Mypage = () => {
     const navigate = useNavigate();
 
     const user_nick = JSON.parse(sessionStorage.getItem("user_info")).user_nick;
+    const user_id = JSON.parse(sessionStorage.getItem("user_info")).user_id;
 
     //경기 전적 결과 출력
     const [matchHistory, setMatchHistory] = useState([
         {
             game: "탁구",
             win: 0,
-            lose: 0,
+            lose: 0
+        }
+    ]);
+
+    //내가 쓴 게시글
+    const [myBoard, setMyBoard] = useState([
+        {
+        board_idx: 0,
+        board_title: "",
+        board_cate: ""
+        }
+    ]);
+
+    //내가 쓴 댓글
+    const [myComm, setMyComm] = useState([
+        {
+        board_idx: 0,
+        comm_contents: ""
+        }
+    ]);
+
+    //북마크 내역
+    const [myBookMark, setMyBookMark] = useState([
+        {
+        board_idx: 0,
+        user_id: ""
         }
     ]);
     
@@ -38,7 +64,8 @@ const Mypage = () => {
     useEffect(() => {
         axios
             .post("/myPage",{
-                user_nick: user_nick
+                user_nick: user_nick,
+                user_id: user_id
             })
             .then(function (res) {
                 console.log("하하하하하", res.data);

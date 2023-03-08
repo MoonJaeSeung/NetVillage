@@ -99,12 +99,13 @@ public class MyPageController {
 
     //경기전적 불러오기, 내가 쓴 글 & 댓글 & 북마크 내역 불러오기
     @RequestMapping(value = "/myPage", method = RequestMethod.POST, produces = "application/json; charset=utf8")
-    public int myPageSelect(@RequestBody Map<String, Object> data) {
+    public String myPageSelect(@RequestBody Map<String, Object> data) {
 
-//        System.out.println("수정할 정보: "+deleteInfo);
+        System.out.println("뭐가 넘어오나~: "+data);
 
-//        return myPageService.userDelete(deleteInfo);
-        return 1;
+        myPageService.myPageSelect(data);
+        
+        return "픽미업 상품컨트롤러 확인하기!";
     }
 
 }

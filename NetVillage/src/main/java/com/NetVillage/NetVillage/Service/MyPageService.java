@@ -68,4 +68,10 @@ public class MyPageService {
         return myPageMapper.matchResultLoser(data);
     }
 
+    //경기전적 불러오기, 내가 쓴 글 & 댓글 & 북마크 내역 불러오기
+    public Map<String, Object> myPageSelect(Map<String, Object> data){
+
+        return myPageMapper.myPageSelect(data);
+    }
+
 }
