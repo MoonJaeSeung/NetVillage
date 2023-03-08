@@ -20,8 +20,8 @@ import MapPage from "./pages/MapPage";
 import Board from "./pages/Board";
 import ReportBoard from "./pages/ReportBoard";
 import UserDelete from "./components/Mypage/UserDelete";
-
-
+import WriteBoard from "./components/Board/WriteBoard";
+import BoardDetail from "./components/Board/BoardDetail";
 
 function App() {
     //socket 연결시 소켓 정보 저장
@@ -31,8 +31,9 @@ function App() {
             console.log(socket)
         socket && connect();
         },[])
+
     // socket 연결할때 실행할 함수
-    function connect(user_name) {
+    function connect() {
         let ws = new WebSocket("ws://localhost:8090/socket")
         setSocket(ws)
         ws.onopen = () => {
@@ -85,6 +86,8 @@ function App() {
                 </Route>
                 <Route path="/Match/Write" element={<WriteMatchPage/>}/>
                 <Route path="/Match/Kakao" element={<Kakao/>}/>
+                <Route path="/Board/Write" element={<WriteBoard/>}/>
+                <Route path="/Board/Free" element={<BoardDetail/>}/>
             </Routes>
             <Footer/>
         </div>

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.security.Timestamp;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -29,8 +30,8 @@ public class Comment {
     private String is_deleted;
 
     // 댓글 작성일
-    private Timestamp comm_date;
+    private Date comm_date;
 
     // 댓글 수정일
-    private Timestamp comm_update;
+    private Date comm_update;
 }
