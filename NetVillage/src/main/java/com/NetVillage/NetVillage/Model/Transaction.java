@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.security.Timestamp;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -26,7 +27,7 @@ public class Transaction {
     private Integer board_idx;
 
     // 거래 완료일자
-    private Timestamp tr_date;
+    private Date tr_date;
 
     private String tr_state;
 

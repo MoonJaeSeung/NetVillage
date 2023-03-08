@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.security.Timestamp;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -26,10 +27,10 @@ public class Board {
     private String board_contents;
 
     // 게시글 작성일
-    private Timestamp board_date;
+    private Date board_date;
 
     // 게시글 수정일
-    private Timestamp board_update;
+    private Date board_update;
 
     // 파일1
     private String board_file1;

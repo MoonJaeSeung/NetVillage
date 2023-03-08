@@ -86,6 +86,7 @@ const SignIn = ({connect}) => {
         const user_info = res.data;
         if(inputValue.id === user_info.user_id){
             window.sessionStorage.setItem('user_info', JSON.stringify(user_info));
+            let user_nick = user_info.user_nick;
             Navigate("/");
             connect();
         }
