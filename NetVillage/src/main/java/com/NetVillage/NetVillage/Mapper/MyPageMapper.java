@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface MyPageMapper {
@@ -32,5 +33,12 @@ public interface MyPageMapper {
 //    @Select("select * from tb_match where user_nick1 = #{user_nick} or user_nick2 = #{user_nick}")
 //    public List<TbMatch> matchResult(String user_nick);
 
+    //이겼다고 입력한 경우
+    @Update("update tb_match set win = #{user_nick} where match_idx = #{match_idx}")
+    public int matchResultWinner(Map<String, Object> data);
+
+    //졌다고 입력한 경우
+    @Update("update tb_match set win = #{user_nick} where match_idx = #{match_idx}")
+    public int matchResultLoser(Map<String, Object> data);
 
 }

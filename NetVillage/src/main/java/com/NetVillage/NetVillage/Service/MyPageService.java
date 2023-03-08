@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MyPageService {
@@ -54,5 +55,17 @@ public class MyPageService {
 
     }
 
+    //이겼다고 입력한 경우
+    public int matchResultWinner(Map<String, Object> data){
+
+        return myPageMapper.matchResultWinner(data);
+
+    }
+
+    //졌다고 입력한 경우
+    public int matchResultLoser(Map<String, Object> data){
+
+        return myPageMapper.matchResultLoser(data);
+    }
 
 }

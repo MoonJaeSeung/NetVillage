@@ -16,6 +16,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import { Button, Modal, Space } from 'antd';
+import MatchResult from "../components/Mypage/MatchResult";
 const { confirm } = Modal;
 
 const Mypage = () => {
@@ -23,20 +24,6 @@ const Mypage = () => {
     const navigate = useNavigate();
 
     const user_nick = JSON.parse(sessionStorage.getItem("user_info")).user_nick;
-
-    //승패 입력을 위한 메치 결과
-    const [myMatch, setMyMatch] = useState([
-        {
-            user_nick1:"",
-            user_nick2: "",
-            match_date: "",
-            game: "",
-            win: ""
-        }
-    ])
-
-    const [other, setOther] = useState({other_nick:""});
-    const [my, setMy] = useState({my_nick:""})
 
     //경기 전적 관련
     const [matchHistory, setMatchHistory] = useState([
@@ -65,85 +52,6 @@ const Mypage = () => {
             icon: <GiTennisRacket size="35"/>
         }
     ]);
-
-
-    const matchResult = () => {
-        axios
-            .post("/matchResult", {
-                user_nick: user_nick,
-            })
-            .then(function (res) {
-                console.log(res.data); //넘어오는 데이터 값 확인, 나중에 지우기
-
-                if(res.data.length !== 0){
-                    setMyMatch(res.data);
-                    console.log("세팅된 값",myMatch)
-                    if(myMatch[0].user_nick1 === user_nick){
-                        // console.log("나여?", myMatch[0].user_nick2)
-                        setOther(myMatch[0].user_nick2);
-                    }else{
-                        setOther(myMatch[0].user_nick1);
-                        // console.log("다른사람?", myMatch[0].user_nick1)
-                    }
-                    showConfirm();
-                }else{
-                    alert("입력할 경기 결과가 없습니다.")
-                }
-
-            })
-            .catch(function (error) {
-                console.log(error);
-                alert("오류발생");
-            });
-
-    };
-
-    //모달
-    const showConfirm = () => {
-
-        confirm({
-            title: myMatch[0].match_date+"/"+myMatch[0].game,
-            icon: <ExclamationCircleFilled />,
-            content: "vs"+other+'님과의 경기 결과를 입력해 주세요',
-            okText: 'Win',
-            okType: 'danger',
-            cancelText: 'Lose',
-            onOk() {
-                // console.log("이긴사람 ",user_nick, "/////", "진 사람 ", other);
-                axios
-                    .post("/winner", {
-                        user_nick1: user_nick,
-                        user_nick2: user_nick
-                    })
-                    .then(function (res) {
-                        console.log("이긴", res.data); //넘어오는 데이터 값 확인, 나중에 지우기
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                        alert("오류발생");
-                    });
-            },
-            onCancel() {
-                // console.log("진사람", user_nick, "/////", "이긴 사람", other);
-                axios
-                    .post("/loser", {
-                        user_nick1: user_nick,
-                        user_nick2: user_nick
-                    })
-                    .then(function (res) {
-                        console.log("진",res.data); //넘어오는 데이터 값 확인, 나중에 지우기
-
-
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                        alert("오류발생");
-                    });
-            },
-        });
-    };
-
-
 
     // 페어플레이 점수 관련
     const [score, setScore] = useState(50);
@@ -200,7 +108,8 @@ const Mypage = () => {
                             <RiErrorWarningLine className="myPIcon"/>
                         </div>
                         <div>
-                            <button className="matchResultBtn" onClick={matchResult}>경기결과입력</button>
+                            <MatchResult/>
+                            {/*<button className="matchResultBtn" onClick={matchResult}>경기결과입력</button>*/}
                         </div>
                     </div>
                     {/* 경기 전적 */}

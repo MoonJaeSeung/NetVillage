@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class MyPageController {
@@ -57,15 +58,41 @@ public class MyPageController {
 
     }
 
+    //이겼다고 입력한 경우
     @RequestMapping(value = "/winner", method = RequestMethod.POST, produces = "application/json; charset=utf8")
-    public int matchResultWinner(@RequestBody UserInfo user_nick) {
+    public int matchResultWinner(@RequestBody Map<String, Object> data) {
 
-        return 1;
+        System.out.println("어떻게 넘어오는 거지?"+ data);
+
+        if (data != null){
+            System.out.println("이긴 사람 나야나?~"+data);
+            return myPageService.matchResultWinner(data);
+
+        } else {
+            System.out.println("비엇슈!");
+            return 0;
+        }
 
     }
 
+    //졌다고 입력한 경우
     @RequestMapping(value = "/loser", method = RequestMethod.POST, produces = "application/json; charset=utf8")
-    public int matchResultLoser(@RequestBody UserInfo user_nick) {
+    public int matchResultLoser(@RequestBody Map<String, Object> data) {
+
+        String jsonStr = gson.toJson(data);
+//        System.out.println("변환된 닉네임 :" + jsonStr);
+        UserInfo user = gson.fromJson(jsonStr, UserInfo.class);
+
+//        System.out.println("먼디먼디"+user.getUser_nick());
+
+        if (user.getUser_nick().isEmpty()){
+            System.out.println("비엇슈!");
+        } else {
+            System.out.println("이긴 상대방 "+user.getUser_nick());
+            System.out.println("이긴 상대방 매치번호 "+data);
+            return myPageService.matchResultLoser(data);
+
+        }
 
         return 0;
     }
