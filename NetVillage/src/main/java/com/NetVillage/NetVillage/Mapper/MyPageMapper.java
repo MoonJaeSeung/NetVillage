@@ -29,4 +29,8 @@ public interface MyPageMapper {
     @Select("select * from tb_match where user_nick1 = #{user_nick} or user_nick2 = #{user_nick}")
     public List<TbMatch> matchResult(String user_nick);
 
+//    @Select("select * from tb_match where user_nick1 = #{user_nick} or user_nick2 = #{user_nick}")
+//    public List<TbMatch> matchResult(String user_nick);
+
+
 }

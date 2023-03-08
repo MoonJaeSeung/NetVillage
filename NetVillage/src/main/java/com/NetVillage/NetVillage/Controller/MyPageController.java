@@ -46,9 +46,9 @@ public class MyPageController {
     @RequestMapping(value = "/matchResult", method = RequestMethod.POST, produces = "application/json; charset=utf8")
     public List<TbMatch> matchResult(@RequestBody UserInfo user_nick) {
 
-        System.out.println("닉네임 가져오니?: "+user_nick);
+//        System.out.println("닉네임 가져오니?: "+user_nick);
         String jsonStr = gson.toJson(user_nick);
-        System.out.println("변환된 닉네임 :" + jsonStr);
+//        System.out.println("변환된 닉네임 :" + jsonStr);
         UserInfo user = gson.fromJson(jsonStr, UserInfo.class);
 
         System.out.println("승패 입력을 위한 참여 정보: "+myPageService.matchResult(user.getUser_nick()));
@@ -57,5 +57,17 @@ public class MyPageController {
 
     }
 
+    @RequestMapping(value = "/winner", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+    public int matchResultWinner(@RequestBody UserInfo user_nick) {
+
+        return 1;
+
+    }
+
+    @RequestMapping(value = "/loser", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+    public int matchResultLoser(@RequestBody UserInfo user_nick) {
+
+        return 0;
+    }
 
 }

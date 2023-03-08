@@ -30,11 +30,13 @@ const Mypage = () => {
             user_nick1:"",
             user_nick2: "",
             match_date: "",
-            game: ""
+            game: "",
+            win: ""
         }
     ])
 
-    const [other, setOther] = useState({other_nick: ""});
+    const [other, setOther] = useState({other_nick:""});
+    const [my, setMy] = useState({my_nick:""})
 
     //경기 전적 관련
     const [matchHistory, setMatchHistory] = useState([
@@ -73,15 +75,15 @@ const Mypage = () => {
             .then(function (res) {
                 console.log(res.data); //넘어오는 데이터 값 확인, 나중에 지우기
 
-                if(res.data.length != 0){
+                if(res.data.length !== 0){
                     setMyMatch(res.data);
                     console.log("세팅된 값",myMatch)
                     if(myMatch[0].user_nick1 === user_nick){
-                        console.log("나여?", myMatch[0].user_nick2)
+                        // console.log("나여?", myMatch[0].user_nick2)
                         setOther(myMatch[0].user_nick2);
                     }else{
                         setOther(myMatch[0].user_nick1);
-                        console.log("다른사람?", myMatch[0].user_nick1)
+                        // console.log("다른사람?", myMatch[0].user_nick1)
                     }
                     showConfirm();
                 }else{
@@ -100,14 +102,43 @@ const Mypage = () => {
     const showConfirm = () => {
 
         confirm({
-            title: 'Do you Want to delete these items?',
+            title: myMatch[0].match_date+"/"+myMatch[0].game,
             icon: <ExclamationCircleFilled />,
-            content: 'Some descriptions',
+            content: "vs"+other+'님과의 경기 결과를 입력해 주세요',
+            okText: 'Win',
+            okType: 'danger',
+            cancelText: 'Lose',
             onOk() {
-                console.log("누구세욧? ",other);
+                // console.log("이긴사람 ",user_nick, "/////", "진 사람 ", other);
+                axios
+                    .post("/winner", {
+                        user_nick1: user_nick,
+                        user_nick2: user_nick
+                    })
+                    .then(function (res) {
+                        console.log("이긴", res.data); //넘어오는 데이터 값 확인, 나중에 지우기
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                        alert("오류발생");
+                    });
             },
             onCancel() {
-                console.log('Cancel');
+                // console.log("진사람", user_nick, "/////", "이긴 사람", other);
+                axios
+                    .post("/loser", {
+                        user_nick1: user_nick,
+                        user_nick2: user_nick
+                    })
+                    .then(function (res) {
+                        console.log("진",res.data); //넘어오는 데이터 값 확인, 나중에 지우기
+
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                        alert("오류발생");
+                    });
             },
         });
     };
