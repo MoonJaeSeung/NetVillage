@@ -5,6 +5,7 @@ import com.NetVillage.NetVillage.Model.ChatContent;
 import com.NetVillage.NetVillage.Model.Chatroom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,5 +31,13 @@ public class ChatService {
 
     public List<ChatContent> MsgList(String cr_idx) {
         return chatMapper.MsgList(cr_idx);
+    }
+
+    public void ExitChat(String cr_idx) {
+        chatMapper.ExitChat(cr_idx);
+    }
+
+    public Map<String, Object> BoardInfo(String board_idx) {
+        return chatMapper.BoardInfo(board_idx);
     }
 }

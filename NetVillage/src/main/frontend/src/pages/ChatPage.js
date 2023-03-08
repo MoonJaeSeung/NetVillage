@@ -3,7 +3,6 @@ import '../styles/chatPage.css'
 import axios from "axios";
 import {Button} from "antd";
 import {MessageOutlined} from "@ant-design/icons";
-import NoChat from "../components/Board/NoChat";
 
 const ChatPage = ({ socket }) => {
 
@@ -12,6 +11,10 @@ const ChatPage = ({ socket }) => {
 
   // 채팅방 정보를 저장하는 변수
   const [roomInfo, setRoomInfo] = useState([]);
+
+  // display 속성을 저장하는 변수
+  const [dpChat, setDpChat] = useState('none');
+  const [display, setDisplay] = useState('flex');
 
   // 로그인한 유저가 참여 중인 채팅방을 불러옴
   useEffect(() => {
@@ -67,16 +70,22 @@ const ChatPage = ({ socket }) => {
   }
 
   const chatExit = () => {
-    axios.post('/socket/chat/exit')
+    axios.post('/socket/chat/exit', {cr_idx : curCtR.cr_idx})
         .then((res)=>{
           console.log(res.config.data);
           console.log(res.data);
         }).catch((err)=>console.log(err));
+
+    setDisplay('flex');
+    setDpChat('none');
   }
 
-  //메시지 리스트를 저장하는 함수
+  //메시지 리스트를 저장하는 변수
   const [msgList, setMsgList] = useState([]);
-  
+
+  // 게시글 정보를 저장하는 변수
+  const [boardInfo, setBoardInfo] = useState({});
+
   const curCtRCk = (item) => {
     setCurCtR(item);
     console.log("curCtR에 저장된", curCtR);
@@ -86,6 +95,16 @@ const ChatPage = ({ socket }) => {
           console.log(res.data);
           setMsgList(res.data)
         }).catch((err)=>console.log(err));
+
+    axios.post('/socket/chat/boardinfo', {
+      board_idx : curCtR.board_idx
+    }).then((res)=>{
+      console.log(res.data)
+      setBoardInfo(res.data)
+    }).catch((err)=>console.log(err));
+
+    setDisplay('none');
+    setDpChat('block');
   }
 
   //소켓에서 오는 메세지를 받는 함수
@@ -102,32 +121,42 @@ const ChatPage = ({ socket }) => {
     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   });
 
+  // 엔터쳤을 때 전송
+  const enterKey = (e) => {
+    e.keyCode == 13 && sendBtn()
+  }
+
   return (
     <div>
       <div className="chat-container">
         <aside>
           <header>
-            <input type="text" placeholder="닉네임 검색" className="nickSearchInput"/>
+            {/*<span>어쩌다 짝꿍</span>*/}
+          {/*  <input type="text" placeholder="닉네임 검색" className="nickSearchInput"/>*/}
           </header>
           <ul>
               {roomInfo && roomInfo.map((item, index) => (
                   <li key={index} onClick={() => curCtRCk(item)}>
                   <div>
                     <h2>{item.user_nick2 === nick? item.user_nick1 : item.user_nick2}</h2>
-                    <h3>마지막 메시지</h3>
+                    <h3>메시지 출력</h3>
                   </div>
                   </li>
               ))}
           </ul>
         </aside>
+
         <main>
-          {/*<NoChat />*/}
+          <div className='noChat' style={{display: display, alignItems:"center", justifyContent:"center", color:"white", height: "inherit"}}><MessageOutlined style={{fontSize: '200px'}} /></div>
+          <div className='mainContainer' style={{ display: dpChat }}>
           <header>
-              <div>
-                <h2>Chat with 상대방 닉네임</h2>
-                <h3>채팅을 한 게시글</h3>
+              {/*<div>*/}
+                <div>
+                  <h2>Chat with {curCtR.user_nick2}</h2>
+                  <h3>[{boardInfo.board_cate}] {boardInfo.board_title}</h3>
+                </div>
                 <Button onClick={chatExit}>나가기</Button>
-              </div>
+              {/*</div>*/}
           </header>
           <ul id="chat" ref={scrollRef}>
             {msgList && msgList.map((item, index) => (
@@ -144,10 +173,12 @@ const ChatPage = ({ socket }) => {
             ))}
           </ul>
           <footer>
-            <textarea id="msg" onChange={sendText} placeholder="Type your message"></textarea>
-                <Button type="button" onClick={sendBtn}>SEND</Button>
+            <textarea id="msg" onChange={sendText} value={ctMsg} onKeyUp={enterKey} placeholder="메시지를 입력하세요."></textarea>
+                <Button onClick={sendBtn}>SEND</Button>
           </footer>
+          </div>
         </main>
+
       </div>
 
       </div>

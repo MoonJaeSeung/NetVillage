@@ -23,8 +23,6 @@ import UserDelete from "./components/Mypage/UserDelete";
 import WriteBoard from "./components/Board/WriteBoard";
 import BoardDetail from "./components/Board/BoardDetail";
 
-
-
 function App() {
     //socket 연결시 소켓 정보 저장
     const [socket, setSocket] = useState();

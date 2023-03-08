@@ -61,7 +61,6 @@ const BoardDetail = () => {
             })
             e.preventDefault();
         }else {
-            // if (viewDetail[0].board_idx )
             // 새로운 채팅방을 만드는 함수
             axios.post('/socket/chat/newchat', {
                 board_idx: idx,

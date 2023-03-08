@@ -50,4 +50,18 @@ public class ChatController {
         String cr_idx = data.get("cr_idx");
         return chatService.MsgList(cr_idx);
     }
+
+    @PostMapping("/exit")
+    public void ExitChat(@RequestBody Map<String, String> data) {
+        System.out.println("채팅방 index : "+data.get("cr_idx"));
+        String cr_idx = data.get("cr_idx");
+        chatService.ExitChat(cr_idx);
+    }
+
+    @PostMapping("/boardinfo")
+    public Map<String, Object> BoardInfo(@RequestBody Map<String, String> data) {
+        System.out.println("게시글 정보"+data.get("board_idx"));
+        String board_idx = data.get("board_idx");
+        return chatService.BoardInfo(board_idx);
+    }
 }
