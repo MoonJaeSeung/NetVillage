@@ -16,4 +16,7 @@ public interface MatchMapper {
 
     @Select("select * from tb_match where category=#{category}")
     public List<TbMatch> getMatchList1(int category);
+
+    @Insert("insert into tb_match (ment) values(#{comment})")
+    public int add(TbMatch tbMatch);
 }

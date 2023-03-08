@@ -33,4 +33,8 @@ public class MatchService {
         return matchMapper.getMatchList();
     }
 
+    public int add(TbMatch tbMatch){
+        return matchMapper.add(tbMatch);
+    }
+
 }

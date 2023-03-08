@@ -1,5 +1,12 @@
 import React, { useState } from "react";
 import { Pagination } from "react-bootstrap";
+import styled from "styled-components";
+
+
+const StyledDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const Paging = ({ pageNum, setPageNum, pageCount }) => {
     const handlePageClick = (page) => {
@@ -7,6 +14,7 @@ const Paging = ({ pageNum, setPageNum, pageCount }) => {
     };
 
     return (
+        <StyledDiv>
         <Pagination>
             {Array.from({ length: pageCount }, (_, i) => (
                 <Pagination.Item
@@ -18,6 +26,7 @@ const Paging = ({ pageNum, setPageNum, pageCount }) => {
                 </Pagination.Item>
             ))}
         </Pagination>
+        </StyledDiv>
     );
 };
 
