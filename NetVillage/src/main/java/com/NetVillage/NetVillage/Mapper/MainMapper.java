@@ -9,6 +9,6 @@ import java.util.List;
 @Mapper
 public interface MainMapper {
 
-    @Select("select * from tb_match order by create_date desc limit 0,10")
+    @Select("select * from tb_match order by match_date desc limit 0,10")
     public List<TbMatch> getMainList();
 }

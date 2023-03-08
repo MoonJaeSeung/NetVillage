@@ -168,7 +168,6 @@ const MainList = () => {
     useEffect(()=>{
         axios.get("/main/list").then((res)=>{
             setList(res.data);
-            console.log(list)
         })
     },[]);
     return (
