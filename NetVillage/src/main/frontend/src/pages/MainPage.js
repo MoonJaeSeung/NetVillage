@@ -77,43 +77,12 @@ const ListContainer = styled.div`
   flex-direction: column;
 `;
 
-const ListHeader = styled.div`
-  margin-bottom: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  ${media.lessThan("small")`
-    flex-direction: column;
-    align-items: flex-start;
-    > a {
-      margin-top: 1rem;
-    }
-  `}
-  #onMapBtn {
-    flex: 0 0 1;
-  }
-`;
-
 const ListTitle = styled.h1`
   font-size: 1.4rem;
   line-height: var(--lineHeight-normal);
   line-height: var(--lineHeight-loose);
   margin: 0 1rem 0 0;
-`;
-
-const ListSubTitle = styled.h3`
-  color: var(--color-gray);
-  font-size: 1.125rem;
-  line-height: var(--lineHeight-normal);
-  margin: 0;
-  ${media.lessThan("medium")`
-    margin-bottom: 0.5rem;
-  `}
-`;
-
-const ListLoadingContainer = styled.div`
-  width: 100%;
-  height: 20rem;
+  text-align: center;
 `;
 
 const EmptyContainer = styled.div`
@@ -135,13 +104,8 @@ const MainPage = () => {
             <SearchBar/>
         </SearchContainer>
         <ListContainer>
-              <ListSubTitle>검색 결과</ListSubTitle>
-              <ListSubTitle>현재</ListSubTitle>
-                <ListTitle>이런 운동 경기들이 있어요!</ListTitle>
-              <ListLoadingContainer>
+                <ListTitle>현재 이런 운동 경기들이 있어요!</ListTitle>
               <MainList/>
-              </ListLoadingContainer>
-              <EmptyContainer>경기가 없어요</EmptyContainer>
         </ListContainer>
       </HomeContainer>
   )
