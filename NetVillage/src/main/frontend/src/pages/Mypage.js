@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useRef, useState, useEffect} from 'react'
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { RiErrorWarningLine } from "react-icons/ri";
@@ -25,33 +25,30 @@ const Mypage = () => {
 
     const user_nick = JSON.parse(sessionStorage.getItem("user_info")).user_nick;
 
-    //경기 전적 관련
+    //경기 전적 결과 출력
     const [matchHistory, setMatchHistory] = useState([
         {
             game: "탁구",
-            win: 10,
-            lose: 3,
-            icon: <GiPingPongBat size="35"/>
-        },
-        {
-            game: "볼링",
-            win: 2,
-            lose: 5,
-            icon: <GiBowlingStrike size="35"/>
-        },
-        {
-            game: "배구",
-            win: 3,
-            lose: 1,
-            icon: <FaVolleyballBall size="35"/>
-        },
-        {
-            game: "테니스",
-            win: 1,
-            lose: 5,
-            icon: <GiTennisRacket size="35"/>
+            win: 0,
+            lose: 0,
         }
     ]);
+    
+    //경기 전적 결과
+    useEffect(() => {
+        axios
+            .post("/myPage",{
+                user_nick: user_nick
+            })
+            .then(function (res) {
+                console.log("하하하하하", res.data);
+                // setMatchHistory(res.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+                alert("오류발생");
+            });
+    }, []);
 
     // 페어플레이 점수 관련
     const [score, setScore] = useState(50);
@@ -101,15 +98,12 @@ const Mypage = () => {
 
                 </div>
                 <div className="myPContent">
-                    {/*경고창
-                db랑 연결하고 게시글 작성되면 조건문으로 작성자인지 신정차인지 구별한 후 멘트 띄워주기, 평소엔 사라져야함*/}
                     <div className="myPAlertBox">
                         <div className="myPImgDiv">
                             <RiErrorWarningLine className="myPIcon"/>
                         </div>
                         <div>
                             <MatchResult/>
-                            {/*<button className="matchResultBtn" onClick={matchResult}>경기결과입력</button>*/}
                         </div>
                     </div>
                     {/* 경기 전적 */}

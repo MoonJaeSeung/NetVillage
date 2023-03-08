@@ -97,4 +97,14 @@ public class MyPageController {
         return 0;
     }
 
+    //경기전적 불러오기, 내가 쓴 글 & 댓글 & 북마크 내역 불러오기
+    @RequestMapping(value = "/myPage", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+    public int myPageSelect(@RequestBody Map<String, Object> data) {
+
+//        System.out.println("수정할 정보: "+deleteInfo);
+
+//        return myPageService.userDelete(deleteInfo);
+        return 1;
+    }
+
 }

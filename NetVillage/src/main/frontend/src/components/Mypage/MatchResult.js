@@ -44,10 +44,15 @@ const MatchResult = () => {
                             setOther(item.user_nick1);
                             // console.log("다른사람?", item.user_nick1);
                         }
+
+                        //찾아 온 값이 승자 기록이 다 되어 있을 때
+                        if(item.win !== null){
+                            alert("입력할 경기 결과가 없습니다.");
+                        }
                     });
                     showConfirm();
                 }else{
-                    alert("입력할 경기 결과가 없습니다.")
+                    alert("입력할 경기 결과가 없습니다.");
                 }
 
             })
@@ -58,7 +63,7 @@ const MatchResult = () => {
 
     };
 
-    //모달
+    //경기 결과 입력 모달창
     const showConfirm = () => {
 
         myMatch.map(item => {
