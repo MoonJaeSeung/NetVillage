@@ -6,14 +6,14 @@ import {
     SmileOutlined,
     UserOutlined,
     LikeOutlined,
-    SearchOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
 import Free from "../components/Board/Free";
 import Transaction from "../components/Board/Transaction";
 import Tip from "../components/Board/Tip";
+import axios from "axios";
+import ServiceBuilding from "../components/Board/ServiceBuilding";
 const { Header, Sider, Content } = Layout;
-// import 'antd/dist/antd.less';
 
 const Board = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -27,19 +27,32 @@ const Board = () => {
         console.log(items)
     }
 
+    // const location = useLocation();
+
     const showBoard = () => {
         if (ckMenu == 2) {
-            return <Tip/>
+            // return <Tip viewList={viewList}/>
+            return <ServiceBuilding/>
         }else if (ckMenu == 3) {
-            return <Transaction/>
+            // return <Transaction viewList={viewList}/>
+            return <ServiceBuilding/>
         }else {
-            return <Free/>
+            return <Free viewList={viewList}/>
         }
     }
 
-    const searchBtn = () => {
-
+    const [viewList, setViewList] = useState([])
+    const boardView = () => {
+        axios.post('/board/view')
+            .then((res)=>{
+                console.log(res.data)
+                setViewList(res.data)
+            }).catch((error)=>console.log(error));
     }
+
+    useEffect(() => {
+        boardView()
+    }, [])
 
     return (
         <div>
@@ -83,10 +96,6 @@ const Board = () => {
                             className: 'trigger',
                             onClick: () => setCollapsed(!collapsed),
                         })}
-                        {/*<div className='searchBox'>*/}
-                            <input type="text"/>
-                            <SearchOutlined onClick={searchBtn} />
-                        {/*</div>*/}
                     </Header>
                     <Content
                         style={{
