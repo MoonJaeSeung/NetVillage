@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.security.Timestamp;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -26,6 +27,6 @@ public class ChatContent {
     private String msg;
 
     // 메세지 시간
-    private Timestamp msg_time;
+    private Date msg_time;
 
 }

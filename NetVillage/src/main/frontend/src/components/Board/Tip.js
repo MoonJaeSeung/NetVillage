@@ -1,5 +1,6 @@
 import React from 'react';
-import { Space, Table, Tag } from 'antd';
+import {Button, Input, Select, Space, Table} from 'antd';
+import {useNavigate} from "react-router-dom";
 
 const columns = [
     {
@@ -91,9 +92,54 @@ const data = [
     },
 ];
 const Tip = () => {
+
+    const navigate = useNavigate();
+
+    const handleChange = (value) => {
+        console.log(`selected ${value}`);
+    };
+
+    const writeBoard = () => {
+        navigate('/Board/Write', { state: { category: '팁게시판' }});
+    }
+
     return (
         <div>
-            <Table columns={columns} dataSource={data} />
+            <div className='boardContainer'>
+                <Button onClick={writeBoard}>글쓰기</Button>
+                <Space wrap>
+                    <Select
+                        defaultValue="작성자"
+                        style={{
+                            width: 120,
+                        }}
+                        onChange={handleChange}
+                        options={[
+                            {
+                                value: '작성자',
+                                label: '작성자',
+                            },
+                            {
+                                value: '제목+내용',
+                                label: '제목+내용',
+                            },
+                        ]}
+                    />
+                    <Input.Group compact>
+                        <Input.Search
+                            allowClear
+                            style={{
+                                width: '100%',
+                            }}
+                        />
+                    </Input.Group>
+                </Space>
+            </div>
+            <Table
+                style={{
+                    marginTop: '10px',
+                }}
+                columns={columns} dataSource={data} />
         </div>
     );
 };
