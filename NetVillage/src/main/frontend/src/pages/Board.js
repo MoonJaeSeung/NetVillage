@@ -50,9 +50,10 @@ const Board = () => {
             }).catch((error)=>console.log(error));
     }
 
+    // 글 쓴 후 새로고침
     useEffect(() => {
         boardView()
-    }, [])
+    }, [setViewList])
 
     return (
         <div>

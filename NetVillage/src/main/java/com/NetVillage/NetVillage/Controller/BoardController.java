@@ -39,4 +39,10 @@ public class BoardController {
         String idx = data.get("idx");
         return boardService.freeViewDetail(idx);
     }
+
+    @PostMapping("/free/delete")
+    public void freeBoardDelete(@RequestBody Map<String, String> data) {
+        String board_idx = data.get("board_idx");
+        boardService.freeBoardDelete(board_idx);
+    }
 }
