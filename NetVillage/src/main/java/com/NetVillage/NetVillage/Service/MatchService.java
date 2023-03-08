@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class MatchService {
-    @Autowired
     final private MatchMapper matchMapper;
 
 

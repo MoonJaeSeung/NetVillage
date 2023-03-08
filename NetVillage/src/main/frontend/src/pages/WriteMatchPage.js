@@ -103,15 +103,13 @@ const SportBox = ({sport,handleChange}) =>{
 }
 
 
-const Calendar = ({startDate,setStartDate,handleDateChange}) => {
+const Calendar = ({startDate,setStartDate}) => {
 
     return (
         <DatePicker
             dateFormat="yyyy년 MM월 dd일"
             selected={startDate}
-            // onChange={(date) => setStartDate(date)}
-            onChange={handleDateChange}
-
+            onChange={setStartDate}
             locale={ko}
             minDate={new Date()}
             style={{}}
@@ -123,11 +121,8 @@ const Calendar = ({startDate,setStartDate,handleDateChange}) => {
 };
 
 const Place = styled.input`
-
-  
-  
-  background: url(이미지 경로) no-repeat 95% 50%;  /* 화살표 모양의 이미지 */ 
-   width: 200px; /* 원하는 너비설정 */
+  background: url('이미지 경로') no-repeat 95% 50%;  /* 화살표 모양의 이미지 */ 
+  width: 200px; /* 원하는 너비설정 */
   padding: .8em .5em; /* 여백으로 높이 설정 */
   font-family: inherit;  /* 폰트 상속 */
   border: 1px solid #999; 
@@ -149,20 +144,22 @@ const WriteMatchPage = () => {
 
 
     const addBoard = () => {
+
+        const userInfo = JSON.parse(sessionStorage.getItem('user_info'));
+        console.log(userInfo.user_name)
+
         const data = {
-            ment: '예시 멘트',
-            category : 1 //
+            ment : "ment"
         }
 
 
-        axios.post(`/api/boards`,data)
-
-            .then(result => {
-                console.log(result.data)
-                console.log("완료");
-
-            })
-            .catch(() => console.log('오류'))
+        // axios.post(`/api/boards`,data)
+        //      .then(result => {
+        //         console.log(result.data)
+        //         console.log("완료");
+        //
+        //      })
+        //      .catch(() => console.log('오류'))
 
 
     }
@@ -257,13 +254,7 @@ const WriteMatchPage = () => {
                 <textarea style={{width:"100%"}} onChange={handleCommentChange}/>
             </div>
 
-            <SubmitButton onClick={() => {
-                console.log(category)
-                console.log(sport)
-                console.log(place)
-                console.log(ment)
-                addBoard()
-            }}>글 작성</SubmitButton>
+            <SubmitButton onClick={() => addBoard()}>글 작성</SubmitButton>
         </WriteMatchBody>
     </WriteMatchPageWrapper>
 )
