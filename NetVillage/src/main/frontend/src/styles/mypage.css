@@ -261,6 +261,15 @@
     background-color: #CAFFBE;
 }
 
+/*경기 결과 확인 버튼*/
+.matchResultBtn{
+    width: 6.5rem;
+    height: 2rem;
+    border: 1px solid rgba(202, 255, 190, 0.57);
+    border-radius: 10px;
+    background-color: rgba(202, 255, 190, 0.57);
+}
+
 /*회원 탈퇴 글씨*/
 .userDelete{
     width: 4rem;

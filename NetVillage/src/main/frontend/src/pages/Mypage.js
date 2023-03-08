@@ -1,13 +1,11 @@
 import React, {useRef, useState} from 'react'
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
-import { Modal } from 'react-bootstrap';
 import { RiErrorWarningLine } from "react-icons/ri";
 import { GiBowlingStrike } from "react-icons/gi";
 import { GiPingPongBat } from "react-icons/gi";
 import { FaVolleyballBall } from "react-icons/fa";
 import { GiTennisRacket } from "react-icons/gi";
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/mypage.css';
 import MatchHistory from "../components/Mypage/MatchHistory";
 import TransactionHistory from "../components/Mypage/TransactionHistory";
@@ -17,15 +15,26 @@ import BookMark from "../components/Mypage/BookMark";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { ExclamationCircleFilled } from '@ant-design/icons';
-import { Button, Space } from 'antd';
-
+import { Button, Modal, Space } from 'antd';
+const { confirm } = Modal;
 
 const Mypage = () => {
-    const { confirm } = Modal;
 
     const navigate = useNavigate();
 
     const user_nick = JSON.parse(sessionStorage.getItem("user_info")).user_nick;
+
+    //승패 입력을 위한 메치 결과
+    const [myMatch, setMyMatch] = useState([
+        {
+            user_nick1:"",
+            user_nick2: "",
+            match_date: "",
+            game: ""
+        }
+    ])
+
+    const [other, setOther] = useState({other_nick: ""});
 
     //경기 전적 관련
     const [matchHistory, setMatchHistory] = useState([
@@ -55,50 +64,30 @@ const Mypage = () => {
         }
     ]);
 
-    //승패 입력을 위한 메치 결과
-    const [myMatch, setMyMatch] = useState([
-        {
-            user_nick1:"",
-            user_nick2: "",
-            match_date: "",
-            game: ""
-        }
-    ])
 
-    //승패 입력 모달창
-    const showPropsConfirm = () => {
-        confirm({
-            title: 'Are you sure delete this task?',
-            icon: <ExclamationCircleFilled />,
-            content: 'Some descriptions',
-            okText: 'Yes',
-            okType: 'danger',
-            okButtonProps: {
-                disabled: true,
-            },
-            cancelText: 'No',
-            onOk() {
-                console.log('OK');
-            },
-            onCancel() {
-                console.log('Cancel');
-            },
-        });
-    };
-    
-    function matchResult() {
+    const matchResult = () => {
         axios
             .post("/matchResult", {
                 user_nick: user_nick,
             })
             .then(function (res) {
                 console.log(res.data); //넘어오는 데이터 값 확인, 나중에 지우기
-                setMyMatch(res.data);
 
-                // res.data == 1
-                //     ? navigate("/myPage")
-                //     : alert("회원정보 수정에 실패하였습니다. 다시 시도해주세요.");
-                // showDeleteConfirm()
+                if(res.data.length != 0){
+                    setMyMatch(res.data);
+                    console.log("세팅된 값",myMatch)
+                    if(myMatch[0].user_nick1 === user_nick){
+                        console.log("나여?", myMatch[0].user_nick2)
+                        setOther(myMatch[0].user_nick2);
+                    }else{
+                        setOther(myMatch[0].user_nick1);
+                        console.log("다른사람?", myMatch[0].user_nick1)
+                    }
+                    showConfirm();
+                }else{
+                    alert("입력할 경기 결과가 없습니다.")
+                }
+
             })
             .catch(function (error) {
                 console.log(error);
@@ -106,6 +95,24 @@ const Mypage = () => {
             });
 
     };
+
+    //모달
+    const showConfirm = () => {
+
+        confirm({
+            title: 'Do you Want to delete these items?',
+            icon: <ExclamationCircleFilled />,
+            content: 'Some descriptions',
+            onOk() {
+                console.log("누구세욧? ",other);
+            },
+            onCancel() {
+                console.log('Cancel');
+            },
+        });
+    };
+
+
 
     // 페어플레이 점수 관련
     const [score, setScore] = useState(50);
@@ -141,7 +148,6 @@ const Mypage = () => {
 
     return (
         <div id="myPage">
-            {/*{matchResult()}*/}
             <div className="myPage">
                 <div className="myPColor">
                     <span className="myPTitle">마이페이지</span>
@@ -150,7 +156,7 @@ const Mypage = () => {
                             {user_nick}님 안녕하세요!
                         </p>
                         <span className="myPEdit" onClick={goToEdit}>
-                        정보수정
+                        비밀번호 수정
                         </span>
                     </div>
 
@@ -163,8 +169,7 @@ const Mypage = () => {
                             <RiErrorWarningLine className="myPIcon"/>
                         </div>
                         <div>
-                            경기 결과를 승인해주세요
-                            경기 결과를 입력해주세요
+                            <button className="matchResultBtn" onClick={matchResult}>경기결과입력</button>
                         </div>
                     </div>
                     {/* 경기 전적 */}
