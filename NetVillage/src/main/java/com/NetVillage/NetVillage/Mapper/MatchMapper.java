@@ -15,8 +15,11 @@ public interface MatchMapper {
     public List<TbMatch> getMatchList();
 
     @Select("select * from tb_match where category=#{category}")
-    public List<TbMatch> getMatchList1(int category);
+    public List<TbMatch> getMatchList1(String category);
 
-    @Insert("insert into tb_match (ment, user_nick1, user_nick2) values(#{ment}, '주주', '다니빵')")
+    @Insert("insert into tb_match (ment, user_nick1,match_date,place,game) values(#{ment}, #{user_nick1}, #{match_date},#{place},#{game})")
     public int add(TbMatch tbMatch);
+
+    @Update("update tb_match set user_nick2=#{user_nick2} where match_idx=#{match_idx}")
+    public int join(TbMatch tbMatch);
 }

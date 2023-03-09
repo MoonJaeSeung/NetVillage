@@ -81,7 +81,7 @@ const MatchPage = () => {
     useEffect(() => {
         console.log("화면 렌더링");
         getMatchList();
-    }, [category, matchList]);
+    }, [category]);
 
 
 
@@ -106,6 +106,7 @@ const MatchPage = () => {
 
             .then(result => {
                 setMatchList(result.data);
+                console.log(result.data);
 
                 // console.log(result.data)
                 // const filteredList = category

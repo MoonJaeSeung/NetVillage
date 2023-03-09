@@ -44,5 +44,5 @@ public class TbMatch {
     // 생성일자
     private String create_date;
 
-    private Integer category;
+    private String category;
 }

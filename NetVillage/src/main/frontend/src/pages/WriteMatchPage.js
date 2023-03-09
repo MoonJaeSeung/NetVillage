@@ -145,21 +145,32 @@ const WriteMatchPage = () => {
 
     const addBoard = () => {
 
-        const userInfo = JSON.parse(sessionStorage.getItem('user_info'));
-        console.log(userInfo.user_name)
 
+        const originalFilename = date;
+        const date1 = new Date(originalFilename);
+        const newFilename = date1.toISOString().split('T')[0];
+
+        console.log(newFilename); // 출력 결과: "2023-03-16"
+        const userInfo = JSON.parse(sessionStorage.getItem('user_info'));
+        console.log(userInfo)
+        const nick = userInfo.user_nick;
         const data = {
-            ment : "ment"
+            nick,
+            category,
+            ment,
+            newFilename,
+            place,
+            sport
         }
 
 
-        // axios.post(`/api/boards`,data)
-        //      .then(result => {
-        //         console.log(result.data)
-        //         console.log("완료");
-        //
-        //      })
-        //      .catch(() => console.log('오류'))
+        axios.post(`/api/boards`,data)
+             .then(result => {
+                console.log(result.data)
+                console.log("완료");
+
+             })
+             .catch(() => console.log('오류'))
 
 
     }
