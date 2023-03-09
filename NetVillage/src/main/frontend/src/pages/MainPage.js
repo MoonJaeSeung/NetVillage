@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import media from "styled-media-query";
 import "../App.css";
@@ -83,17 +83,6 @@ const ListTitle = styled.h1`
   line-height: var(--lineHeight-loose);
   margin: 0 1rem 0 0;
   text-align: center;
-`;
-
-const EmptyContainer = styled.div`
-  height: 20rem;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0.4;
 `;
 
 const MainPage = () => {
