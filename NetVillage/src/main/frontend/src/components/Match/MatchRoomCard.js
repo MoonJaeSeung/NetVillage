@@ -19,6 +19,13 @@ const StyledText = styled.span`
     text-shadow: yellowgreen 1px 1px;  // 텍스트 그림자를 추가합니다.
 `;
 
+const StyledText2 = styled.span`
+    font-family: 'Montserrat', sans-serif;  // 폰트 이름과 폰트 유형을 지정합니다.
+    font-size: 10px;  // 폰트 크기를 지정합니다.
+    font-weight: 700;  // 굵기를 지정합니다.
+    color: black;  // 폰트 색상을 지정합니다.
+    
+`;
 
 const MatchRoomCard = (props) => {
 
@@ -67,8 +74,8 @@ const MatchRoomCard = (props) => {
         <>
         <div style={{
             background: "rgb(233, 255, 228)",
-            width: "30%",
-            height: "20%",
+            width: "500px",
+            height: "200px",
             marginBottom: "15px",
             borderRadius: "20px"
         }} onClick={() => setOpenModal(true)}>
@@ -83,6 +90,7 @@ const MatchRoomCard = (props) => {
 
 
                 <StyledText>{`${props.item.user_nick1}`}</StyledText>
+                <StyledText2>{`${props.item.game}`}</StyledText2>
             </div>
             <div style={{display: "flex", justifyContent: "center"}}>
                 {props.item.win
@@ -93,15 +101,15 @@ const MatchRoomCard = (props) => {
             <div>
                 <p style={{display: "flex", justifyContent: "center"}}>장소</p>
                 {/*<small>D-7</small>*/}
-                <div style={{display: "flex", flexDirection: "row-reverse"}}>
-                    <Edit onClick={() => {
-                        edit();
-                    }}>수정</Edit>
-                    <Edit onClick={() => {
-                        del();
-                    }}
-                    >삭제</Edit>
-                </div>
+                {/*<div style={{display: "flex", flexDirection: "row-reverse"}}>*/}
+                {/*    <Edit onClick={() => {*/}
+                {/*        edit();*/}
+                {/*    }}>수정</Edit>*/}
+                {/*    <Edit onClick={() => {*/}
+                {/*        del();*/}
+                {/*    }}*/}
+                {/*    >삭제</Edit>*/}
+                {/*</div>*/}
             </div>
         </div>
             {openModal && <MatchModal user={props.item} setOpenModal={setOpenModal} onAccept={handleAccept}/>}
