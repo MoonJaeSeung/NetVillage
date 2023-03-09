@@ -88,13 +88,13 @@ const CategoryBox = ({category, handleChange}) =>{
 const SportBox = ({sport,handleChange}) =>{
     return(
         <Select value={sport} onChange={(e) => handleChange(e.target.value)}>
-            <option key="free" value="pingpong">
+            <option key="free" value="탁구">
                 탁구
             </option>
-            <option key="vs" value="tennis">
+            <option key="vs" value="테니스">
                 테니스
             </option>
-            <option key="mento" value="bowling">
+            <option key="mento" value="볼링">
                 볼링
             </option>
             }
