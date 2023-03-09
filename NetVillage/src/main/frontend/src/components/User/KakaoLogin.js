@@ -41,7 +41,6 @@ const KakaoLogin = () => {
                 sessionStorage.setItem("userId", res.data.id);
 
                 setUser(res.data);
-                console.log(user);
 
                 if (res.data.id != null) {
                     window.location.href = "/";
