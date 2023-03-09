@@ -48,4 +48,5 @@ public class TbMatch {
 
     //전적 불러올 때 사용
     private int cnt;
+
 }
