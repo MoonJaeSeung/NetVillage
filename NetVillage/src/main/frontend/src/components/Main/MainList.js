@@ -3,6 +3,7 @@ import left from "../../img/back.png";
 import right from "../../img/next.png";
 import axios from "axios";
 import styled from 'styled-components';
+import '../../App.css';
 
 const ArrowIcon = styled.img`
   position: absolute;
@@ -34,7 +35,6 @@ const Slider = styled.div`
   width: 1200px;
   height: 450px;
   margin: 0 auto;
-  //margin-top: 100px;
   overflow: hidden;
 
   &:hover {
@@ -132,9 +132,6 @@ const InfoBody = styled.div`
     display: flex;
     > * {
       display: flex;
-      #marker {
-        margin-right: 0.15em;
-      }
     }
   }
 `;
@@ -181,7 +178,7 @@ const MainList = () => {
             onClick={moveRight}
             alt="오른쪽화살표아이콘"/>
                 <Carousel style={{ transform: `translateX(${move}px)` }}>
-                        {list.map(({ match_idx, match_date, match_time, ment, user_nick1, user_nick2, game }) => {
+                        {list.map(({ match_idx, match_date, match_time, ment, user_nick1, user_nick2, game, place }) => {
                             return (
                                 <RecommItem
                                     key={match_idx}
@@ -191,6 +188,7 @@ const MainList = () => {
                                     time={match_time}
                                     ment={ment}
                                     game={game}
+                                    place={place}
                                 />
                             );
                         })}
@@ -199,14 +197,17 @@ const MainList = () => {
     );
 };
 
-const RecommItem = ({ user,name2,date,time,ment,game }) => {
+const RecommItem = ({ user,name2,date,time,ment,game,place }) => {
     return (
         <Imgbox>
             <CardContainer>
                 <InfoHeader>{date}|{time}</InfoHeader>
                 <InfoBody>
-                    <div id="game">{game}</div>
                     <div id="ment">{ment}</div>
+                    <div id="game">{game}
+                        <div className="divider">|</div>
+                        <div>{place}</div>
+                    </div>
                 </InfoBody>
                 <InfoFooter>{user}</InfoFooter>
             </CardContainer>
