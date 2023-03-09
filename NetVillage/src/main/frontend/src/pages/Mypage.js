@@ -188,33 +188,37 @@ const Mypage = () => {
 
                     {/* 페어 플레이 점수*/}
                     <div className="fairPlay">
+                        <div className="fairPlayBox">
                         <h3>
                             페어플레이 점수
                         </h3>
-                        <div className="container">
-                            <div className="bar-container">
-                                <div className="bar"  id="myBar" style={{ width: `${score}%` }}></div>
-                            </div>
-                            <div className="button-container">
-                                <button onClick={() => updateProgressBar(Math.max(score - 10, 0))}>
-                                    ➖
-                                </button>
-                                <button onClick={() => updateProgressBar(Math.min(score + 10, 100))}>
-                                    ➕
-                                </button>
-                            </div>
+                            서비스 준비중입니다.
+                        {/*<div className="container">*/}
+                        {/*    <div className="bar-container">*/}
+                        {/*        <div className="bar"  id="myBar" style={{ width: `${score}%` }}></div>*/}
+                        {/*    </div>*/}
+                        {/*    <div className="button-container">*/}
+                        {/*        <button onClick={() => updateProgressBar(Math.max(score - 10, 0))}>*/}
+                        {/*            ➖*/}
+                        {/*        </button>*/}
+                        {/*        <button onClick={() => updateProgressBar(Math.min(score + 10, 100))}>*/}
+                        {/*            ➕*/}
+                        {/*        </button>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
                         </div>
-
                     </div>
+
                     {/* 거래 내역 */}
                     <div className="transactionHistory">
                         <h3>
                             거래 내역
                         </h3>
                         <div className="transactionHistoryBox">
-                            {transactionHistory.map((transactionHistory, idx) => {
-                                return <TransactionHistory transactionHistory={transactionHistory}/>
-                            })}
+                            서비스 준비중입니다.
+                            {/*{transactionHistory.map((transactionHistory, idx) => {*/}
+                            {/*    return <TransactionHistory transactionHistory={transactionHistory}/>*/}
+                            {/*})}*/}
                         </div>
                     </div>
 

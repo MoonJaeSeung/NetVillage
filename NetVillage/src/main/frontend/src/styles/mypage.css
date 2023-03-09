@@ -82,6 +82,7 @@
     flex-wrap: wrap;
 }
 
+
 /* 경기 전적, 거래 내역 map 함수 받아주는 박스 */
 .matchHistoryBox, .transactionHistoryBox, bookMarkBox {
     display: flex;
