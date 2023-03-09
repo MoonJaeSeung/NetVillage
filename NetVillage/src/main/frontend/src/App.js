@@ -30,9 +30,9 @@ function App() {
     const [socket, setSocket] = useState();
 
     useEffect(()=>{
-            console.log(socket)
+        console.log(socket)
         socket && connect();
-        },[])
+    },[])
 
     // socket 연결할때 실행할 함수
     function connect() {
@@ -71,6 +71,7 @@ function App() {
             {/* 로그인 정보 저장하면 아래 메인 페이지 지우기, root경로 인트로 페이지로 바꾸기 */}
             <Routes>
                 <Route path="/" element={<MainPage/>}/>
+                <Route path="/Search" element={<Search/>}/>
                 <Route path="/Intro" element={<Intro/>}/>
                 <Route path="/Chat" element={<ChatPage socket={socket}/>}/>
                 <Route path="/MyPage" element={<MyPage/>}/>
@@ -90,6 +91,7 @@ function App() {
                 <Route path="/Match/Kakao" element={<Kakao/>}/>
                 <Route path="/Board/Write" element={<WriteBoard/>}/>
                 <Route path="/Board/Free" element={<BoardDetail/>}/>
+                <Route path="/Profile" element={<Profile/>}/>
             </Routes>
             <Footer/>
         </div>
