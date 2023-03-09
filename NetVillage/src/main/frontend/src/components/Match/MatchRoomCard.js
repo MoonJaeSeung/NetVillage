@@ -30,8 +30,8 @@ const StyledText2 = styled.span`
 const MatchRoomCard = (props) => {
 
     const [openModal, setOpenModal] = useState(false);
-
-
+    const userInfo = JSON.parse(sessionStorage.getItem('user_info'));
+    const nick = userInfo.user_nick
 
     const edit = () => {
         console.log('edit');
@@ -47,7 +47,7 @@ const MatchRoomCard = (props) => {
         axios.get('/Match/list/del')
     }
 
-    const handleAccept = (match_idx,nick) =>{
+    const handleAccept = (match_idx) =>{
         console.log("accepted match", match_idx,nick);
 
         const data = {
