@@ -14,9 +14,10 @@ const MatchCardGrid = styled.div`
 `
 
 const MatchContainer = styled.div`
-  width:1430px;
+  width:340%;
   min-height: 1000px;
-  margin-left: 230px;
+  margin: 0 auto; /* 화면 중앙에 정렬 */
+
   
 `
 const Button = styled.button`
@@ -63,7 +64,8 @@ const MatchPage = () => {
     const [matchList, setMatchList] = useState([]);
     const [category, setCategory] = useState('');
     const [pageNum, setPageNum] = useState(1);
-    const [pageSize,setPageSize] = useState(10);
+    const [pageSize,setPageSize] = useState(4);
+    const getPageCount = () => Math.ceil(matchList.length / pageSize);
 
 
     
@@ -81,6 +83,8 @@ const MatchPage = () => {
         console.log("화면 렌더링");
         getMatchList();
     }, [category]);
+
+
 
     const navigate=useNavigate();
 
@@ -103,6 +107,7 @@ const MatchPage = () => {
 
             .then(result => {
                 setMatchList(result.data);
+                console.log(result.data);
 
                 // console.log(result.data)
                 // const filteredList = category
@@ -110,12 +115,8 @@ const MatchPage = () => {
                 //     :result.data;
                 // setMatchList(filteredList)
 
-
-
             })
             .catch(() => console.log('오류'))
-
-
     }
 
     return (
@@ -143,10 +144,10 @@ const MatchPage = () => {
             <div>
                 <MatchCardGrid>
                     {matchList.slice((pageNum - 1) * pageSize, pageNum * pageSize)
-                        .map(match => <MatchRoomCard category={category} key={match.id} item={match} />)}
+                        .map(match => <MatchRoomCard category={category} key={match.match_idx} item={match} />)}
                 </MatchCardGrid>
                 <div>
-                    <Paging pageNum={pageNum} setPageNum={setPageNum}/>
+                    <Paging pageNum={pageNum} setPageNum={setPageNum} pageCount={getPageCount()} />
                 </div>
             </div>
 

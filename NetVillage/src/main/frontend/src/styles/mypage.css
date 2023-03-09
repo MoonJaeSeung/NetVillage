@@ -1,4 +1,4 @@
-.myPage, .myPage div, .myPage span, .userEdit, .deletePage{
+.myPage, .myPage div, .myPage span, .userEdit, .deletePage, .profileDiv{
     font-family: 'MapoPeacefull';
 }
 #myPage{
@@ -81,6 +81,7 @@
     flex-direction: column;
     flex-wrap: wrap;
 }
+
 
 /* 경기 전적, 거래 내역 map 함수 받아주는 박스 */
 .matchHistoryBox, .transactionHistoryBox, bookMarkBox {
@@ -261,10 +262,27 @@
     background-color: #CAFFBE;
 }
 
+/*경기 결과 확인 버튼*/
+.matchResultBtn{
+    width: 6.5rem;
+    height: 2rem;
+    border: 1px solid rgba(202, 255, 190, 0.57);
+    border-radius: 10px;
+    background-color: rgba(202, 255, 190, 0.57);
+}
+
 /*회원 탈퇴 글씨*/
 .userDelete{
     width: 4rem;
     margin-left: 65rem;
     color: #a0a1a2;
     cursor:pointer
+}
+
+/*프로필 페이지*/
+.profileDiv{
+    margin: 8rem 0 5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

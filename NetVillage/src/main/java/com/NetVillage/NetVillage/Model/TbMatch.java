@@ -44,5 +44,9 @@ public class TbMatch {
     // 생성일자
     private String create_date;
 
-    private Integer category;
+    private String category;
+
+    //전적 불러올 때 사용
+    private int cnt;
+
 }

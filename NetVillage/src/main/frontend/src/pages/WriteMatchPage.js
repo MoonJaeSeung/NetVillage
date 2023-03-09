@@ -1,17 +1,25 @@
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import React, { useState } from "react";
-import {CalendarContainer} from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from 'date-fns/esm/locale';
 import "../styles/WriteMatchPage.css";
-
+import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
 
+const SubmitButton = styled.button`
+  background-color: yellowgreen;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
+
 const WriteMatchPageWrapper = styled.div`
-  color: blue;
+  color: green;
   width:100%;
   display: flex;
   flex-direction: column;
@@ -54,9 +62,11 @@ const Select = styled.select`
   margin-bottom:30px;
   `
 
-const CategoryBox = () =>{
+
+
+const CategoryBox = ({category, handleChange}) =>{
     return(
-        <Select>
+        <Select value={category} onChange={(e) => handleChange(e.target.value)}>
             <option key="free" value="free">
                 자유
             </option>
@@ -73,16 +83,18 @@ const CategoryBox = () =>{
 
 
 
-const SportBox = () =>{
+
+
+const SportBox = ({sport,handleChange}) =>{
     return(
-        <Select>
-            <option key="free" value="free">
+        <Select value={sport} onChange={(e) => handleChange(e.target.value)}>
+            <option key="free" value="탁구">
                 탁구
             </option>
-            <option key="vs" value="vs">
+            <option key="vs" value="테니스">
                 테니스
             </option>
-            <option key="mento" value="mento">
+            <option key="mento" value="볼링">
                 볼링
             </option>
             }
@@ -91,27 +103,26 @@ const SportBox = () =>{
 }
 
 
-const Calendar = () => {
-    const [startDate, setStartDate] = useState(new Date());
+const Calendar = ({startDate,setStartDate}) => {
+
     return (
         <DatePicker
             dateFormat="yyyy년 MM월 dd일"
             selected={startDate}
-            onChange={(date) => setStartDate(date)}
+            onChange={setStartDate}
             locale={ko}
             minDate={new Date()}
-            style={{}}>
-        </DatePicker>
+            style={{}}
 
+        >
+        </DatePicker>
+        
     );
 };
 
 const Place = styled.input`
-
-  
-  
-  background: url(이미지 경로) no-repeat 95% 50%;  /* 화살표 모양의 이미지 */ 
-   width: 200px; /* 원하는 너비설정 */
+  background: url('이미지 경로') no-repeat 95% 50%;  /* 화살표 모양의 이미지 */ 
+  width: 200px; /* 원하는 너비설정 */
   padding: .8em .5em; /* 여백으로 높이 설정 */
   font-family: inherit;  /* 폰트 상속 */
   border: 1px solid #999; 
@@ -119,7 +130,99 @@ const Place = styled.input`
   margin-bottom:10px
 `
 
+
+
+
 const WriteMatchPage = () => {
+
+    const [category, setCategory] = useState("");
+    const [title, setTitle] = useState("");
+    const [date, setDate] = useState(new Date());
+    const [place, setPlace] = useState("");
+    const [ment, setMent] = useState("");
+    const [sport, setSport] = useState("");
+
+
+    const addBoard = () => {
+
+
+        const originalFilename = date;
+        const date1 = new Date(originalFilename);
+        const newFilename = date1.toISOString().split('T')[0];
+
+        console.log(newFilename); // 출력 결과: "2023-03-16"
+        const userInfo = JSON.parse(sessionStorage.getItem('user_info'));
+        console.log(userInfo)
+        const nick = userInfo.user_nick;
+        const data = {
+            nick,
+            category,
+            ment,
+            newFilename,
+            place,
+            sport
+        }
+
+
+        axios.post(`/api/boards`,data)
+             .then(result => {
+                console.log(result.data)
+                console.log("완료");
+
+             })
+             .catch(() => console.log('오류'))
+
+
+    }
+
+
+    const handleTitleChange = (event) => {
+        console.log(event.target.value);
+        setTitle(event.target.value);
+        // 선택한 category 값을 출력합니다.
+    }
+
+    const handleCategoryChange = (value) => {
+        console.log(value);
+        setCategory(value);
+        // 선택한 category 값을 출력합니다.
+    }
+
+    const handleSportChange = (value) => {
+        console.log(value);
+        setSport(value);
+
+    }
+
+    const handleDateChange = (date) => {
+        console.log(date);
+        setDate(date);
+        // 선택한 category 값을 출력합니다.
+    }
+
+    const handlePlaceChange = (e) => {
+        console.log(e.target.value);
+        setPlace(e.target.value);
+        // 선택한 category 값을 출력합니다.
+    }
+
+    const handleCommentChange = (e) => {
+        console.log(e.target.value);
+        setMent(e.target.value);
+        // 선택한 category 값을 출력합니다.
+    }
+
+    const handleSubmit = async(event) =>{
+        event.preventDefault()
+        const data = {category, title, date, place, ment};
+
+        try{
+            const response = await axios.post("/api/match",data);
+            console.log(response.data); //백엔드에서 보낸 성공 메시지 출력
+        }catch(error){
+            console.log(error.response.data); //백엔드에서 보낸 실패 메시지 출력
+        }
+    }
 
     const navigate=useNavigate();
 
@@ -127,28 +230,32 @@ const WriteMatchPage = () => {
         navigate("/Match/Kakao");
     };
 
-    return (<WriteMatchPageWrapper>
+    const navigateToMain = () =>{
+        navigate("/");
+    };
+
+    return (<WriteMatchPageWrapper onSubmit={handleSubmit}>
         <WriteMatchHeader>
-            <Title type="text"  placeholder='제목'></Title>
+            <Title type="text"  placeholder='제목' onChange={handleTitleChange}></Title>
         </WriteMatchHeader>
         <WriteMatchBody>
 
 
             <div>
                 <small>카테고리</small>
-                <div><CategoryBox></CategoryBox></div>
+                <div><CategoryBox handleChange={handleCategoryChange}></CategoryBox></div>
             </div>
             <div>
                 <small>종목</small>
-                <div><SportBox></SportBox></div>
+                <div><SportBox handleChange={handleSportChange}></SportBox></div>
             </div>
             <div>
                 <small>날짜</small>
-                <Calendar/>
+                <Calendar startDate={date} setStartDate={handleDateChange}/>
             </div>
             <div style={{marginTop:"30px"}}>
                 <small>장소</small>
-                <div><Place/></div>
+                <div><Place onChange={handlePlaceChange}/></div>
                 <button onClick={navigateToMap}>지도로 보기</button>
                 <map></map>
 
@@ -157,8 +264,13 @@ const WriteMatchPage = () => {
             <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dd9bcaf5fddf48c987559f0ba743efa1"></script>
             <div className="com" style={{marginTop:"30px" }}>
                 <div><small>코멘트</small></div>
-                <textarea style={{width:"100%"}}/>
+                <textarea style={{width:"100%"}} onChange={handleCommentChange}/>
             </div>
+
+            <SubmitButton onClick={() =>{
+                addBoard();
+            navigateToMain()}}>
+                글 작성</SubmitButton>
         </WriteMatchBody>
     </WriteMatchPageWrapper>
 )

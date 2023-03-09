@@ -2,27 +2,39 @@ import React from 'react';
 import '../../styles/mypage.css';
 import {Table} from "react-bootstrap";
 
-const BookMark = () => {
+const BookMark = ({myBookMark, markRes}) => {
+
+    console.log("내가 북마크 있니?", myBookMark);
+    console.log("없지?", markRes);
+
     return (
         <div className="bookMarkList">
-            북마크 내역~
+
             <div className="bookMarkTableBox">
-                <Table striped bordered>
-                    <thead>
-                    <tr>
-                        <th>글 번호</th>
-                        <th>작성자</th>
-                        <th>제목</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>김탁구</td>
-                        <td>안녕하세요</td>
-                    </tr>
-                    </tbody>
-                </Table>
+                {
+                    myBookMark[0].markBoard_idx === 0?
+                        markRes
+                        :
+                    <Table striped bordered>
+                        <thead>
+                        <tr>
+                            <th>글 번호</th>
+                            <th>작성자</th>
+                            <th>제목</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        myBookMark.map(item =>
+                        <tr>
+                            <td>myBookMark.markBoard_idx</td>
+                            <td>myBookMark.user_id</td>
+                            <td>안녕하세요</td>
+                        </tr>)
+
+                        </tbody>
+                    </Table>
+                }
+
             </div>
         </div>
     );

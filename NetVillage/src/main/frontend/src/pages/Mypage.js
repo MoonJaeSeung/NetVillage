@@ -1,13 +1,11 @@
-import React, {useRef, useState} from 'react'
+import React, {useRef, useState, useEffect} from 'react'
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
-import { Modal } from 'react-bootstrap';
 import { RiErrorWarningLine } from "react-icons/ri";
 import { GiBowlingStrike } from "react-icons/gi";
 import { GiPingPongBat } from "react-icons/gi";
 import { FaVolleyballBall } from "react-icons/fa";
 import { GiTennisRacket } from "react-icons/gi";
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/mypage.css';
 import MatchHistory from "../components/Mypage/MatchHistory";
 import TransactionHistory from "../components/Mypage/TransactionHistory";
@@ -16,58 +14,112 @@ import MyComment from "../components/Mypage/MyComment";
 import BookMark from "../components/Mypage/BookMark";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import { ExclamationCircleFilled } from '@ant-design/icons';
+import { Button, Modal, Space } from 'antd';
+import MatchResult from "../components/Mypage/MatchResult";
+const { confirm } = Modal;
 
 const Mypage = () => {
 
     const navigate = useNavigate();
 
     const user_nick = JSON.parse(sessionStorage.getItem("user_info")).user_nick;
+    const user_id = JSON.parse(sessionStorage.getItem("user_info")).user_id;
 
-    //경기 전적 관련
+    //경기 전적 결과 출력
     const [matchHistory, setMatchHistory] = useState([
         {
-            game: "탁구",
-            win: 10,
-            lose: 3,
-            icon: <GiPingPongBat size="35"/>
-        },
-        {
-            game: "볼링",
-            win: 2,
-            lose: 5,
-            icon: <GiBowlingStrike size="35"/>
-        },
-        {
-            game: "배구",
-            win: 3,
-            lose: 1,
-            icon: <FaVolleyballBall size="35"/>
-        },
-        {
-            game: "테니스",
-            win: 1,
-            lose: 5,
-            icon: <GiTennisRacket size="35"/>
+            game: "",
+            cnt: 0,
+            win: 0,
         }
     ]);
 
-    function matchResult() {
+    const [matchRes, setMatchRes] = useState("");
+
+    //내가 쓴 게시글
+    const [myBoard, setMyBoard] = useState([
+        {
+            board_idx: 0,
+            board_title: "기본",
+            board_cate: "기본",
+        }
+    ]);
+
+    const [boardRes, setBoardRes] = useState("");
+
+    //내가 쓴 댓글
+    const [myComm, setMyComm] = useState([
+        {
+            commBoard_idx: 0,
+            comm_contents: "",
+        }
+    ]);
+
+    const [commRes, setCommRes] = useState("");
+
+
+    //북마크 내역
+    const [myBookMark, setMyBookMark] = useState([
+        {
+            markBoard_idx: 0,
+            user_id: "",
+        }
+    ]);
+    const [markRes, setMarkRes] = useState("");
+    
+    //마이페이지 들어왔을 때 전적, 게시글&댓글, 북마크 내역 등 바로 띄어주기
+    useEffect(() => {
         axios
-            .post("/matchResult", {
-                user_nick: user_nick,
-            })
-            .then(function (res) {
-                console.log(res.data); //넘어오는 데이터 값 확인, 나중에 지우기
-                // res.data == 1
-                //     ? navigate("/myPage")
-                //     : alert("회원정보 수정에 실패하였습니다. 다시 시도해주세요.");
-            })
+            .all([
+                axios.post("/matchHistory",{
+                    user_nick: user_nick,
+                    user_id: user_id
+                }),
+                axios.post("/myBoard",{
+                    user_nick: user_nick,
+                    user_id: user_id
+                }),
+                axios.post("/myComm",{
+                    user_nick: user_nick,
+                    user_id: user_id
+                }),
+                axios.post("/myBookmark",{
+                    user_nick: user_nick,
+                    user_id: user_id
+                }),
+            ])
+            .then(axios.spread((res1, res2, res3, res4) => {
+                console.log("이거는 1", res1.data);
+                if(res1.data.length !== 0){
+                    setMatchHistory(res1.data);
+                }else{
+                    setMatchRes("참여한 경기가 없습니다.");
+                }
+                console.log("이거는 2", res2.data);
+                if(res2.data.length !== 0){
+                    setMyBoard(res2.data);
+                }else{
+                    setBoardRes("작성한 게시글이 없습니다.");
+                }
+                console.log("이거는 3", res3.data);
+                if(res3.data.length !== 0){
+                    setMyComm(res3.data);
+                }else{
+                    setCommRes("작성한 댓글이 없습니다.");
+                }
+                console.log("이거는 4", res4.data);
+                if(res4.data.length !== 0){
+                    setMyBookMark(res4.data);
+                }else{
+                    setMarkRes("북마크 내역이 없습니다.");
+                }
+            }))
             .catch(function (error) {
                 console.log(error);
                 alert("오류발생");
             });
-
-    };
+    }, []);
 
     // 페어플레이 점수 관련
     const [score, setScore] = useState(50);
@@ -100,7 +152,6 @@ const Mypage = () => {
 
     return (
         <div id="myPage">
-            {matchResult()}
             <div className="myPage">
                 <div className="myPColor">
                     <span className="myPTitle">마이페이지</span>
@@ -109,21 +160,18 @@ const Mypage = () => {
                             {user_nick}님 안녕하세요!
                         </p>
                         <span className="myPEdit" onClick={goToEdit}>
-                        정보수정
+                        비밀번호 수정
                         </span>
                     </div>
 
                 </div>
                 <div className="myPContent">
-                    {/*경고창
-                db랑 연결하고 게시글 작성되면 조건문으로 작성자인지 신정차인지 구별한 후 멘트 띄워주기, 평소엔 사라져야함*/}
                     <div className="myPAlertBox">
                         <div className="myPImgDiv">
                             <RiErrorWarningLine className="myPIcon"/>
                         </div>
                         <div>
-                            경기 결과를 승인해주세요
-                            경기 결과를 입력해주세요
+                            <MatchResult/>
                         </div>
                     </div>
                     {/* 경기 전적 */}
@@ -140,33 +188,37 @@ const Mypage = () => {
 
                     {/* 페어 플레이 점수*/}
                     <div className="fairPlay">
+                        <div className="fairPlayBox">
                         <h3>
                             페어플레이 점수
                         </h3>
-                        <div className="container">
-                            <div className="bar-container">
-                                <div className="bar"  id="myBar" style={{ width: `${score}%` }}></div>
-                            </div>
-                            <div className="button-container">
-                                <button onClick={() => updateProgressBar(Math.max(score - 10, 0))}>
-                                    ➖
-                                </button>
-                                <button onClick={() => updateProgressBar(Math.min(score + 10, 100))}>
-                                    ➕
-                                </button>
-                            </div>
+                            서비스 준비중입니다.
+                        {/*<div className="container">*/}
+                        {/*    <div className="bar-container">*/}
+                        {/*        <div className="bar"  id="myBar" style={{ width: `${score}%` }}></div>*/}
+                        {/*    </div>*/}
+                        {/*    <div className="button-container">*/}
+                        {/*        <button onClick={() => updateProgressBar(Math.max(score - 10, 0))}>*/}
+                        {/*            ➖*/}
+                        {/*        </button>*/}
+                        {/*        <button onClick={() => updateProgressBar(Math.min(score + 10, 100))}>*/}
+                        {/*            ➕*/}
+                        {/*        </button>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
                         </div>
-
                     </div>
+
                     {/* 거래 내역 */}
                     <div className="transactionHistory">
                         <h3>
                             거래 내역
                         </h3>
                         <div className="transactionHistoryBox">
-                            {transactionHistory.map((transactionHistory, idx) => {
-                                return <TransactionHistory transactionHistory={transactionHistory}/>
-                            })}
+                            서비스 준비중입니다.
+                            {/*{transactionHistory.map((transactionHistory, idx) => {*/}
+                            {/*    return <TransactionHistory transactionHistory={transactionHistory}/>*/}
+                            {/*})}*/}
                         </div>
                     </div>
 
@@ -174,10 +226,10 @@ const Mypage = () => {
                     <div className="myWriteAndComm">
                         <Tabs defaultActiveKey="myWrite" transition={false} id="uncontrolled-tab-example" className="mb-3">
                             <Tab eventKey="myWrite" title="내가 쓴 글">
-                                <MyWrite/>
+                               <MyWrite myBoard={myBoard} boardRes={boardRes}/>
                             </Tab>
                             <Tab eventKey="myComment" title="내가 쓴 댓글">
-                                <MyComment/>
+                                <MyComment myComm={myComm} commRes={commRes}/>
                             </Tab>
                         </Tabs>
                     </div>
@@ -188,7 +240,7 @@ const Mypage = () => {
                             북마크 내역
                         </h3>
                         <div className="bookMarkBox">
-                            <BookMark/>
+                            <BookMark myBookMark={myBookMark} markRes={markRes}/>
                         </div>
                     </div>
                 </div>
