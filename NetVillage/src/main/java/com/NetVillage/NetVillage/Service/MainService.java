@@ -16,4 +16,8 @@ public class MainService {
     public List<TbMatch> getMainList(){
         return mainMapper.getMainList();
     }
+
+    public List<TbMatch> getSearchList(String selectedSports, String startDate){
+        return mainMapper.getSearchList(selectedSports, startDate);
+    }
 }
