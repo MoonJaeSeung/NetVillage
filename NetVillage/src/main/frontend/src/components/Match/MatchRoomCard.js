@@ -21,7 +21,7 @@ const StyledText = styled.span`
 
 const StyledText2 = styled.span`
     font-family: 'Montserrat', sans-serif;  // 폰트 이름과 폰트 유형을 지정합니다.
-    font-size: 10px;  // 폰트 크기를 지정합니다.
+    font-size: 15px;  // 폰트 크기를 지정합니다.
     font-weight: 700;  // 굵기를 지정합니다.
     color: black;  // 폰트 색상을 지정합니다.
     
@@ -64,9 +64,7 @@ const MatchRoomCard = (props) => {
             .catch(()=> console.log('오류'))
     }
 
-    const date = {
-        textAlign: "center"
-    }
+
 
 
 
@@ -79,7 +77,7 @@ const MatchRoomCard = (props) => {
             marginBottom: "15px",
             borderRadius: "20px"
         }} onClick={() => setOpenModal(true)}>
-            <p style={date}>
+            <p>
                 {`${props.item.match_date}`}
             </p>
             <div style={{display: "flex", flexDirection:"column", alignItems:"center" ,marginBottom:"20px"}}>
