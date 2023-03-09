@@ -1,4 +1,4 @@
-.myPage, .myPage div, .myPage span, .userEdit, .deletePage{
+.myPage, .myPage div, .myPage span, .userEdit, .deletePage, .profileDiv{
     font-family: 'MapoPeacefull';
 }
 #myPage{
@@ -276,4 +276,12 @@
     margin-left: 65rem;
     color: #a0a1a2;
     cursor:pointer
+}
+
+/*프로필 페이지*/
+.profileDiv{
+    margin: 8rem 0 5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

@@ -1,7 +1,6 @@
 package com.NetVillage.NetVillage.Controller;
 
-import com.NetVillage.NetVillage.Model.TbMatch;
-import com.NetVillage.NetVillage.Model.UserInfo;
+import com.NetVillage.NetVillage.Model.*;
 import com.NetVillage.NetVillage.Service.MyPageService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +86,7 @@ public class MyPageController {
 
         if (user.getUser_nick().isEmpty()){
             System.out.println("비엇슈!");
+            return 0;
         } else {
             System.out.println("이긴 상대방 "+user.getUser_nick());
             System.out.println("이긴 상대방 매치번호 "+data);
@@ -94,18 +94,42 @@ public class MyPageController {
 
         }
 
-        return 0;
     }
 
-    //경기전적 불러오기, 내가 쓴 글 & 댓글 & 북마크 내역 불러오기
-    @RequestMapping(value = "/myPage", method = RequestMethod.POST, produces = "application/json; charset=utf8")
-    public String myPageSelect(@RequestBody Map<String, Object> data) {
+    //경기전적 불러오기
+    @RequestMapping(value = "/matchHistory", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+    public List<TbMatch> matchHistory(@RequestBody Map<String, Object> data) {
 
-        System.out.println("뭐가 넘어오나~: "+data);
+//        System.out.println("뭐가 넘어오나~: "+data);
 
-        myPageService.myPageSelect(data);
-        
-        return "픽미업 상품컨트롤러 확인하기!";
+        return myPageService.matchHistory(data);
+    }
+
+    //내가 쓴 글 불러오기
+    @RequestMapping(value = "/myBoard", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+    public List<Board> myBoard(@RequestBody Map<String, Object> data) {
+
+//        System.out.println("뭐가 넘어오나~: "+data);
+
+        return myPageService.myBoard(data);
+    }
+
+    //내가 쓴 댓글 불러오기
+    @RequestMapping(value = "/myComm", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+    public List<Comment> myComm(@RequestBody Map<String, Object> data) {
+
+//        System.out.println("뭐가 넘어오나~: "+data);
+
+        return myPageService.myComm(data);
+    }
+
+    //내 북마크 내역 불러오기
+    @RequestMapping(value = "/myBookmark", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+    public List<Bookmark> myBookmark(@RequestBody Map<String, Object> data) {
+
+//        System.out.println("뭐가 넘어오나~: "+data);
+
+        return myPageService.myBookmark(data);
     }
 
 }

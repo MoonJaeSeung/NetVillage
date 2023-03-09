@@ -16,8 +16,6 @@ const MatchHistory = ({matchHistory}) => {
     const loseStyle= {
         color: "red"
     }
-
-
     const setIcon = () => {
         if(matchHistory.game === "탁구"){
             return <GiPingPongBat size="35"/>
@@ -36,7 +34,7 @@ const MatchHistory = ({matchHistory}) => {
                 <span className="matchHistoryName">{matchHistory.game}</span>
                 <div className="matchRecord">
                     <span className="matchHistoryList" style={winStyle}>{matchHistory.win}승 </span>
-                    <span className="matchHistoryList" style={loseStyle}>{matchHistory.lose}패</span>
+                    <span className="matchHistoryList" style={loseStyle}>{(matchHistory.cnt > matchHistory.win? matchHistory.cnt-matchHistory.win : matchHistory.win-matchHistory.cnt)}패</span>
                 </div>
             </div>
             <div className="gameIcon">

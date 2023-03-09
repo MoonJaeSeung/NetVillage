@@ -29,48 +29,92 @@ const Mypage = () => {
     //경기 전적 결과 출력
     const [matchHistory, setMatchHistory] = useState([
         {
-            game: "탁구",
+            game: "",
+            cnt: 0,
             win: 0,
-            lose: 0
         }
     ]);
+
+    const [matchRes, setMatchRes] = useState("");
 
     //내가 쓴 게시글
     const [myBoard, setMyBoard] = useState([
         {
-        board_idx: 0,
-        board_title: "",
-        board_cate: ""
+            board_idx: 0,
+            board_title: "기본",
+            board_cate: "기본",
         }
     ]);
+
+    const [boardRes, setBoardRes] = useState("");
 
     //내가 쓴 댓글
     const [myComm, setMyComm] = useState([
         {
-        board_idx: 0,
-        comm_contents: ""
+            commBoard_idx: 0,
+            comm_contents: "",
         }
     ]);
+
+    const [commRes, setCommRes] = useState("");
+
 
     //북마크 내역
     const [myBookMark, setMyBookMark] = useState([
         {
-        board_idx: 0,
-        user_id: ""
+            markBoard_idx: 0,
+            user_id: "",
         }
     ]);
+    const [markRes, setMarkRes] = useState("");
     
-    //경기 전적 결과
+    //마이페이지 들어왔을 때 전적, 게시글&댓글, 북마크 내역 등 바로 띄어주기
     useEffect(() => {
         axios
-            .post("/myPage",{
-                user_nick: user_nick,
-                user_id: user_id
-            })
-            .then(function (res) {
-                console.log("하하하하하", res.data);
-                // setMatchHistory(res.data);
-            })
+            .all([
+                axios.post("/matchHistory",{
+                    user_nick: user_nick,
+                    user_id: user_id
+                }),
+                axios.post("/myBoard",{
+                    user_nick: user_nick,
+                    user_id: user_id
+                }),
+                axios.post("/myComm",{
+                    user_nick: user_nick,
+                    user_id: user_id
+                }),
+                axios.post("/myBookmark",{
+                    user_nick: user_nick,
+                    user_id: user_id
+                }),
+            ])
+            .then(axios.spread((res1, res2, res3, res4) => {
+                console.log("이거는 1", res1.data);
+                if(res1.data.length !== 0){
+                    setMatchHistory(res1.data);
+                }else{
+                    setMatchRes("참여한 경기가 없습니다.");
+                }
+                console.log("이거는 2", res2.data);
+                if(res2.data.length !== 0){
+                    setMyBoard(res2.data);
+                }else{
+                    setBoardRes("작성한 게시글이 없습니다.");
+                }
+                console.log("이거는 3", res3.data);
+                if(res3.data.length !== 0){
+                    setMyComm(res3.data);
+                }else{
+                    setCommRes("작성한 댓글이 없습니다.");
+                }
+                console.log("이거는 4", res4.data);
+                if(res4.data.length !== 0){
+                    setMyBookMark(res4.data);
+                }else{
+                    setMarkRes("북마크 내역이 없습니다.");
+                }
+            }))
             .catch(function (error) {
                 console.log(error);
                 alert("오류발생");
@@ -105,9 +149,6 @@ const Mypage = () => {
     const goToDelete = () =>{
         navigate(`/UserDelete`);
     }
-    
-
-    // 매치 결과가 있을 때 모달버튼 활성화 되게 하기!
 
     return (
         <div id="myPage">
@@ -181,10 +222,10 @@ const Mypage = () => {
                     <div className="myWriteAndComm">
                         <Tabs defaultActiveKey="myWrite" transition={false} id="uncontrolled-tab-example" className="mb-3">
                             <Tab eventKey="myWrite" title="내가 쓴 글">
-                                <MyWrite/>
+                               <MyWrite myBoard={myBoard} boardRes={boardRes}/>
                             </Tab>
                             <Tab eventKey="myComment" title="내가 쓴 댓글">
-                                <MyComment/>
+                                <MyComment myComm={myComm} commRes={commRes}/>
                             </Tab>
                         </Tabs>
                     </div>
@@ -195,7 +236,7 @@ const Mypage = () => {
                             북마크 내역
                         </h3>
                         <div className="bookMarkBox">
-                            <BookMark/>
+                            <BookMark myBookMark={myBookMark} markRes={markRes}/>
                         </div>
                     </div>
                 </div>
