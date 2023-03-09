@@ -5,6 +5,7 @@ import com.NetVillage.NetVillage.Service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,5 +19,12 @@ public class MainController {
     @GetMapping("/main/list")
     public List<TbMatch> getMainList(){
         return mainService.getMainList();
+    }
+
+    @GetMapping("/Search/list")
+    public List<TbMatch> getSearchList(@RequestParam String selectedSports, @RequestParam String startDate){
+        System.out.println(selectedSports);
+        System.out.println(startDate);
+        return mainService.getSearchList(selectedSports, startDate);
     }
 }
