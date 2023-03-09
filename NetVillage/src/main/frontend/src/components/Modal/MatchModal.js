@@ -57,7 +57,7 @@ const MatchModal = ({ user, setOpenModal, onAccept }) => {
                 <Button onClick={() => {
                     setOpenModal(false);
                     console.log(user.match_idx);
-                    onAccept(user.match_idx,userInfo.user_nick);
+                    onAccept(user.match_idx);
                 }}>수락</Button>
                 <Button onClick={() => setOpenModal(false)}>취소</Button>
             </ModalContainer>

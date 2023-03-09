@@ -14,7 +14,7 @@ const MatchCardGrid = styled.div`
 `
 
 const MatchContainer = styled.div`
-  width:330%;
+  width:340%;
   min-height: 1000px;
   margin: 0 auto; /* 화면 중앙에 정렬 */
 
