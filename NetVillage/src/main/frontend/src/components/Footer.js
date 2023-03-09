@@ -73,7 +73,9 @@ const Footer = () => {
       <FooterContainer>
         <DescWrapper>
           <FooterHead>소개</FooterHead>
-          <Paragraph>소개글</Paragraph>
+          <Paragraph>어쩌다 짝꿍은 운동할 사람을 찾고 싶지만 주변에 함께 할 사람이 없는
+            사람들을 위한 매칭 플랫폼입니다. 원하는 운동 종목, 지역, 날짜와 시간대에 따라 함께 운동
+            친구를 간편하게 찾을 수 있습니다.</Paragraph>
         </DescWrapper>
         <Wrapper>
           <FooterHead>자료</FooterHead>
