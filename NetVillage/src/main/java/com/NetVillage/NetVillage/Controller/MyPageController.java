@@ -1,7 +1,6 @@
 package com.NetVillage.NetVillage.Controller;
 
-import com.NetVillage.NetVillage.Model.TbMatch;
-import com.NetVillage.NetVillage.Model.UserInfo;
+import com.NetVillage.NetVillage.Model.*;
 import com.NetVillage.NetVillage.Service.MyPageService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class MyPageController {
@@ -46,9 +46,9 @@ public class MyPageController {
     @RequestMapping(value = "/matchResult", method = RequestMethod.POST, produces = "application/json; charset=utf8")
     public List<TbMatch> matchResult(@RequestBody UserInfo user_nick) {
 
-        System.out.println("닉네임 가져오니?: "+user_nick);
+//        System.out.println("닉네임 가져오니?: "+user_nick);
         String jsonStr = gson.toJson(user_nick);
-        System.out.println("변환된 닉네임 :" + jsonStr);
+//        System.out.println("변환된 닉네임 :" + jsonStr);
         UserInfo user = gson.fromJson(jsonStr, UserInfo.class);
 
         System.out.println("승패 입력을 위한 참여 정보: "+myPageService.matchResult(user.getUser_nick()));
@@ -57,5 +57,79 @@ public class MyPageController {
 
     }
 
+    //이겼다고 입력한 경우
+    @RequestMapping(value = "/winner", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+    public int matchResultWinner(@RequestBody Map<String, Object> data) {
+
+        System.out.println("어떻게 넘어오는 거지?"+ data);
+
+        if (data != null){
+            System.out.println("이긴 사람 나야나?~"+data);
+            return myPageService.matchResultWinner(data);
+
+        } else {
+            System.out.println("비엇슈!");
+            return 0;
+        }
+
+    }
+
+    //졌다고 입력한 경우
+    @RequestMapping(value = "/loser", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+    public int matchResultLoser(@RequestBody Map<String, Object> data) {
+
+        String jsonStr = gson.toJson(data);
+//        System.out.println("변환된 닉네임 :" + jsonStr);
+        UserInfo user = gson.fromJson(jsonStr, UserInfo.class);
+
+//        System.out.println("먼디먼디"+user.getUser_nick());
+
+        if (user.getUser_nick().isEmpty()){
+            System.out.println("비엇슈!");
+            return 0;
+        } else {
+            System.out.println("이긴 상대방 "+user.getUser_nick());
+            System.out.println("이긴 상대방 매치번호 "+data);
+            return myPageService.matchResultLoser(data);
+
+        }
+
+    }
+
+    //경기전적 불러오기
+    @RequestMapping(value = "/matchHistory", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+    public List<TbMatch> matchHistory(@RequestBody Map<String, Object> data) {
+
+//        System.out.println("뭐가 넘어오나~: "+data);
+
+        return myPageService.matchHistory(data);
+    }
+
+    //내가 쓴 글 불러오기
+    @RequestMapping(value = "/myBoard", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+    public List<Board> myBoard(@RequestBody Map<String, Object> data) {
+
+//        System.out.println("뭐가 넘어오나~: "+data);
+
+        return myPageService.myBoard(data);
+    }
+
+    //내가 쓴 댓글 불러오기
+    @RequestMapping(value = "/myComm", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+    public List<Comment> myComm(@RequestBody Map<String, Object> data) {
+
+//        System.out.println("뭐가 넘어오나~: "+data);
+
+        return myPageService.myComm(data);
+    }
+
+    //내 북마크 내역 불러오기
+    @RequestMapping(value = "/myBookmark", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+    public List<Bookmark> myBookmark(@RequestBody Map<String, Object> data) {
+
+//        System.out.println("뭐가 넘어오나~: "+data);
+
+        return myPageService.myBookmark(data);
+    }
 
 }

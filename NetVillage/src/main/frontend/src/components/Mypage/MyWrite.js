@@ -2,27 +2,39 @@ import React from 'react';
 import '../../styles/mypage.css';
 import {Table} from "react-bootstrap";
 
-const MyWrite = () => {
+const MyWrite = ({myBoard, boardRes}) => {
+
+    console.log("내가 쓴 글 있니?", myBoard);
+    console.log("없지?", boardRes);
+
+
     return (
         <div className="writeItem">
-            내가 쓴 글
+
             <div className="writeTableBox">
-                <Table striped bordered>
-                    <thead>
-                    <tr>
-                        <th>글 번호</th>
-                        <th>제목</th>
-                        <th>게시판</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>안녕하세요</td>
-                        <td>자유게시판</td>
-                    </tr>
-                    </tbody>
-                </Table>
+                {
+                    myBoard[0].board_idx === 0?
+                        boardRes
+                        :
+                        <Table striped bordered>
+                        <thead>
+                            <tr>
+                                <th>글 번호</th>
+                                <th>제목</th>
+                                <th>게시판</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            myBoard.map(myBoard =>
+                            <tr>
+                                <td>{myBoard.board_idx}</td>
+                                <td>{myBoard.board_title}</td>
+                                <td>{myBoard.board_cate}</td>
+                            </tr>)
+                            </tbody>
+                    </Table>
+                }
+
             </div>
         </div>
     );

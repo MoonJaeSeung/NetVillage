@@ -22,6 +22,7 @@ import ReportBoard from "./pages/ReportBoard";
 import UserDelete from "./components/Mypage/UserDelete";
 import WriteBoard from "./components/Board/WriteBoard";
 import BoardDetail from "./components/Board/BoardDetail";
+import Profile from "./pages/Profile";
 
 function App() {
     //socket 연결시 소켓 정보 저장
@@ -88,6 +89,7 @@ function App() {
                 <Route path="/Match/Kakao" element={<Kakao/>}/>
                 <Route path="/Board/Write" element={<WriteBoard/>}/>
                 <Route path="/Board/Free" element={<BoardDetail/>}/>
+                <Route path="/Profile" element={<Profile/>}/>
             </Routes>
             <Footer/>
         </div>
