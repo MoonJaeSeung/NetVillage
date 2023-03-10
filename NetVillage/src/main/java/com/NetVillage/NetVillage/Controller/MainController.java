@@ -4,7 +4,6 @@ import com.NetVillage.NetVillage.Model.TbMatch;
 import com.NetVillage.NetVillage.Service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,9 +21,7 @@ public class MainController {
     }
 
     @GetMapping("/Search/list")
-    public List<TbMatch> getSearchList(@RequestParam String selectedSports, @RequestParam String startDate){
-        System.out.println(selectedSports);
-        System.out.println(startDate);
+    public List<TbMatch> getSearchList(@RequestParam("selectedSports") String selectedSports, @RequestParam("startDate") String startDate) {
         return mainService.getSearchList(selectedSports, startDate);
     }
 }
