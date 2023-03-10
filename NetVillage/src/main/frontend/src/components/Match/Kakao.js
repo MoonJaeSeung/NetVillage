@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const { kakao } = window;
 
@@ -8,6 +8,7 @@ const Kakao = ({ onLocationSelect, history }) => {
     const [map, setMap] = useState(null);
     const [selectedLocation, setSelectedLocation] = useState(null);
     const [placesList, setPlacesList] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const container = document.getElementById('map');
@@ -47,12 +48,12 @@ const Kakao = ({ onLocationSelect, history }) => {
 
     const handleListItemClick = (place) => {
         setSearchKeyword(place.place_name);
+        setSelectedLocation(new kakao.maps.LatLng(place.y, place.x));
+        setPlacesList([]);
     };
 
-    const navigate=useNavigate();
-
     const navigateToWrite = () => {
-        navigate("/Match/Write");
+        navigate('/Match/Write');
     };
 
     return (
@@ -61,7 +62,7 @@ const Kakao = ({ onLocationSelect, history }) => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: '100vh',
+                height: '200%',
             }}
         >
             <div>
@@ -79,10 +80,27 @@ const Kakao = ({ onLocationSelect, history }) => {
                         marginTop: '20px',
                     }}
                 ></div>
-                <ul>
+                <ul style={{ listStyleType: 'none', padding: 0 }}>
                     {placesList.map((place) => (
-                        <li key={place.id} onClick={() => handleListItemClick(place)}>
-                            {place.place_name}
+                        <li
+                            key={place.id}
+                            onClick={() => handleListItemClick(place)}
+                            style={{
+                                padding: '10px',
+                                borderBottom: '1px solid #eee',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            <div
+                                style={{
+                                    fontWeight: 'bold',
+                                    marginBottom: '5px',
+                                }}
+                            >
+                                {place.place_name}
+                            </div>
+                            <div>{place.road_address_name}</div>
+                            <div>{place.address_name}</div>
                         </li>
                     ))}
                 </ul>
