@@ -24,11 +24,11 @@ const MyComment = ({myComm, commRes}) => {
                         </tr>
                         </thead>
                         <tbody>
-                        myComm.map(item =>
+                        {myComm.map(item =>
                         <tr>
                             <td>{myComm.commBoard_idx}</td>
                             <td>{myComm.comm_contents}</td>
-                        </tr> )
+                        </tr> )}
 
                         </tbody>
                     </Table>

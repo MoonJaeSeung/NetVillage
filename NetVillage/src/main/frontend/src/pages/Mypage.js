@@ -181,7 +181,7 @@ const Mypage = () => {
                         </h3>
                         <div className="matchHistoryBox">
                             {matchHistory.map((matchHistory, idx) => {
-                                return <MatchHistory matchHistory={matchHistory}/>
+                                return <MatchHistory matchHistory={matchHistory} matchRes={matchRes}/>
                             })}
                         </div>
                     </div>

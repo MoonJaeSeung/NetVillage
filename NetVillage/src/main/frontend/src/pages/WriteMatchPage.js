@@ -236,7 +236,7 @@ const WriteMatchPage = () => {
 
     return (<WriteMatchPageWrapper onSubmit={handleSubmit}>
         <WriteMatchHeader>
-            <Title type="text"  placeholder='제목' onChange={handleTitleChange}></Title>
+            <Title type="text"  placeholder='' onChange={handleTitleChange}></Title>
         </WriteMatchHeader>
         <WriteMatchBody>
 
