@@ -88,3 +88,7 @@ main {
     padding-top: 30px;
     min-height: fit-content;
 }
+
+link, a {
+    text-decoration-line: none;
+}
