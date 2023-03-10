@@ -24,12 +24,12 @@ const BookMark = ({myBookMark, markRes}) => {
                         </tr>
                         </thead>
                         <tbody>
-                        myBookMark.map(item =>
+                        {myBookMark.map(item =>
                         <tr>
                             <td>myBookMark.markBoard_idx</td>
                             <td>myBookMark.user_id</td>
                             <td>안녕하세요</td>
-                        </tr>)
+                        </tr>)}
 
                         </tbody>
                     </Table>
