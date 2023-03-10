@@ -10,17 +10,17 @@ const Search = () => {
     const startDate = queryParams.get('startDate');
     const [list, setList] = useState([]);
 
-    useEffect(() => {
-        axios.get(`/Search/list`, {
-            params: {
-                selectedSports: selectedSports,
-                startDate: startDate
-            }
-        }).then((res) => {
-            setList(res.data);
-            console.log(list);
-        });
-    }, [selectedSports, startDate]);
+    // useEffect(() => {
+    //     axios.get(`/Search/list`, {
+    //         params: {
+    //             selectedSports: selectedSports,
+    //             startDate: startDate
+    //         }
+    //     }).then((res) => {
+    //         setList(res.data);
+    //         console.log(list);
+    //     });
+    // }, [selectedSports, startDate]);
 
     return (
         <div>
