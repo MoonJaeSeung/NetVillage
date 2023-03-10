@@ -107,7 +107,7 @@ const BoardDetail = () => {
         {
             key: '1',
             label: (
-                <Link to='/MyPage'>
+                <Link to='/Profile'>
                     프로필 보기
                 </Link>
             ),
