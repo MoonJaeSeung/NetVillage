@@ -157,8 +157,8 @@ const SearchBar = () => {
     );
 
     const SearchBtn = () => {
-        console.log(selectedSports);
-        console.log(moment(startDate).format("YYYY-MM-DD"));
+        // console.log(selectedSports);
+        // console.log(moment(startDate).format("YYYY-MM-DD"));
         navigate(`/Search?Sports=${selectedSports}&Date=${moment(startDate).format("YYYY-MM-DD")}`);
     }
 

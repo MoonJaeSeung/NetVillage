@@ -11,20 +11,20 @@ const Search = () => {
     const [list, setList] = useState([]);
 
     useEffect(() => {
-        const options = {
+        axios.get(`/Search/list`, {
             params: {
                 selectedSports: selectedSports,
                 startDate: startDate
             }
-        };
-
-        axios.get('/Search/list', options).then((res) => {
+        }).then((res) => {
             setList(res.data);
+            console.log(list);
         });
-    }, []);
+    }, [selectedSports, startDate]);
 
     return (
         <div>
+            123
         </div>
     );
 };
