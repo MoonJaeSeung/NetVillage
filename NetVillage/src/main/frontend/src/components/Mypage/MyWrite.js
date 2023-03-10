@@ -25,12 +25,12 @@ const MyWrite = ({myBoard, boardRes}) => {
                             </tr>
                             </thead>
                             <tbody>
-                            myBoard.map(myBoard =>
+                            {myBoard.map(myBoard =>
                             <tr>
                                 <td>{myBoard.board_idx}</td>
                                 <td>{myBoard.board_title}</td>
                                 <td>{myBoard.board_cate}</td>
-                            </tr>)
+                            </tr>)}
                             </tbody>
                     </Table>
                 }

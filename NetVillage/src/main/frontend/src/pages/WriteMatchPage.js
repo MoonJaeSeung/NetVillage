@@ -230,11 +230,13 @@ const WriteMatchPage = () => {
         navigate("/Match/Kakao");
     };
 
-
+    const navigateToMain = () =>{
+        navigate("/");
+    };
 
     return (<WriteMatchPageWrapper onSubmit={handleSubmit}>
         <WriteMatchHeader>
-            <Title type="text"  placeholder='제목' onChange={handleTitleChange}></Title>
+            <Title type="text"  placeholder='' onChange={handleTitleChange}></Title>
         </WriteMatchHeader>
         <WriteMatchBody>
 
@@ -265,7 +267,10 @@ const WriteMatchPage = () => {
                 <textarea style={{width:"100%"}} onChange={handleCommentChange}/>
             </div>
 
-            <SubmitButton onClick={() => addBoard()}>글 작성</SubmitButton>
+            <SubmitButton onClick={() =>{
+                addBoard();
+            navigateToMain()}}>
+                글 작성</SubmitButton>
         </WriteMatchBody>
     </WriteMatchPageWrapper>
 )

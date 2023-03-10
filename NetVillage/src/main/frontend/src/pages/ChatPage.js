@@ -139,7 +139,7 @@ const ChatPage = ({ socket }) => {
                   <li key={index} onClick={() => curCtRCk(item)}>
                   <div>
                     <h2>{item.user_nick2 === nick? item.user_nick1 : item.user_nick2}</h2>
-                    <h3>메시지 출력</h3>
+                    {/*<h3>메시지 출력</h3>*/}
                   </div>
                   </li>
               ))}
@@ -150,13 +150,11 @@ const ChatPage = ({ socket }) => {
           <div className='noChat' style={{display: display, alignItems:"center", justifyContent:"center", color:"white", height: "inherit"}}><MessageOutlined style={{fontSize: '200px'}} /></div>
           <div className='mainContainer' style={{ display: dpChat }}>
           <header>
-              {/*<div>*/}
                 <div>
-                  <h2>Chat with {curCtR.user_nick2}</h2>
+                  <h2>{curCtR.user_nick2 == nick ? curCtR.user_nick1 : curCtR.user_nick2} 님과의 채팅입니다.</h2>
                   <h3>[{boardInfo.board_cate}] {boardInfo.board_title}</h3>
                 </div>
                 <Button onClick={chatExit}>나가기</Button>
-              {/*</div>*/}
           </header>
           <ul id="chat" ref={scrollRef}>
             {msgList && msgList.map((item, index) => (

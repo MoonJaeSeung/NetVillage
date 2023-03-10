@@ -73,11 +73,41 @@ const BoardDetail = () => {
         }
     };
 
+    const delMyBoard = () => {
+        Swal.fire({
+            title: '게시글을 삭제하시겠습니까?',
+            text: "삭제된 게시글은 복구할 수 없습니다.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.post('/board/free/delete', {
+                    board_idx : viewDetail[0].board_idx
+                }).then((res)=>{
+                    console.log(res.config.data);
+                    Swal.fire(
+                        'Deleted!',
+                        '삭제되었습니다.',
+                        'success'
+                    )
+                    navigate('/board');
+                }).catch((err)=>console.log(err));
+            }
+        })
+    }
+
+    const editMyBoard = () => {
+
+    }
+
     const items = [
         {
             key: '1',
             label: (
-                <Link to='/MyPage'>
+                <Link to='/Profile'>
                     프로필 보기
                 </Link>
             ),
@@ -116,6 +146,8 @@ const BoardDetail = () => {
                     </Space>
                     <span style={{marginLeft: "15px"}}>작성일 {viewDetail[0] && viewDetail[0].board_date}</span>
                     <span style={{marginLeft: "15px"}}>조회수 {viewDetail[0] && viewDetail[0].board_cnt}</span>
+                    {loginNick == writerNick ? <Button onClick={editMyBoard}>수정</Button> : <div style={{ display : "none"}}></div>}
+                    {loginNick == writerNick ? <Button onClick={delMyBoard}>삭제</Button> : <div style={{ display : "none"}}></div>}
                 </div>
                 <div className='boardContents'>
                     {Parser(contents)}
