@@ -19,12 +19,19 @@ const StyledText = styled.span`
     text-shadow: yellowgreen 1px 1px;  // 텍스트 그림자를 추가합니다.
 `;
 
+const StyledText2 = styled.span`
+    font-family: 'Montserrat', sans-serif;  // 폰트 이름과 폰트 유형을 지정합니다.
+    font-size: 15px;  // 폰트 크기를 지정합니다.
+    font-weight: 700;  // 굵기를 지정합니다.
+    color: black;  // 폰트 색상을 지정합니다.
+    
+`;
 
 const MatchRoomCard = (props) => {
 
     const [openModal, setOpenModal] = useState(false);
-
-
+    const userInfo = JSON.parse(sessionStorage.getItem('user_info'));
+    const nick = userInfo.user_nick
 
     const edit = () => {
         console.log('edit');
@@ -40,7 +47,7 @@ const MatchRoomCard = (props) => {
         axios.get('/Match/list/del')
     }
 
-    const handleAccept = (match_idx,nick) =>{
+    const handleAccept = (match_idx) =>{
         console.log("accepted match", match_idx,nick);
 
         const data = {
@@ -57,9 +64,7 @@ const MatchRoomCard = (props) => {
             .catch(()=> console.log('오류'))
     }
 
-    const date = {
-        textAlign: "center"
-    }
+
 
 
 
@@ -67,12 +72,12 @@ const MatchRoomCard = (props) => {
         <>
         <div style={{
             background: "rgb(233, 255, 228)",
-            width: "30%",
-            height: "20%",
+            width: "500px",
+            height: "200px",
             marginBottom: "15px",
             borderRadius: "20px"
         }} onClick={() => setOpenModal(true)}>
-            <p style={date}>
+            <p>
                 {`${props.item.match_date}`}
             </p>
             <div style={{display: "flex", flexDirection:"column", alignItems:"center" ,marginBottom:"20px"}}>
@@ -83,6 +88,7 @@ const MatchRoomCard = (props) => {
 
 
                 <StyledText>{`${props.item.user_nick1}`}</StyledText>
+                <StyledText2>{`${props.item.game}`}</StyledText2>
             </div>
             <div style={{display: "flex", justifyContent: "center"}}>
                 {props.item.win
@@ -93,15 +99,15 @@ const MatchRoomCard = (props) => {
             <div>
                 <p style={{display: "flex", justifyContent: "center"}}>장소</p>
                 {/*<small>D-7</small>*/}
-                <div style={{display: "flex", flexDirection: "row-reverse"}}>
-                    <Edit onClick={() => {
-                        edit();
-                    }}>수정</Edit>
-                    <Edit onClick={() => {
-                        del();
-                    }}
-                    >삭제</Edit>
-                </div>
+                {/*<div style={{display: "flex", flexDirection: "row-reverse"}}>*/}
+                {/*    <Edit onClick={() => {*/}
+                {/*        edit();*/}
+                {/*    }}>수정</Edit>*/}
+                {/*    <Edit onClick={() => {*/}
+                {/*        del();*/}
+                {/*    }}*/}
+                {/*    >삭제</Edit>*/}
+                {/*</div>*/}
             </div>
         </div>
             {openModal && <MatchModal user={props.item} setOpenModal={setOpenModal} onAccept={handleAccept}/>}
