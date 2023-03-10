@@ -7,7 +7,7 @@ import { FaVolleyballBall } from "react-icons/fa";
 import { GiTennisRacket } from "react-icons/gi";
 
 
-const MatchHistory = ({matchHistory}) => {
+const MatchHistory = ({matchHistory, matchRes}) => {
 
     const winStyle = {
         color: "blue"
@@ -30,16 +30,24 @@ const MatchHistory = ({matchHistory}) => {
         
     return (
         <div className="gameItem">
-            <div className="gameName">
-                <span className="matchHistoryName">{matchHistory.game}</span>
-                <div className="matchRecord">
-                    <span className="matchHistoryList" style={winStyle}>{matchHistory.win}승 </span>
-                    <span className="matchHistoryList" style={loseStyle}>{(matchHistory.cnt > matchHistory.win? matchHistory.cnt-matchHistory.win : matchHistory.win-matchHistory.cnt)}패</span>
-                </div>
-            </div>
+            {
+                matchHistory.cnt === 0?
+                    matchRes
+                    :
+                    <div className="gameName">
+                        <span className="matchHistoryName">{matchHistory.game}</span>
+                        <div className="matchRecord">
+                            <span className="matchHistoryList" style={winStyle}>{matchHistory.win}승 </span>
+                            <span className="matchHistoryList" style={loseStyle}>{(matchHistory.cnt > matchHistory.win? matchHistory.cnt-matchHistory.win : matchHistory.win-matchHistory.cnt)}패</span>
+                        </div>
+                    </div>
+
+            }
             <div className="gameIcon">
                 {setIcon()}
             </div>
+
+
         </div>
     );
 };
