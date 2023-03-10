@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-
-
+import {useNavigate} from "react-router-dom";
 
 const { kakao } = window;
 
-const Kakao = ({ onLocationSelect }) => {
+const Kakao = ({ onLocationSelect, history }) => {
     const [searchKeyword, setSearchKeyword] = useState('');
     const [map, setMap] = useState(null);
     const [selectedLocation, setSelectedLocation] = useState(null);
-    const [placesList, setPlacesList] = useState([]); // 장소 목록을 state로 저장
+    const [placesList, setPlacesList] = useState([]);
 
     useEffect(() => {
         const container = document.getElementById('map');
@@ -33,7 +32,7 @@ const Kakao = ({ onLocationSelect }) => {
         if (status === kakao.maps.services.Status.OK) {
             const center = new kakao.maps.LatLng(data[0].y, data[0].x);
             map.setCenter(center);
-            setPlacesList(data); // 검색 결과를 state에 저장
+            setPlacesList(data);
         } else {
             alert('검색 결과가 없습니다.');
         }
@@ -42,12 +41,18 @@ const Kakao = ({ onLocationSelect }) => {
     const handleInsertClick = () => {
         if (selectedLocation) {
             onLocationSelect(selectedLocation.getLng(), selectedLocation.getLat());
+            history.goBack(); // 이전 페이지로 이동
         }
     };
 
     const handleListItemClick = (place) => {
-        // 장소를 클릭하면 입력창에 해당 장소의 이름을 띄우기
         setSearchKeyword(place.place_name);
+    };
+
+    const navigate=useNavigate();
+
+    const navigateToWrite = () => {
+        navigate("/Match/Write");
     };
 
     return (
@@ -81,7 +86,7 @@ const Kakao = ({ onLocationSelect }) => {
                         </li>
                     ))}
                 </ul>
-                <button onClick={handleInsertClick}>삽입</button>
+                <button onClick={navigateToWrite}>뒤로 가기</button>
             </div>
         </div>
     );

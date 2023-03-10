@@ -25,4 +25,8 @@ public class BoardService {
     public List<Board> freeViewDetail(String idx) {
         return boardMapper.freeViewDetail(idx);
     }
+
+    public void freeBoardDelete(String board_idx) {
+        boardMapper.freeBoardDelete(board_idx);
+    }
 }
